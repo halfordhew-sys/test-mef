@@ -1055,7 +1055,7 @@ function showPage(pageName, btn) {
     history.pushState({page: pageName}, '', '#' + pageName);
   }
   
-  // Hide admin buttons if navigating to public pages
+  // Hide white admin buttons ONLY if navigating to public pages (not adminlogin)
   const publicPages = ['home', 'events', 'calendar', 'about'];
   if(publicPages.includes(pageName)) {
     document.getElementById('pacePlanningBtn').style.display = 'none';
