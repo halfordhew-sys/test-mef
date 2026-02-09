@@ -59,7 +59,73 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 .filter-group { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .filter-group label { font-weight: bold; color: #2B7BBD; font-size: 0.9em; }
 .filter-group input, .filter-group select { padding: 10px; border: 2px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 1em; width: 100%; box-sizing: border-box; }
-.event-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 3px 15px rgba(0,0,0,0.1); border: 3px solid #8DC63F; margin-bottom: 25px; word-wrap: break-word; overflow-wrap: break-word; }
+/* Event Grid Layout */
+#eventsList { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+  gap: 20px; 
+  margin-top: 30px;
+}
+#eventsList > p { 
+  grid-column: 1 / -1; /* Make the info text span all columns */
+}
+
+/* Event Cards - Brightlingsea Style */
+.event-card { 
+  background: white; 
+  border: 3px solid #333; 
+  border-radius: 8px; 
+  overflow: hidden; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.event-card:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+}
+.event-card-header { 
+  padding: 15px; 
+  font-size: 1.1em; 
+  font-weight: bold; 
+  color: white; 
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+}
+.event-card-header.color-orange { background: #ff8c42; }
+.event-card-header.color-green { background: #8DC63F; }
+.event-card-body { 
+  padding: 20px; 
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.event-card-info { 
+  margin-bottom: 10px; 
+  color: #555; 
+  font-size: 0.95em; 
+  line-height: 1.5; 
+}
+.event-card-description { 
+  margin-top: 12px; 
+  margin-bottom: 15px; 
+  color: #444; 
+  font-size: 0.95em; 
+  line-height: 1.5;
+  flex: 1;
+}
+.event-card-cta {
+  color: #2B7BBD;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* Old event card styles kept for other pages */
 .event-card img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
 .event-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; flex-wrap: wrap; gap: 15px; }
 .event-title { color: #2B7BBD; font-size: 1.8em; margin: 0; }
@@ -232,22 +298,6 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
     opacity: 0;
   }
 }
-
-/* Hide admin navigation buttons by default - shown after login */
-#pacePlanningBtn, #paceLeadPortalBtn, #adminBtn {
-  display: none;
-}
-
-/* Admin buttons styling - white background, blue text/border */
-.nav-btn.admin-btn {
-  background: white;
-  color: #2B7BBD;
-  border: 2px solid #2B7BBD;
-}
-.nav-btn.admin-btn.active, .nav-btn.admin-btn:hover {
-  background: #2B7BBD;
-  color: white;
-}
 </style>
 <!-- SECTION END: CSS STYLES -->
 
@@ -262,18 +312,16 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 <div class="nav-title">
 <img src="https://mcusercontent.com/6fcff65c5695e0ab56345c711/_compresseds/dc065ad1-455d-7752-4079-c7f1a0721c62.jpg" alt="MEF Logo">
 <div>
-<p style="font-size: 1.8em; font-weight: bold; line-height: 1.2;">23 MAY - 30 JUNE 2026</p>
+<p>23rd May to 30th June 2026</p>
 </div>
 </div>
 <div class="nav-buttons">
 <button class="nav-btn active" onclick="showPage('home', this)">Home</button>
 <button class="nav-btn" onclick="showPage('events', this)">Events</button>
 <button class="nav-btn" onclick="showPage('calendar', this)">Calendar</button>
-<button class="nav-btn" onclick="showPage('about', this)">About</button>
-<button class="nav-btn" onclick="showPage('adminlogin', this)" id="adminLoginBtn">MEF Admin</button>
-<button class="nav-btn admin-btn" onclick="showPage('paceplanning', this)" id="pacePlanningBtn">PACE Planning</button>
-<button class="nav-btn admin-btn" onclick="showPage('paceleadportal', this)" id="paceLeadPortalBtn">My Events</button>
-<button class="nav-btn admin-btn" onclick="showPage('admin', this)" id="adminBtn">Admin</button>
+<button class="nav-btn" onclick="showPage('paceplanning', this)" id="pacePlanningBtn">PACE Planning</button>
+<button class="nav-btn" onclick="showPage('paceleadportal', this)" id="paceLeadPortalBtn">My Events</button>
+<button class="nav-btn" onclick="showPage('admin', this)" id="adminBtn">Admin</button>
 <button class="pace-website-btn" onclick="window.location.href='https://www.pacemanningtree.org.uk'">← PACE Website</button>
 </div>
 </div>
@@ -294,27 +342,20 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 <!-- HOME PAGE -->
 <div id="home" class="page active">
 <div class="hero">
-<h2 style="font-style: italic; font-size: 2.2em;">Discovering What We Can Do</h2>
-<p style="font-size: 1.4em; margin-bottom: 30px;">A 5-week series of events celebrating community action, environmental awareness, and positive change through films, talks, workshops, performances, music, exhibitions, debates, and more.</p>
-
-<div style="background: rgba(255,255,255,0.95); padding: 25px; border-radius: 12px; margin-top: 30px; color: #333;">
-<h3 style="font-size: 1.6em; margin-bottom: 15px; color: #2B7BBD;">How It Works</h3>
-<p style="font-size: 1.1em; line-height: 1.6;">
-✨ Browse events by <strong>Calendar</strong> or <strong>Events</strong> tab above<br>
-🎟️ Reserve your place through <strong>Eventbrite</strong> (links on each event)<br>
-💚 Most events are <strong>FREE</strong> - donations welcome to support our community<br>
-🌍 Discover films, talks, workshops, performances, and more
-</p>
-</div>
+<h2>Discovering what we can do</h2>
+<p>A 5-week celebration of community action, environmental awareness, and positive change</p>
 </div>
 
 <section>
-<h2>Welcome to MEF 2026</h2>
-<p>The Manningtree Earth Festival is coordinated by volunteers from PACE Manningtree and delivered by passionate members of our community. From May 23rd to June 30th, 2026, we're bringing together knowledge, skills, and connections to help us all understand climate change, biodiversity loss, and the practical actions we can take.</p>
+<h2>Introduction</h2>
+<p>MEF26 is a series of events to be held from May 23rd to June 30th, 2026 and coordinated by volunteers from PACE Manningtree but delivered by members of our community. The events will provide information, knowledge and choices so that we can all become more aware, better equipped, more knowledgeable and more resilient to the impacts of climate disruption and biodiversity loss.</p>
 </section>
-
 <section>
-<h2>Festival Goals</h2>
+<h2>Concept</h2>
+<p>The idea is to deliver a stimulating programme of events throughout the festival at Manningtree and beyond - films, performances, music, lectures, displays, exhibitions, talks, debates, workshops, happenings - at a variety of venues (small, medium or large).</p>
+</section>
+<section>
+<h2>Goals</h2>
 <div class="goal-item">Understanding the changing climate, the loss of biodiversity and the impacts on our environment</div>
 <div class="goal-item">Actions individuals, organisations and businesses can take to benefit our community</div>
 <div class="goal-item">Building resilience for our community as the environment changes</div>
@@ -363,76 +404,6 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 </div>
 <!-- SECTION END: CALENDAR PAGE -->
 
-
-<!-- ============================================ -->
-<!-- SECTION START: ABOUT PAGE -->
-<!-- ============================================ -->
-<div id="about" class="page">
-<h2 style="text-align: center; font-size: 2.5em; margin-bottom: 30px;">About the Festival</h2>
-
-<section>
-<h2>What is MEF 2026?</h2>
-<p>The Manningtree Earth Festival (MEF) is a community-driven celebration of environmental action and awareness. Over five weeks, from May 23rd to June 30th, 2026, local volunteers and community members come together to deliver an inspiring programme of events.</p>
-</section>
-
-<section>
-<h2>How to Use This Site</h2>
-<div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #8DC63F;">
-<h3 style="color: #2B7BBD; margin-bottom: 15px;">📅 Browse by Calendar</h3>
-<p style="margin-bottom: 20px;">Click the <strong>Calendar</strong> tab to see all events laid out by date. Perfect for planning your month!</p>
-
-<h3 style="color: #2B7BBD; margin-bottom: 15px;">📋 Browse by Events List</h3>
-<p style="margin-bottom: 20px;">Click the <strong>Events</strong> tab to see all events with full descriptions. Filter by type, topic, or search for keywords.</p>
-
-<h3 style="color: #2B7BBD; margin-bottom: 15px;">🎟️ Reserve Your Place</h3>
-<p style="margin-bottom: 20px;">Most events require reservation through <strong>Eventbrite</strong>. Click the Eventbrite link on any event to book your spot.</p>
-
-<h3 style="color: #2B7BBD; margin-bottom: 15px;">💚 Free Events & Donations</h3>
-<p>Most events are completely FREE to attend. However, donations are welcome and help support future community initiatives. You can donate when booking through Eventbrite.</p>
-</div>
-</section>
-
-<section>
-<h2>Our Mission</h2>
-<p>MEF 2026 aims to provide information, knowledge, and choices so that we can all become:</p>
-<div style="display: grid; gap: 15px; margin-top: 20px;">
-<div class="goal-item">✓ More aware of climate change and biodiversity loss</div>
-<div class="goal-item">✓ Better equipped with practical skills and knowledge</div>
-<div class="goal-item">✓ More resilient to environmental challenges</div>
-<div class="goal-item">✓ Connected to our community and shared future</div>
-</div>
-</section>
-
-<section>
-<h2>About PACE Manningtree</h2>
-<p>PACE (Positive Action for Climate and Environment) Manningtree is a volunteer-led organisation dedicated to environmental action in our local community. We coordinate the MEF festival, but the events are delivered by passionate community members like you!</p>
-<p style="margin-top: 15px;">Learn more at: <a href="https://www.pacemanningtree.org.uk/" target="_blank" style="color: #2B7BBD; font-weight: bold;">www.pacemanningtree.org.uk</a></p>
-</section>
-
-<div class="contact-box">
-<h3 style="color: white; font-size: 1.8em; margin-bottom: 15px;">Get in Touch</h3>
-<p>Questions about the festival? Contact us at: <a href="/cdn-cgi/l/email-protection#5b163a353532353c2f293e3e1e3a292f331d3e282f322d3a371b3c363a323775383436"><span class="__cf_email__" data-cfemail="2d604c434344434a595f4848684c5f59456b485e59445b4c416d4a404c4441034e4240">[email&#160;protected]</span></a></p>
-</div>
-</div>
-<!-- END about page -->
-
-<!-- ============================================ -->
-<!-- SECTION START: ADMIN LOGIN PAGE (Unified Entry Point) -->
-<!-- ============================================ -->
-<div id="adminlogin" class="page">
-<div class="admin-login">
-<h2>Festival Administration</h2>
-<p style="margin-bottom: 20px;">Enter your password to access festival management</p>
-<input type="password" id="unifiedAdminPassword" class="admin-input" placeholder="Enter password or access code" onkeypress="if(event.key==='Enter') unifiedLogin()" autofocus>
-<button class="btn" onclick="unifiedLogin()">Access Admin</button>
-<p style="margin-top: 20px; font-size: 0.9em; color: #666;">
-PACE Planning: pace2026<br>
-PACE Leads: Your 6-character access code<br>
-Administrator: Admin password
-</p>
-</div>
-</div>
-<!-- END adminlogin page -->
 
 <!-- ============================================ -->
 <!-- SECTION START: PACE PLANNING PAGE -->
@@ -621,6 +592,8 @@ Manage venue profiles including capacity, facilities, and availability.
 </div>
 <div style="margin-top: 15px;">
 <button class="btn" onclick="printPlanningReport()" style="background: #28a745;">📄 Print Planning Report</button>
+<button class="btn" onclick="downloadWordReport()" style="background: #0066cc; margin-left: 10px;">📥 Download Word Report</button>
+<button class="btn" onclick="openChangeLog()" style="background: #ff9800; margin-left: 10px;">📋 View Change Log</button>
 </div>
 </div>
 <div style="background: #f5f5f5; padding: 30px; border-radius: 10px;">
@@ -840,10 +813,10 @@ Manage venue profiles including capacity, facilities, and availability.
   <small>Add the Eventbrite link for this event. Leave blank if no registration required.</small>
 </div>
 
-<h3 style="color: #2B7BBD; margin: 30px 0 15px 0; padding-top: 20px; border-top: 2px solid #eee;">Organiser Contact Information</h3>
+<h3 style="color: #2B7BBD; margin: 30px 0 15px 0; padding-top: 20px; border-top: 2px solid #eee;">Organizer Contact Information</h3>
 
 <div class="two-col">
-<div class="form-group"><label>Contact Name</label><input type="text" id="eventContactName" placeholder="Event organiser contact" required></div>
+<div class="form-group"><label>Contact Name</label><input type="text" id="eventContactName" placeholder="Event organizer contact" required></div>
 <div class="form-group"><label>Contact Email</label><input type="email" id="eventContactEmail" placeholder="contact@example.com"></div>
 </div>
 
@@ -910,6 +883,44 @@ Manage venue profiles including capacity, facilities, and availability.
 </div>
 </div>
 <!-- SECTION END: EVENT DETAIL MODAL -->
+
+<!-- ============================================ -->
+<!-- SECTION START: CHANGE LOG MODAL -->
+<!-- ============================================ -->
+<div id="changeLogModal" class="modal">
+<div class="modal-content" style="max-width: 900px;">
+<div class="modal-header">
+<h2 style="color: #2B7BBD; margin: 0;">📋 Change Log</h2>
+<button style="background: none; border: none; cursor: pointer; font-size: 1.5em;" onclick="closeChangeLog()">×</button>
+</div>
+
+<div style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+<p style="margin: 0; color: #666;">Track all changes made to events, notes, and venues. Most recent changes appear first.</p>
+</div>
+
+<div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+  <input type="text" id="changeLogSearch" placeholder="Search changes..." style="flex: 1; min-width: 200px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" oninput="filterChangeLog()">
+  <select id="changeLogTypeFilter" onchange="filterChangeLog()" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+    <option value="all">All Types</option>
+    <option value="added">Events Added</option>
+    <option value="edited">Events Edited</option>
+    <option value="deleted">Events Deleted</option>
+    <option value="note">Notes Added</option>
+    <option value="venue">Venue Changes</option>
+  </select>
+  <button class="btn btn-secondary" onclick="clearChangeLog()" style="padding: 10px 20px;">Clear Log</button>
+</div>
+
+<div id="changeLogList" style="max-height: 500px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px; background: white;">
+  <p style="padding: 40px; text-align: center; color: #999;">Loading change log...</p>
+</div>
+
+<div style="margin-top: 20px; text-align: center;">
+  <button class="btn btn-secondary" onclick="closeChangeLog()">Close</button>
+</div>
+</div>
+</div>
+<!-- SECTION END: CHANGE LOG MODAL -->
 
 <!-- ============================================ -->
 <!-- SECTION START: PRIDE MODAL -->
@@ -1032,11 +1043,14 @@ if (db !== null) {
 let events = [];
 let filteredEvents = [];
 let venues = [];
+let changeLog = [];
+let filteredChangeLog = [];
 let editingVenueId = null;
 let isAdmin = false;
 let isPaceLead = false;
 let currentPaceLeadCode = null;
 let editingEventId = null;
+let tempEventNotes = []; // Temporary storage for notes when creating a new event
 let useFirebase = db !== null;
 let currentCalendarView = 'month';
 let currentCalendarDate = new Date('2026-06-01');
@@ -1055,18 +1069,6 @@ function showPage(pageName, btn) {
     history.pushState({page: pageName}, '', '#' + pageName);
   }
   
-  // Hide white admin buttons ONLY if navigating to public pages (not adminlogin)
-  const publicPages = ['home', 'events', 'calendar', 'about'];
-  if(publicPages.includes(pageName)) {
-    document.getElementById('pacePlanningBtn').style.display = 'none';
-    document.getElementById('paceLeadPortalBtn').style.display = 'none';
-    document.getElementById('adminBtn').style.display = 'none';
-    // Reset login states
-    isAdmin = false;
-    isPaceLead = false;
-    currentPaceLeadCode = null;
-  }
-  
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(pageName).classList.add('active');
@@ -1080,6 +1082,9 @@ function showPage(pageName, btn) {
   }
   if(pageName==='calendar'){ renderCalendar(); }
   if(pageName==='home'){ 
+    isAdmin=false;
+    isPaceLead=false;
+    currentPaceLeadCode=null;
     document.getElementById('adminLogin').style.display='block'; 
     document.getElementById('adminPanel').style.display='none';
     document.getElementById('adminPassword').value='';
@@ -1131,6 +1136,7 @@ function showPage(pageName, btn) {
 window.onload = function() {
   loadEvents();
   loadVenues();
+  loadChangeLog();
   showPage('home');
   
   // Update load time display
@@ -1158,6 +1164,12 @@ function loadEvents() {
       if(snapshot.exists()) {
         const data = snapshot.val();
         events = Object.values(data);
+        // Ensure all planningNotes are properly formatted as arrays
+        events.forEach(e => {
+          if(e.planningNotes && !Array.isArray(e.planningNotes)) {
+            e.planningNotes = migrateNotes(e.planningNotes);
+          }
+        });
       } else {
         events = [];
       }
@@ -1182,9 +1194,14 @@ function saveEvents() {
     // Fallback to timestamp ID if uniqueId is missing
     events.forEach((e, idx) => { 
       const key = e.uniqueId || e.id;
+      // Ensure planningNotes are properly formatted before saving
+      if(e.planningNotes && !Array.isArray(e.planningNotes)) {
+        e.planningNotes = migrateNotes(e.planningNotes);
+      }
       eventsObj[key] = e; 
     });
-    db.ref('events').set(eventsObj).catch(err => console.error('Firebase save error:', err));
+    // Use update instead of set to prevent data loss
+    db.ref('events').update(eventsObj).catch(err => console.error('Firebase save error:', err));
   } else {
     localStorage.setItem('mef-events', JSON.stringify(events));
   }
@@ -1313,49 +1330,78 @@ function renderEvents() {
   filteredEvents.forEach((e,i)=>{
     let div = document.createElement('div');
     div.className='event-card';
-    div.style.cursor='pointer';
     div.onclick = () => showEventDetailModal(e.id);
 
-    let metaInfo = [];
-    if(e.date) metaInfo.push(formatDate(e.date));
+    // Alternate colors: orange (color-1) and green (color-2)
+    const colorClass = (i % 2 === 0) ? 'color-orange' : 'color-green';
+
+    // Build timing info for line 1
+    let timingParts = [];
+    if(e.date) timingParts.push('📅 ' + formatDate(e.date));
     if(e.time) {
       const allSlots = getAllTimeSlots(e);
       if(allSlots.length > 1) {
-        metaInfo.push('⏰ ' + allSlots.length + ' slots');
+        timingParts.push('🕒 ' + allSlots.length + ' sessions');
       } else {
-        metaInfo.push(e.time);
+        timingParts.push('🕒 ' + e.time);
       }
     }
-    const pubRecStr = formatRecurrence(e);
-    if(pubRecStr) metaInfo.push('🔁 ' + pubRecStr);
+    if(e.duration && e.duration > 0) {
+      const hours = Math.floor(e.duration / 60);
+      const mins = e.duration % 60;
+      let durationStr = '⏱️ ';
+      if(hours > 0) durationStr += hours + (hours === 1 ? ' hour' : ' hours');
+      if(mins > 0) durationStr += (hours > 0 ? ' ' : '') + mins + ' mins';
+      timingParts.push(durationStr);
+    }
+
+    // Build location info for line 2
+    let locationStr = '';
+    if(e.location) {
+      locationStr = '📍 ' + e.location;
+      if(e.postcode) locationStr += ', ' + e.postcode;
+    } else if(e.venue) {
+      locationStr = '📍 ' + e.venue;
+      if(e.postcode) locationStr += ', ' + e.postcode;
+    }
+
+    // Get description (summary or shortened description)
+    let description = '';
+    if(e.summary) {
+      description = e.summary;
+    } else if(e.description) {
+      description = e.description.length > 120 ? e.description.substring(0, 120) + '...' : e.description;
+    }
 
     let html = `
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap;">
-      <div style="flex: 1; min-width: 200px;">
-        <h3 class="event-title" style="margin: 0 0 10px 0;">${e.title}</h3>
-        <div class="event-meta" style="margin-bottom: 10px;">${metaInfo.join(' • ')}</div>`;
+    <div class="event-card-header ${colorClass}">${e.title}</div>
+    <div class="event-card-body">`;
+    
+    if(timingParts.length > 0) {
+      html += `<div class="event-card-info">${timingParts.join('  ')}</div>`;
+    }
+    
+    if(locationStr) {
+      html += `<div class="event-card-info">${locationStr}</div>`;
+    }
 
-    // Time slots box
+    // Show time slots box if multiple sessions
     const weekSlots = getAllTimeSlots(e);
     if(weekSlots.length > 1) {
-      html += `<div style="margin: 10px 0; padding: 8px 12px; background: #e8f4fd; border-radius: 6px; border-left: 3px solid #2B7BBD;">`;
-      html += `<div style="font-weight: bold; color: #2B7BBD; margin-bottom: 4px; font-size: 0.9em;">⏰ ${weekSlots.length} sessions available:</div>`;
+      html += `<div style="margin: 10px 0; padding: 8px 12px; background: #e8f4fd; border-radius: 6px; border-left: 3px solid #2B7BBD; font-size: 0.9em;">`;
+      html += `<div style="font-weight: bold; color: #2B7BBD; margin-bottom: 4px;">⏰ ${weekSlots.length} sessions:</div>`;
       weekSlots.forEach(slot => {
-        html += `<div style="color: #333; font-size: 0.9em; padding: 2px 0;">${formatSlotTime(slot)}</div>`;
+        html += `<div style="color: #333; padding: 2px 0;">${formatSlotTime(slot)}</div>`;
       });
       html += `</div>`;
     }
-
-    if(e.summary) {
-      html += `<p style="margin: 10px 0 0 0; line-height: 1.4; color: #333;">${e.summary}</p>`;
-    } else if(e.description) {
-      const shortDesc = e.description.length > 100 ? e.description.substring(0, 100) + '...' : e.description;
-      html += `<p style="margin: 10px 0 0 0; line-height: 1.4; color: #333;">${shortDesc}</p>`;
+    
+    if(description) {
+      html += `<div class="event-card-description">${description}</div>`;
     }
 
-    html += `</div>
-      <div style="color: #8DC63F; font-weight: bold; font-size: 1.1em;">Click for details →</div>
-    </div>`;
+    html += `<div class="event-card-cta">Click for details →</div>`;
+    html += `</div>`;
 
     div.innerHTML = html;
     container.appendChild(div);
@@ -1704,7 +1750,16 @@ function editEvent(id, scrollToNotes = false) {
 }
 
 function deleteEvent(id) {
+  const eventToDelete = events.find(e => e.id === id);
+  
   if(confirm('Are you sure you want to delete this event?')) {
+    // Log before deleting so we still have the event data
+    if(eventToDelete) {
+      addChangeLogEntry('deleted', 'Event deleted: ' + eventToDelete.title, {
+        changes: 'Event permanently removed'
+      }, eventToDelete);
+    }
+    
     events = events.filter(e=>e.id!==id);
     saveEvents();
     
@@ -1828,89 +1883,11 @@ function login() {
     isAdmin=true;
     isPaceLead=true;
     document.getElementById('adminLogin').style.display='none'; 
-    document.getElementById('adminPanel').style.display='block';
-    // Show all admin navigation buttons
-    document.getElementById('pacePlanningBtn').style.display='inline-block';
-    document.getElementById('paceLeadPortalBtn').style.display='inline-block';
-    document.getElementById('adminBtn').style.display='inline-block';
+    document.getElementById('adminPanel').style.display='block'; 
     renderAdminEventsList(); 
   } else{ 
     alert('Incorrect password'); 
   }
-}
-
-/* ============================================ */
-/* UNIFIED LOGIN FUNCTION */
-/* ============================================ */
-function unifiedLogin() {
-  const input = document.getElementById('unifiedAdminPassword').value.trim();
-  
-  if(!input) {
-    alert('Please enter a password or access code');
-    return;
-  }
-  
-  // Clear the password field
-  document.getElementById('unifiedAdminPassword').value = '';
-  
-  // Check for admin password
-  if(input === 'ha!ford') {
-    isAdmin = true;
-    isPaceLead = true;
-    // Show all admin tabs
-    document.getElementById('pacePlanningBtn').style.display='inline-block';
-    document.getElementById('paceLeadPortalBtn').style.display='inline-block';
-    document.getElementById('adminBtn').style.display='inline-block';
-    // Set up admin panel
-    document.getElementById('adminLogin').style.display='none'; 
-    document.getElementById('adminPanel').style.display='block';
-    renderAdminEventsList();
-    // Go to admin page
-    showPage('admin', document.getElementById('adminBtn'));
-    return;
-  }
-  
-  // Check for PACE Planning password
-  if(input === 'pace2026') {
-    isPaceLead = true;
-    // Show PACE tabs
-    document.getElementById('pacePlanningBtn').style.display='inline-block';
-    document.getElementById('paceLeadPortalBtn').style.display='inline-block';
-    // Set up PACE Planning panel
-    document.getElementById('pacePlanningLogin').style.display='none'; 
-    document.getElementById('pacePlanningPanel').style.display='block';
-    renderPlanningEvents();
-    // Go to PACE Planning page
-    showPage('paceplanning', document.getElementById('pacePlanningBtn'));
-    return;
-  }
-  
-  // Check if it's a PACE Lead access code (2 letters + 4 digits)
-  const accessCodePattern = /^[A-Z]{2}\d{4}$/;
-  const upperInput = input.toUpperCase();
-  
-  if(accessCodePattern.test(upperInput)) {
-    // Check if any events exist with this code
-    const userEvents = events.filter(e => e.accessCode && e.accessCode.toUpperCase() === upperInput);
-    
-    if(userEvents.length > 0) {
-      currentPaceLeadCode = upperInput;
-      // Show PACE Lead tab only
-      document.getElementById('paceLeadPortalBtn').style.display='inline-block';
-      // Set up the PACE Lead portal
-      document.getElementById('paceLeadLogin').style.display = 'none';
-      document.getElementById('paceLeadPanel').style.display = 'block';
-      document.getElementById('paceLeadInfo').style.display = 'block';
-      document.getElementById('paceLeadCodeDisplay').textContent = upperInput;
-      renderPaceLeadEvents();
-      // Go to My Events page
-      showPage('paceleadportal', document.getElementById('paceLeadPortalBtn'));
-      return;
-    }
-  }
-  
-  // If we get here, login failed
-  alert('Incorrect password or access code. Please try again.');
 }
 
 /* ============================================ */
@@ -2033,45 +2010,66 @@ function addPlanningNote() {
   const text = noteInput.value.trim();
   if(!text) return;
   
-  // Get current event
-  if(editingEventId === null) return;
-  const idx = events.findIndex(ev => ev.id === editingEventId);
-  if(idx === -1) return;
-  
-  // Migrate existing notes if needed
-  if(!Array.isArray(events[idx].planningNotes)) {
-    events[idx].planningNotes = migrateNotes(events[idx].planningNotes);
-  }
-  
-  // Add new note with timestamp
-  events[idx].planningNotes.unshift({
+  // Create new note with timestamp
+  const newNote = {
     text: text,
     date: new Date().toISOString()
-  });
+  };
   
-  noteInput.value = '';
-  saveEvents();
-  renderPlanningNotesList(events[idx].planningNotes);
-  
-  // Update the background card if visible
-  updateCardNotesDisplay(editingEventId);
+  // If editing existing event
+  if(editingEventId !== null) {
+    const idx = events.findIndex(ev => ev.id === editingEventId);
+    if(idx === -1) return;
+    
+    // Ensure planningNotes is always a proper array
+    if(!events[idx].planningNotes || !Array.isArray(events[idx].planningNotes)) {
+      events[idx].planningNotes = migrateNotes(events[idx].planningNotes);
+    }
+    
+    // Add new note (create new array to avoid reference issues)
+    events[idx].planningNotes = [newNote, ...events[idx].planningNotes];
+    
+    noteInput.value = '';
+    saveEvents();
+    renderPlanningNotesList(events[idx].planningNotes);
+    
+    // Log the note addition
+    addChangeLogEntry('note', 'Note added to: ' + events[idx].title, {
+      noteText: text
+    }, events[idx]);
+    
+    // Update the background card if visible
+    updateCardNotesDisplay(editingEventId);
+  } else {
+    // Creating new event - store in temporary array
+    tempEventNotes = [newNote, ...tempEventNotes];
+    noteInput.value = '';
+    renderPlanningNotesList(tempEventNotes);
+  }
 }
 
 function deleteNote(noteIndex) {
-  if(editingEventId === null) return;
-  const idx = events.findIndex(ev => ev.id === editingEventId);
-  if(idx === -1) return;
-  
-  if(!Array.isArray(events[idx].planningNotes)) {
-    events[idx].planningNotes = migrateNotes(events[idx].planningNotes);
+  // If editing existing event
+  if(editingEventId !== null) {
+    const idx = events.findIndex(ev => ev.id === editingEventId);
+    if(idx === -1) return;
+    
+    if(!events[idx].planningNotes || !Array.isArray(events[idx].planningNotes)) {
+      events[idx].planningNotes = migrateNotes(events[idx].planningNotes);
+    }
+    
+    // Create new array instead of modifying in place
+    events[idx].planningNotes = events[idx].planningNotes.filter((note, i) => i !== noteIndex);
+    saveEvents();
+    renderPlanningNotesList(events[idx].planningNotes);
+    
+    // Update the background card if visible
+    updateCardNotesDisplay(editingEventId);
+  } else {
+    // Creating new event - delete from temporary array
+    tempEventNotes = tempEventNotes.filter((note, i) => i !== noteIndex);
+    renderPlanningNotesList(tempEventNotes);
   }
-  
-  events[idx].planningNotes.splice(noteIndex, 1);
-  saveEvents();
-  renderPlanningNotesList(events[idx].planningNotes);
-  
-  // Update the background card if visible
-  updateCardNotesDisplay(editingEventId);
 }
 
 function updateCardNotesDisplay(eventId) {
@@ -2161,7 +2159,7 @@ function renderPlanningNotesList(notes) {
 
 // Print Planning Report
 function printPlanningReport() {
-  const eventsToShow = filteredPlanningEvents.length > 0 ? filteredPlanningEvents : getPlanningEvents();
+  const eventsToShow = (filteredPlanningEvents && filteredPlanningEvents.length > 0) ? filteredPlanningEvents : getPlanningEvents();
   
   if(eventsToShow.length === 0) {
     alert('No events to print');
@@ -2280,6 +2278,238 @@ function printPlanningReport() {
   setTimeout(() => {
     printWindow.focus();
   }, 100);
+}
+
+async function downloadWordReport() {
+  const eventsToShow = (filteredPlanningEvents && filteredPlanningEvents.length > 0) ? filteredPlanningEvents : getPlanningEvents();
+  
+  if(eventsToShow.length === 0) {
+    alert('No events to export');
+    return;
+  }
+  
+  // Show loading message
+  showToast('⏳ Generating Word document...');
+  
+  // Sort by PACE Lead name first, then by title
+  const sorted = [...eventsToShow].sort((a, b) => {
+    const aLead = (a.paceLead || 'ZZZ').toLowerCase(); // Put events without PACE Lead at end
+    const bLead = (b.paceLead || 'ZZZ').toLowerCase();
+    if(aLead !== bLead) {
+      return aLead.localeCompare(bLead);
+    }
+    // Within same PACE Lead, sort by title
+    return (a.title || '').localeCompare(b.title || '');
+  });
+  
+  try {
+    // Generate HTML that Word can open and convert
+    let html = `<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset='utf-8'>
+<title>MEF 2026 Planning Report</title>
+<style>
+@page {
+  size: A4;
+  margin: 2.54cm;
+}
+body {
+  font-family: Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+}
+h1 {
+  text-align: center;
+  color: #000000;
+  font-size: 16pt;
+  font-weight: bold;
+  margin-bottom: 8pt;
+  border-bottom: 2pt solid #000000;
+  padding-bottom: 8pt;
+}
+h2 {
+  text-align: center;
+  color: #000000;
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 8pt;
+}
+.date {
+  text-align: center;
+  color: #000000;
+  font-size: 10pt;
+  margin-bottom: 15pt;
+}
+.event-count {
+  text-align: center;
+  font-weight: bold;
+  font-size: 11pt;
+  margin-bottom: 20pt;
+}
+.event {
+  page-break-inside: avoid;
+  margin-bottom: 15pt;
+  border-left: 3pt solid #000000;
+  padding-left: 10pt;
+}
+.event-title {
+  color: #000000;
+  font-size: 12pt;
+  font-weight: bold;
+  margin-bottom: 3pt;
+}
+.event-meta {
+  color: #000000;
+  margin: 0;
+  font-size: 10pt;
+  line-height: 1.3;
+}
+.note-text {
+  background-color: #F5F5F5;
+  padding: 8pt;
+  margin-top: 5pt;
+  border-left: 2pt solid #666666;
+  font-size: 10pt;
+  font-style: italic;
+  white-space: pre-wrap;
+}
+hr {
+  border: none;
+  border-top: 1pt solid #CCCCCC;
+  margin: 10pt 0;
+}
+</style>
+</head>
+<body>
+`;
+    
+    // Title
+    html += '<h1>MANNINGTREE EARTH FESTIVAL 2026</h1>\n';
+    html += '<h2>Planning Meeting Report</h2>\n';
+    
+    // Date
+    const today = new Date().toLocaleDateString('en-GB', { 
+      weekday: 'long', 
+      day: 'numeric', 
+      month: 'long', 
+      year: 'numeric' 
+    });
+    html += '<p class="date">Generated: ' + today + '</p>\n';
+    
+    // Event count
+    html += '<p class="event-count">Total Events in Planning: ' + sorted.length + '</p>\n';
+    
+    // Process each event
+    sorted.forEach((event, index) => {
+      html += '<div class="event">\n';
+      
+      // Event title (no ID)
+      html += '<div class="event-title">' + (event.title || 'Untitled Event') + '</div>\n';
+      
+      // PACE Lead, Organiser, and Timing on one line
+      const infoLine = [];
+      
+      if(event.paceLead) {
+        infoLine.push('<strong>PACE Lead:</strong> ' + event.paceLead);
+      }
+      
+      if(event.organiser) {
+        infoLine.push('<strong>Organiser:</strong> ' + event.organiser);
+      }
+      
+      // Timing information
+      const timing = [];
+      if(event.roughWeek) timing.push(event.roughWeek);
+      if(event.roughDay) timing.push(event.roughDay);
+      if(event.roughTime) timing.push(event.roughTime);
+      if(event.date) {
+        const dateObj = new Date(event.date + 'T12:00:00');
+        timing.push(dateObj.toLocaleDateString('en-GB', { 
+          day: 'numeric', 
+          month: 'short'
+        }));
+      }
+      if(event.time) timing.push(event.time);
+      
+      if(timing.length > 0) {
+        infoLine.push('<strong>When:</strong> ' + timing.join(', '));
+      }
+      
+      if(infoLine.length > 0) {
+        html += '<div class="event-meta">' + infoLine.join(' | ') + '</div>\n';
+      }
+      
+      // Location (separate line, more compact)
+      if(event.location || event.venue) {
+        let locationText = event.location || '';
+        if(event.venue) {
+          if(locationText) locationText += ' - ';
+          locationText += event.venue;
+        }
+        html += '<div class="event-meta"><strong>Where:</strong> ' + locationText + '</div>\n';
+      }
+      
+      // Summary (if exists)
+      if(event.summary) {
+        html += '<div class="event-meta" style="margin-top: 3pt;">' + event.summary + '</div>\n';
+      }
+      
+      // Latest note only
+      const notes = migrateNotes(event.planningNotes);
+      if(notes.length > 0) {
+        // Get the most recent note (first one since they're sorted newest first)
+        const latestNote = notes[0];
+        const dateStr = latestNote.date 
+          ? new Date(latestNote.date).toLocaleDateString('en-GB', { 
+              day: 'numeric', 
+              month: 'short',
+              hour: '2-digit', 
+              minute: '2-digit' 
+            })
+          : '';
+        
+        html += '<div class="note-text">';
+        if(dateStr) {
+          html += '<strong>[' + dateStr + ']</strong> ';
+        }
+        html += latestNote.text;
+        html += '</div>\n';
+      }
+      
+      html += '</div>\n'; // close event
+      
+      // Separator line between events (except last one)
+      if(index < sorted.length - 1) {
+        html += '<hr>\n';
+      }
+    });
+    
+    html += '</body></html>';
+    
+    // Create blob and download
+    const blob = new Blob([html], { type: 'application/msword' });
+    const filename = 'MEF_2026_Planning_Report_' + new Date().toISOString().split('T')[0] + '.doc';
+    
+    // Create download link
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+    
+    showToast('✓ Word document downloaded! Open it in Word to edit and save as .docx');
+    
+  } catch(error) {
+    console.error('Error generating Word document:', error);
+    console.error('Error stack:', error.stack);
+    alert('Error generating Word document: ' + error.message + '\n\nPlease try the Print Report option instead.');
+  }
 }
 
 function populatePaceLeadFilter() {
@@ -3012,6 +3242,9 @@ function openEventForm(event=null) {
   document.body.addEventListener('wheel', preventScroll, { passive: false });
   
   if(event){ 
+    // SET editingEventId FIRST before anything else so notes can be added immediately
+    editingEventId = event.id;
+    
     document.getElementById('eventTitle').value = event.title || ''; 
     document.getElementById('eventType').value = event.type || '';
     document.getElementById('eventTopic').value = event.topic || '';
@@ -3063,7 +3296,6 @@ document.getElementById('eventNewNote').value = '';
     document.getElementById('organisationWebsite').value = event.organisationWebsite || '';
     document.getElementById('organisationAbout').value = event.organisationAbout || '';
     document.getElementById('eventContactPhone').value = event.contactPhone || '';
-    editingEventId = event.id;
 	// Event ID: Only Admin can edit it, others can't change it
     if(isAdmin) {
       document.getElementById('eventUniqueId').disabled = false;
@@ -3079,6 +3311,7 @@ document.getElementById('eventNewNote').value = '';
     document.getElementById('eventTimeHour').value = '';
     document.getElementById('eventTimeMinute').value = '00';
     editingEventId = null;
+    tempEventNotes = []; // Clear temporary notes
     currentTimeSlots = [];
     document.getElementById('timeSlotsSection').style.display = 'none';
     renderTimeSlotsList();
@@ -3119,7 +3352,11 @@ document.getElementById('eventNewNote').value = '';
 }
 
 function closeEventForm() { 
-  document.getElementById('eventModal').classList.remove('active'); 
+  document.getElementById('eventModal').classList.remove('active');
+  
+  // Clear temporary notes
+  tempEventNotes = [];
+  
   // Hide the jump button when modal closes
   const jumpBtn = document.getElementById('jumpToSave');
   if(jumpBtn) jumpBtn.style.display = 'none';
@@ -3251,15 +3488,18 @@ function saveEvent(e){
   // Check for unsaved note BEFORE saving anything
   const noteField = document.getElementById('eventNewNote');
   if(noteField && noteField.value.trim() !== '') {
-    const confirmSave = confirm('You have a note that has not been added.\n\nPress Cancel and then if you want the note added press the green "Add Note" button.');
+    const confirmSave = confirm('You have an unsaved note.\n\nClick OK to save the event without the note, or Cancel to go back and add the note first.');
     if(!confirmSave) {
-      // User wants to go back - scroll to the notes section
-      const notesSection = document.querySelector('label[for="eventNewNote"]');
+      // User clicked Cancel - wants to go back and add the note
+      const notesSection = noteField.closest('.form-group');
       if(notesSection) {
         notesSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
+      noteField.focus();
       return; // Stop the save
     }
+    // User clicked OK - continue with save, clear the unsaved note
+    noteField.value = '';
   }
   
   // Get current and new values for validation
@@ -3352,30 +3592,36 @@ function saveEvent(e){
       events[idx].timeSlots=timeSlots;
       events[idx].recurrence=recurrence;
       // planningNotes are NOT updated here - they're managed separately via addPlanningNote/deleteNote
+      
+      // Log the edit
+      addChangeLogEntry('edited', 'Event edited: ' + title, {
+        changes: 'Event details updated'
+      }, events[idx]);
     }
   }else{
     const newId = Date.now();
-    events.push({
+    const newEvent = {
   id: newId, 
   uniqueId: uniqueId, 
   title, type, topic, description, summary, date, time, duration, location, postcode, venue, organiser, 
-  contactName, contactEmail, contactPhone, paceLead, paceLeadEmail, paceLeadPhone, accessCode, planningNotes: [],
+  contactName, contactEmail, contactPhone, paceLead, paceLeadEmail, paceLeadPhone, accessCode, 
+  planningNotes: [...tempEventNotes], // Include any notes added during creation
   eventbriteUrl, organisationWebsite, organisationAbout,
   roughWeek, roughDay, roughTime, timeSlots, recurrence
-});
+};
+    events.push(newEvent);
+    
+    // Clear temporary notes now that event is created
+    tempEventNotes = [];
+    
+    // Log the new event
+    addChangeLogEntry('added', 'New event added: ' + title, {
+      changes: 'Event created'
+    }, newEvent);
   }
- // Save to storage but don't auto-render everything
-  if(useFirebase && db) {
-    const eventsObj = {};
-    events.forEach((e, idx) => { 
-      const key = e.uniqueId || e.id;
-      eventsObj[key] = e; 
-    });
-    db.ref('events').set(eventsObj).catch(err => console.error('Firebase save error:', err));
-  } else {
-    localStorage.setItem('mef-events', JSON.stringify(events));
-  }
-  filteredEvents = [...events];
+  
+  // Save using the main saveEvents function which properly uses .update()
+  saveEvents();
   
   // Show success toast BEFORE closing form
   showToast('✓ Event saved successfully');
@@ -3989,11 +4235,19 @@ function saveVenue(e) {
     const idx = venues.findIndex(v => v.id === editingVenueId);
     if(idx !== -1) {
       venues[idx] = { ...venues[idx], ...venueData };
+      addChangeLogEntry('venue', 'Venue updated: ' + venueData.name, {
+        venueName: venueData.name,
+        changes: 'Venue details updated'
+      }, null);
     }
   } else {
     // Add new
     venueData.id = Date.now();
     venues.push(venueData);
+    addChangeLogEntry('venue', 'New venue added: ' + venueData.name, {
+      venueName: venueData.name,
+      changes: 'Venue created'
+    }, null);
   }
   
   saveVenues();
@@ -4002,7 +4256,16 @@ function saveVenue(e) {
 }
 
 function deleteVenue(id) {
+  const venueToDelete = venues.find(v => v.id === id);
   if(!confirm('Are you sure you want to delete this venue?')) return;
+  
+  // Log before deleting
+  if(venueToDelete) {
+    addChangeLogEntry('venue', 'Venue deleted: ' + venueToDelete.name, {
+      venueName: venueToDelete.name,
+      changes: 'Venue permanently removed'
+    }, null);
+  }
   
   venues = venues.filter(v => v.id !== id);
   saveVenues();
@@ -4087,6 +4350,188 @@ function renderVenuesList() {
 }
 
 /* SECTION END: VENUES MANAGEMENT */
+
+/* ============================================ */
+/* SECTION START: CHANGE LOG SYSTEM */
+/* ============================================ */
+
+function loadChangeLog() {
+  if(useFirebase && db) {
+    db.ref('changeLog').once('value', function(snapshot) {
+      if(snapshot.exists()) {
+        const data = snapshot.val();
+        changeLog = Object.values(data);
+      } else {
+        changeLog = [];
+      }
+      filteredChangeLog = [...changeLog];
+    });
+  } else {
+    const stored = localStorage.getItem('mef-changelog');
+    if(stored) {
+      changeLog = JSON.parse(stored);
+    } else {
+      changeLog = [];
+    }
+    filteredChangeLog = [...changeLog];
+  }
+}
+
+function saveChangeLog() {
+  if(useFirebase && db) {
+    const logObj = {};
+    changeLog.forEach((entry, idx) => {
+      logObj[entry.id || idx] = entry;
+    });
+    db.ref('changeLog').update(logObj).catch(err => console.error('Change log save error:', err));
+  } else {
+    localStorage.setItem('mef-changelog', JSON.stringify(changeLog));
+  }
+}
+
+function addChangeLogEntry(type, action, details, eventData) {
+  const entry = {
+    id: Date.now(),
+    timestamp: new Date().toISOString(),
+    type: type, // 'added', 'edited', 'deleted', 'note', 'venue'
+    action: action, // Human-readable action description
+    details: details, // Object with relevant details
+    eventTitle: eventData ? eventData.title : '',
+    eventId: eventData ? (eventData.uniqueId || eventData.id) : '',
+    paceLead: eventData ? eventData.paceLead : '',
+    accessCode: eventData ? eventData.accessCode : ''
+  };
+  
+  changeLog.unshift(entry); // Add to beginning
+  
+  // Keep only last 500 entries to prevent database bloat
+  if(changeLog.length > 500) {
+    changeLog = changeLog.slice(0, 500);
+  }
+  
+  saveChangeLog();
+}
+
+function openChangeLog() {
+  loadChangeLog();
+  document.getElementById('changeLogModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // Wait a moment for data to load, then render
+  setTimeout(() => {
+    renderChangeLog();
+  }, 500);
+}
+
+function closeChangeLog() {
+  document.getElementById('changeLogModal').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function renderChangeLog() {
+  const container = document.getElementById('changeLogList');
+  
+  if(filteredChangeLog.length === 0) {
+    container.innerHTML = '<p style="padding: 40px; text-align: center; color: #999;">No changes recorded yet.</p>';
+    return;
+  }
+  
+  // Sort by timestamp, newest first
+  const sorted = [...filteredChangeLog].sort((a, b) => {
+    return new Date(b.timestamp) - new Date(a.timestamp);
+  });
+  
+  let html = '';
+  sorted.forEach(entry => {
+    const date = new Date(entry.timestamp);
+    const dateStr = date.toLocaleDateString('en-GB', { 
+      day: 'numeric', 
+      month: 'short', 
+      year: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    });
+    
+    // Color coding by type
+    let borderColor = '#999';
+    let icon = '📝';
+    if(entry.type === 'added') { borderColor = '#28a745'; icon = '✅'; }
+    if(entry.type === 'edited') { borderColor = '#2B7BBD'; icon = '✏️'; }
+    if(entry.type === 'deleted') { borderColor = '#dc3545'; icon = '🗑️'; }
+    if(entry.type === 'note') { borderColor = '#ffc107'; icon = '📝'; }
+    if(entry.type === 'venue') { borderColor = '#8DC63F'; icon = '🏛️'; }
+    
+    html += '<div style="padding: 15px; border-left: 4px solid ' + borderColor + '; border-bottom: 1px solid #eee;">';
+    html += '<div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 10px;">';
+    html += '<div style="flex: 1;">';
+    html += '<div style="font-weight: bold; color: #2B7BBD; margin-bottom: 5px;">';
+    html += icon + ' ' + entry.action + '</div>';
+    
+    if(entry.eventTitle) {
+      html += '<div style="color: #666; margin-bottom: 5px;">Event: <strong>' + entry.eventTitle + '</strong></div>';
+    }
+    
+    if(entry.paceLead) {
+      html += '<div style="color: #666; font-size: 0.9em;">PACE Lead: ' + entry.paceLead + '</div>';
+    }
+    
+    // Show details if available
+    if(entry.details && typeof entry.details === 'object') {
+      html += '<div style="margin-top: 8px; padding: 8px; background: #f9f9f9; border-radius: 5px; font-size: 0.9em;">';
+      
+      if(entry.details.noteText) {
+        html += '<strong>Note:</strong> ' + entry.details.noteText.substring(0, 100);
+        if(entry.details.noteText.length > 100) html += '...';
+      }
+      
+      if(entry.details.changes) {
+        html += '<strong>Changes:</strong> ' + entry.details.changes;
+      }
+      
+      if(entry.details.venueName) {
+        html += '<strong>Venue:</strong> ' + entry.details.venueName;
+      }
+      
+      html += '</div>';
+    }
+    
+    html += '</div>';
+    html += '<div style="font-size: 0.85em; color: #999; white-space: nowrap;">' + dateStr + '</div>';
+    html += '</div>';
+    html += '</div>';
+  });
+  
+  container.innerHTML = html;
+}
+
+function filterChangeLog() {
+  const search = document.getElementById('changeLogSearch').value.toLowerCase();
+  const typeFilter = document.getElementById('changeLogTypeFilter').value;
+  
+  filteredChangeLog = changeLog.filter(entry => {
+    const matchesSearch = !search || 
+      entry.action.toLowerCase().includes(search) ||
+      (entry.eventTitle && entry.eventTitle.toLowerCase().includes(search)) ||
+      (entry.paceLead && entry.paceLead.toLowerCase().includes(search));
+    
+    const matchesType = typeFilter === 'all' || entry.type === typeFilter;
+    
+    return matchesSearch && matchesType;
+  });
+  
+  renderChangeLog();
+}
+
+function clearChangeLog() {
+  if(!confirm('Are you sure you want to clear the entire change log? This cannot be undone.')) return;
+  
+  changeLog = [];
+  filteredChangeLog = [];
+  saveChangeLog();
+  renderChangeLog();
+}
+
+/* SECTION END: CHANGE LOG SYSTEM */
 /* ============================================ */
 /* END OF JAVASCRIPT - CLOSE SCRIPT TAG */
 /* ============================================ */
