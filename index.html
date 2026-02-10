@@ -312,16 +312,15 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 <div class="nav-title">
 <img src="https://mcusercontent.com/6fcff65c5695e0ab56345c711/_compresseds/dc065ad1-455d-7752-4079-c7f1a0721c62.jpg" alt="MEF Logo">
 <div>
-<p>23rd May to 30th June 2026</p>
+<p style="font-size: 1.8em; font-weight: bold; line-height: 1.2;">23 MAY - 30 JUNE 2026</p>
 </div>
 </div>
 <div class="nav-buttons">
 <button class="nav-btn active" onclick="showPage('home', this)">Home</button>
 <button class="nav-btn" onclick="showPage('events', this)">Events</button>
 <button class="nav-btn" onclick="showPage('calendar', this)">Calendar</button>
-<button class="nav-btn" onclick="showPage('paceplanning', this)" id="pacePlanningBtn">PACE Planning</button>
-<button class="nav-btn" onclick="showPage('paceleadportal', this)" id="paceLeadPortalBtn">My Events</button>
-<button class="nav-btn" onclick="showPage('admin', this)" id="adminBtn">Admin</button>
+<button class="nav-btn" onclick="showPage('about', this)">About</button>
+<button class="nav-btn" onclick="openFestivalAdmin()">Festival Admin</button>
 <button class="pace-website-btn" onclick="window.location.href='https://www.pacemanningtree.org.uk'">← PACE Website</button>
 </div>
 </div>
@@ -342,24 +341,32 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 <!-- HOME PAGE -->
 <div id="home" class="page active">
 <div class="hero">
-<h2>Discovering what we can do</h2>
-<p>A 5-week celebration of community action, environmental awareness, and positive change</p>
+<h2 style="font-style: italic; font-size: 2.2em;">Discovering What We Can Do</h2>
+<p style="font-size: 1.4em; margin-bottom: 30px;">A 5-week series of events celebrating community action, environmental awareness, and positive change through films, talks, workshops, performances, music, exhibitions, debates, and more.</p>
+
+<div style="background: rgba(255,255,255,0.95); padding: 25px; border-radius: 12px; margin-top: 30px; color: #333;">
+<h3 style="font-size: 1.6em; margin-bottom: 15px; color: #2B7BBD;">How It Works</h3>
+<p style="font-size: 1.1em; line-height: 1.6;">
+✨ Browse events by <strong>Calendar</strong> or <strong>Events</strong> tab above<br>
+🎟️ Reserve your place through <strong>Eventbrite</strong> (links on each event)<br>
+💚 Most events are <strong>FREE</strong> - donations welcome to support our community<br>
+🌍 Discover films, talks, workshops, performances, and more
+</p>
+</div>
 </div>
 
 <section>
-<h2>Introduction</h2>
-<p>MEF26 is a series of events to be held from May 23rd to June 30th, 2026 and coordinated by volunteers from PACE Manningtree but delivered by members of our community. The events will provide information, knowledge and choices so that we can all become more aware, better equipped, more knowledgeable and more resilient to the impacts of climate disruption and biodiversity loss.</p>
+<h2>Welcome to MEF 2026</h2>
+<p>The Manningtree Earth Festival is coordinated by volunteers from PACE Manningtree and delivered by passionate members of our community. From May 23rd to June 30th, 2026, we're bringing together knowledge, skills, and connections to help us all understand climate change, biodiversity loss, and the practical actions we can take.</p>
 </section>
+
 <section>
-<h2>Concept</h2>
-<p>The idea is to deliver a stimulating programme of events throughout the festival at Manningtree and beyond - films, performances, music, lectures, displays, exhibitions, talks, debates, workshops, happenings - at a variety of venues (small, medium or large).</p>
-</section>
-<section>
-<h2>Goals</h2>
+<h2>Festival Goals</h2>
 <div class="goal-item">Understanding the changing climate, the loss of biodiversity and the impacts on our environment</div>
 <div class="goal-item">Actions individuals, organisations and businesses can take to benefit our community</div>
 <div class="goal-item">Building resilience for our community as the environment changes</div>
 </section>
+
 <div class="contact-box">
 <h3 style="color: white; font-size: 1.8em; margin-bottom: 15px;">Get in Touch</h3>
 <p>Contact us at: <a href="/cdn-cgi/l/email-protection#5b163a353532353c2f293e3e1e3a292f331d3e282f322d3a371b3c363a323775383436"><span class="__cf_email__" data-cfemail="2d604c434344434a595f4848684c5f59456b485e59445b4c416d4a404c4441034e4240">[email&#160;protected]</span></a></p>
@@ -403,6 +410,59 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 <div id="calendarViewContainer"></div>
 </div>
 <!-- SECTION END: CALENDAR PAGE -->
+
+
+<!-- ============================================ -->
+<!-- SECTION START: ABOUT PAGE -->
+<!-- ============================================ -->
+<div id="about" class="page">
+<h2 style="text-align: center; font-size: 2.5em; margin-bottom: 30px;">About the Festival</h2>
+
+<section>
+<h2>What is MEF 2026?</h2>
+<p>The Manningtree Earth Festival (MEF) is a community-driven celebration of environmental action and awareness. Over five weeks, from May 23rd to June 30th, 2026, local volunteers and community members come together to deliver an inspiring programme of events.</p>
+</section>
+
+<section>
+<h2>How to Use This Site</h2>
+<div style="background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #8DC63F;">
+<h3 style="color: #2B7BBD; margin-bottom: 15px;">📅 Browse by Calendar</h3>
+<p style="margin-bottom: 20px;">Click the <strong>Calendar</strong> tab to see all events laid out by date. Perfect for planning your month!</p>
+
+<h3 style="color: #2B7BBD; margin-bottom: 15px;">📋 Browse by Events List</h3>
+<p style="margin-bottom: 20px;">Click the <strong>Events</strong> tab to see all events with full descriptions. Filter by type, topic, or search for keywords.</p>
+
+<h3 style="color: #2B7BBD; margin-bottom: 15px;">🎟️ Reserve Your Place</h3>
+<p style="margin-bottom: 20px;">Most events require reservation through <strong>Eventbrite</strong>. Click the Eventbrite link on any event to book your spot.</p>
+
+<h3 style="color: #2B7BBD; margin-bottom: 15px;">💚 Free Events & Donations</h3>
+<p>Most events are completely FREE to attend. However, donations are welcome and help support future community initiatives. You can donate when booking through Eventbrite.</p>
+</div>
+</section>
+
+<section>
+<h2>Our Mission</h2>
+<p>MEF 2026 aims to provide information, knowledge, and choices so that we can all become:</p>
+<div style="display: grid; gap: 15px; margin-top: 20px;">
+<div class="goal-item">✓ More aware of climate change and biodiversity loss</div>
+<div class="goal-item">✓ Better equipped with practical skills and knowledge</div>
+<div class="goal-item">✓ More resilient to environmental challenges</div>
+<div class="goal-item">✓ Connected to our community and shared future</div>
+</div>
+</section>
+
+<section>
+<h2>About PACE Manningtree</h2>
+<p>PACE (Positive Action for Climate and Environment) Manningtree is a volunteer-led organisation dedicated to environmental action in our local community. We coordinate the MEF festival, but the events are delivered by passionate community members like you!</p>
+<p style="margin-top: 15px;">Learn more at: <a href="https://www.pacemanningtree.org.uk/" target="_blank" style="color: #2B7BBD; font-weight: bold;">www.pacemanningtree.org.uk</a></p>
+</section>
+
+<div class="contact-box">
+<h3 style="color: white; font-size: 1.8em; margin-bottom: 15px;">Get in Touch</h3>
+<p>Questions about the festival? Contact us at: <a href="/cdn-cgi/l/email-protection#5b163a353532353c2f293e3e1e3a292f331d3e282f322d3a371b3c363a323775383436"><span class="__cf_email__" data-cfemail="2d604c434344434a595f4848684c5f59456b485e59445b4c416d4a404c4441034e4240">[email&#160;protected]</span></a></p>
+</div>
+</div>
+<!-- SECTION END: ABOUT PAGE -->
 
 
 <!-- ============================================ -->
@@ -630,6 +690,34 @@ Manage venue profiles including capacity, facilities, and availability.
 
 <!-- ============================================ -->
 <!-- SECTION START: EVENT FORM MODAL -->
+<!-- ============================================ -->
+<!-- ============================================ -->
+<!-- SECTION START: FESTIVAL ADMIN LOGIN MODAL -->
+<!-- ============================================ -->
+<div id="festivalAdminModal" class="modal">
+  <div class="modal-content" style="max-width: 500px;">
+    <span class="close" onclick="closeFestivalAdminModal()">&times;</span>
+    <h2 style="text-align: center; color: #2B7BBD; margin-bottom: 20px;">Festival Admin Access</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 30px;">Enter your password or access code</p>
+    
+    <div style="margin-bottom: 20px;">
+      <input type="password" id="festivalAdminPassword" class="admin-input" placeholder="Password or Access Code" style="width: 100%; padding: 15px; font-size: 1.1em; border: 2px solid #ddd; border-radius: 8px;" onkeypress="if(event.key==='Enter') festivalAdminLogin()" autofocus>
+    </div>
+    
+    <button class="btn" onclick="festivalAdminLogin()" style="width: 100%; padding: 15px; font-size: 1.1em;">Access Admin</button>
+    
+    <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em; color: #666;">
+      <p style="margin-bottom: 10px;"><strong>Access Levels:</strong></p>
+      <p style="margin-bottom: 5px;">• <strong>PACE Password</strong> - View events in planning</p>
+      <p style="margin-bottom: 5px;">• <strong>Access Code</strong> - Manage your own events (My Events)</p>
+      <p>• <strong>Admin Password</strong> - Full admin access</p>
+    </div>
+  </div>
+</div>
+<!-- SECTION END: FESTIVAL ADMIN LOGIN MODAL -->
+
+<!-- ============================================ -->
+<!-- SECTION START: EVENT MODAL -->
 <!-- ============================================ -->
 <div id="eventModal" class="modal">
 <div class="modal-content">
@@ -1652,6 +1740,15 @@ function renderAdminEventsList() {
   const container = document.getElementById('adminEventsList');
   container.innerHTML='';
   const sourceEvents = adminFilteredEvents !== null ? adminFilteredEvents : events;
+  
+  console.log('=== Rendering Admin Events List ===');
+  console.log('Total events in database:', events.length);
+  console.log('Events to display:', sourceEvents.length);
+  console.log('Events being rendered:');
+  sourceEvents.forEach((e, idx) => {
+    console.log(`  [${idx}] ID: ${e.id}, Title: "${e.title}", PACE Lead: ${e.paceLead || 'none'}`);
+  });
+  
   if(sourceEvents.length===0){ 
     container.innerHTML='<p style="text-align: center; color: #666; padding: 20px;">' + (events.length === 0 ? 'No events yet. Click Add New Event to create one.' : 'No events match your search.') + '</p>'; 
     document.getElementById('eventCount').textContent = '0';
@@ -1723,7 +1820,11 @@ function renderAdminEventsList() {
       html += '</div>';
     }
     
-    html += '</div><div class="admin-event-actions"><button class="btn-edit" onclick="editEvent('+e.id+')">Edit</button><button class="btn-data" onclick="copyEventData('+e.id+')">Data</button><button class="btn-delete" onclick="deleteEvent('+e.id+')">Delete</button></div>';
+    html += '</div><div class="admin-event-actions">';
+    html += '<button class="btn-edit" onclick="editEvent(' + e.id + ')">Edit</button>';
+    html += '<button class="btn-data" onclick="copyEventData(' + e.id + ')">Data</button>';
+    html += '<button class="btn-delete" onclick="console.log(\'Delete clicked for ID:\', ' + e.id + ', \'Title:\', \'' + e.title.replace(/'/g, "\\'") + '\'); deleteEvent(' + e.id + ')">Delete</button>';
+    html += '</div>';
     div.innerHTML = html;
     container.appendChild(div);
   });
@@ -1750,17 +1851,41 @@ function editEvent(id, scrollToNotes = false) {
 }
 
 function deleteEvent(id) {
+  console.log('deleteEvent called with ID:', id);
   const eventToDelete = events.find(e => e.id === id);
+  console.log('Event found:', eventToDelete ? eventToDelete.title : 'NOT FOUND');
   
-  if(confirm('Are you sure you want to delete this event?')) {
+  if(!eventToDelete) {
+    alert('Error: Event not found in database');
+    return;
+  }
+  
+  if(confirm('Are you sure you want to delete "' + eventToDelete.title + '"?')) {
+    console.log('User confirmed deletion');
+    
     // Log before deleting so we still have the event data
-    if(eventToDelete) {
-      addChangeLogEntry('deleted', 'Event deleted: ' + eventToDelete.title, {
-        changes: 'Event permanently removed'
-      }, eventToDelete);
+    addChangeLogEntry('deleted', 'Event deleted: ' + eventToDelete.title, {
+      changes: 'Event permanently removed'
+    }, eventToDelete);
+    
+    // Remove from events array
+    const beforeLength = events.length;
+    events = events.filter(e=>e.id!==id);
+    console.log('Events array: was', beforeLength, 'now', events.length);
+    
+    // Remove from Firebase if using Firebase
+    if(useFirebase && db) {
+      const key = eventToDelete.uniqueId || eventToDelete.id;
+      console.log('Removing from Firebase with key:', key);
+      db.ref('events/' + key).remove()
+        .then(() => console.log('Firebase delete successful'))
+        .catch(err => {
+          console.error('Firebase delete error:', err);
+          alert('Warning: Event removed locally but Firebase delete failed. Please refresh and try again.');
+        });
     }
     
-    events = events.filter(e=>e.id!==id);
+    // Save the updated events array (for localStorage and to update filteredEvents)
     saveEvents();
     
     // Show toast instead of alert
@@ -1790,6 +1915,8 @@ function deleteEvent(id) {
       renderEvents();
       renderCalendar();
     }
+  } else {
+    console.log('User cancelled deletion');
   }
 }
 
@@ -1888,6 +2015,75 @@ function login() {
   } else{ 
     alert('Incorrect password'); 
   }
+}
+
+/* ============================================ */
+/* UNIFIED FESTIVAL ADMIN LOGIN */
+/* ============================================ */
+function openFestivalAdminModal() {
+  document.getElementById('festivalAdminModal').style.display = 'block';
+  setTimeout(() => document.getElementById('festivalAdminPassword').focus(), 100);
+}
+
+function closeFestivalAdminModal() {
+  document.getElementById('festivalAdminModal').style.display = 'none';
+  document.getElementById('festivalAdminPassword').value = '';
+}
+
+function festivalAdminLogin() {
+  const input = document.getElementById('festivalAdminPassword').value.trim();
+  
+  if(!input) {
+    alert('Please enter a password or access code');
+    return;
+  }
+  
+  // Check for Admin password
+  if(input === 'ha!ford') {
+    isAdmin = true;
+    isPaceLead = true;
+    closeFestivalAdminModal();
+    showPage('admin');
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    renderAdminEventsList();
+    return;
+  }
+  
+  // Check for PACE password
+  if(input === 'pace2026') {
+    isPaceLead = true;
+    closeFestivalAdminModal();
+    showPage('paceplanning');
+    document.getElementById('pacePlanningLogin').style.display = 'none';
+    document.getElementById('pacePlanningPanel').style.display = 'block';
+    renderPlanningEvents();
+    return;
+  }
+  
+  // Check if it's a PACE Lead access code
+  const code = input.toUpperCase();
+  const userEvents = events.filter(e => e.accessCode && e.accessCode.toUpperCase() === code);
+  
+  if(userEvents.length > 0) {
+    currentPaceLeadCode = code;
+    closeFestivalAdminModal();
+    showPage('paceleadportal');
+    document.getElementById('paceLeadLogin').style.display = 'none';
+    document.getElementById('paceLeadPanel').style.display = 'block';
+    document.getElementById('paceLeadInfo').style.display = 'block';
+    document.getElementById('paceLeadCodeDisplay').textContent = code;
+    renderPaceLeadEvents();
+    return;
+  }
+  
+  // No match found
+  alert('Invalid password or access code. Please try again.');
+}
+
+// Wrapper function for nav button
+function openFestivalAdmin() {
+  openFestivalAdminModal();
 }
 
 /* ============================================ */
@@ -3563,6 +3759,10 @@ function saveEvent(e){
   if(editingEventId!==null){
     const idx = events.findIndex(ev=>ev.id===editingEventId);
     if(idx !== -1) {
+      // Store the old uniqueId before changing it
+      const oldUniqueId = events[idx].uniqueId || events[idx].id;
+      const newUniqueId = uniqueId;
+      
       events[idx].uniqueId=uniqueId;
       events[idx].title=title; 
       events[idx].type=type;
@@ -3593,6 +3793,14 @@ function saveEvent(e){
       events[idx].recurrence=recurrence;
       // planningNotes are NOT updated here - they're managed separately via addPlanningNote/deleteNote
       
+      // If uniqueId changed, delete the old Firebase key
+      if(useFirebase && db && oldUniqueId !== newUniqueId) {
+        console.log('UniqueId changed from', oldUniqueId, 'to', newUniqueId, '- deleting old Firebase key');
+        db.ref('events/' + oldUniqueId).remove()
+          .then(() => console.log('Old Firebase key deleted successfully'))
+          .catch(err => console.error('Error deleting old Firebase key:', err));
+      }
+      
       // Log the edit
       addChangeLogEntry('edited', 'Event edited: ' + title, {
         changes: 'Event details updated'
@@ -3620,50 +3828,93 @@ function saveEvent(e){
     }, newEvent);
   }
   
-  // Save using the main saveEvents function which properly uses .update()
-  saveEvents();
+  // For edited events, directly update just this one event in Firebase
+  if(editingEventId !== null) {
+    const idx = events.findIndex(ev=>ev.id===editingEventId);
+    if(idx !== -1 && useFirebase && db) {
+      const eventToSave = events[idx];
+      const key = eventToSave.uniqueId || eventToSave.id;
+      console.log('Directly updating Firebase for event:', key, eventToSave.title);
+      
+      // Update just this one event in Firebase and WAIT for completion
+      db.ref('events/' + key).set(eventToSave)
+        .then(() => {
+          console.log('✓ Firebase direct update successful for:', key);
+          // Also update localStorage as backup
+          localStorage.setItem('mef-events', JSON.stringify(events));
+          filteredEvents = [...events];
+          document.getElementById('eventCount').textContent = events.length;
+          
+          // Show success AFTER save completes
+          showToast('✓ Event saved successfully');
+          
+          // Now safe to close form and refresh view
+          setTimeout(() => {
+            closeEventForm();
+            refreshCurrentView();
+          }, 500);
+        })
+        .catch(err => {
+          console.error('❌ Firebase save error:', err);
+          alert('⚠️ SAVE FAILED!\n\nYour changes could not be saved to the cloud.\n\nPlease:\n1. Take a screenshot of your changes\n2. Try saving again\n3. Contact admin if problem persists');
+        });
+      
+      // Exit here - don't continue to the rest of the function
+      return;
+    } else {
+      // No Firebase, just save to localStorage
+      saveEvents();
+    }
+  } else {
+    // New event - save everything
+    saveEvents();
+  }
   
-  // Show success toast BEFORE closing form
+  // Show success toast
   showToast('✓ Event saved successfully');
   
-  // Close form after a brief delay so toast is visible
+  // Close form and refresh
   setTimeout(() => {
     closeEventForm();
+    refreshCurrentView();
+  }, 500);
+}
+
+// Helper function to refresh the current view after save
+function refreshCurrentView() {
+  console.log('Save refresh - isPaceLead:', isPaceLead, 'currentPaceLeadCode:', currentPaceLeadCode, 'isAdmin:', isAdmin);
+  console.log('Events array length:', events.length);
+  console.log('adminFilteredEvents before reset:', adminFilteredEvents ? adminFilteredEvents.length : 'null');
+  
+  // Refresh only the current view - CHECK ADMIN FIRST since admin also has isPaceLead=true
+  if(isAdmin) {
+    // Reset filtered events to null to force fresh data, then re-apply filters if needed
+    const hadFilters = adminFilteredEvents !== null;
+    console.log('Admin mode - hadFilters:', hadFilters);
+    adminFilteredEvents = null;
     
-    console.log('Save refresh - isPaceLead:', isPaceLead, 'currentPaceLeadCode:', currentPaceLeadCode, 'isAdmin:', isAdmin);
-    console.log('Events array length:', events.length);
-    console.log('adminFilteredEvents before reset:', adminFilteredEvents ? adminFilteredEvents.length : 'null');
-    
-    // Refresh only the current view - CHECK ADMIN FIRST since admin also has isPaceLead=true
-    if(isAdmin) {
-      // Reset filtered events to null to force fresh data, then re-apply filters if needed
-      const hadFilters = adminFilteredEvents !== null;
-      console.log('Admin mode - hadFilters:', hadFilters);
-      adminFilteredEvents = null;
-      
-      if(hadFilters) {
-        // Re-apply the filters to get fresh filtered data
-        console.log('Re-applying admin filters');
-        applyAdminFilters();
-      } else {
-        // Just render with all events
-        console.log('Rendering admin events list');
-        renderAdminEventsList();
-      }
-    } else if(isPaceLead && !currentPaceLeadCode) {
-      // In PACE Planning mode (not My Events) - always re-apply filters to get fresh data
-      console.log('Calling applyPlanningFilters');
-      applyPlanningFilters();
-    } else if(currentPaceLeadCode) {
-      console.log('Calling renderPaceLeadEvents');
-      renderPaceLeadEvents();
+    if(hadFilters) {
+      // Re-apply the filters to get fresh filtered data
+      console.log('Re-applying admin filters');
+      applyAdminFilters();
     } else {
-      // If neither PACE Lead nor Admin, do the full refresh
-      console.log('Calling renderEvents and renderCalendar');
-      renderEvents();
-      renderCalendar();
+      // Just render with all events
+      console.log('Rendering admin events list');
+      renderAdminEventsList();
     }
-  }, 300); // Wait 300ms so user sees the toast
+  } else if(isPaceLead && !currentPaceLeadCode) {
+    // In PACE Planning mode (not My Events) - always re-apply filters to get fresh data
+    console.log('Calling applyPlanningFilters');
+    applyPlanningFilters();
+  } else if(currentPaceLeadCode) {
+    console.log('Calling renderPaceLeadEvents');
+    renderPaceLeadEvents();
+  } else {
+    // If neither PACE Lead nor Admin, do the full refresh
+    console.log('Calling renderEvents and renderCalendar');
+    renderEvents();
+    renderCalendar();
+  }
 }
 
 function showToast(message) {
