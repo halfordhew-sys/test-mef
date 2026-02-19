@@ -70,6 +70,17 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
   grid-column: 1 / -1; /* Make the info text span all columns */
 }
 
+/* Venue Grid Layout */
+#venuesList { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+  gap: 20px; 
+  margin-top: 30px;
+}
+#venuesList > p { 
+  grid-column: 1 / -1;
+}
+
 /* Event Cards - Brightlingsea Style */
 .event-card { 
   background: white; 
@@ -77,14 +88,13 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
   border-radius: 8px; 
   overflow: hidden; 
   box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-  transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 .event-card:hover { 
-  transform: translateY(-2px); 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 .event-card-header { 
   padding: 15px; 
@@ -123,6 +133,70 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
   font-size: 1em;
   text-align: right;
   margin-top: 10px;
+}
+
+/* Venue Cards - Same Style as Events */
+.venue-card { 
+  background: white; 
+  border: 3px solid #333; 
+  border-radius: 8px; 
+  overflow: hidden; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.venue-card:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+}
+.venue-card-header { 
+  padding: 15px; 
+  font-size: 1.1em; 
+  font-weight: bold; 
+  color: white; 
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  background: #8DC63F;
+}
+.venue-card-body { 
+  padding: 20px; 
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.venue-card-info { 
+  margin-bottom: 8px; 
+  color: #555; 
+  font-size: 0.95em; 
+  line-height: 1.5; 
+}
+.venue-card-section { 
+  margin-top: 12px; 
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+.venue-card-section strong {
+  color: #2B7BBD;
+  display: block;
+  margin-bottom: 5px;
+}
+.venue-card-actions {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  gap: 10px;
+}
+.venue-card-actions .btn {
+  padding: 8px 16px;
+  font-size: 0.9em;
+  flex: 1;
 }
 
 /* Old event card styles kept for other pages */
@@ -169,14 +243,21 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 .icon-btn.delete { background: #dc3545; }
 .admin-info { background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #8DC63F; margin: 20px 0 15px 0; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-.admin-event-item { background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #8DC63F; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); flex-wrap: wrap; }
+.admin-event-item { background: white; padding: 20px; border-radius: 10px; border: 1px solid #e0e0e0; border-left: 4px solid #8DC63F; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); flex-wrap: wrap; position: relative; }
 .admin-event-info { flex: 1; min-width: 0; word-wrap: break-word; }
 .admin-event-title { color: #2B7BBD; font-size: 1.3em; margin: 0 0 8px 0; font-weight: bold; word-wrap: break-word; }
 .admin-event-meta { color: #666; font-size: 0.95em; margin: 5px 0; word-wrap: break-word; }
+.event-status-badge { position: absolute; top: 10px; right: 10px; padding: 4px 10px; border-radius: 12px; font-size: 0.75em; font-weight: bold; text-transform: uppercase; }
+.event-status-doneanddusted { background: #155724; color: white; }
+.event-status-confirmed { background: #28a745; color: white; }
+.event-status-inprogress { background: #ffc107; color: #000; }
+.event-status-idea { background: #17a2b8; color: white; }
 .admin-event-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .admin-event-actions button { padding: 8px 16px; font-size: 0.9em; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: all 0.3s ease; }
 .btn-edit { background: #2B7BBD; color: white; }
 .btn-edit:hover { background: #1a5a8d; }
+.btn-duplicate { background: #6c757d; color: white; }
+.btn-duplicate:hover { background: #5a6268; }
 .btn-data { background: #8DC63F; color: white; }
 .btn-data:hover { background: #7ab52f; }
 .btn-delete { background: #dc3545; color: white; }
@@ -278,6 +359,33 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
   .event-modal-btn { width: 100%; padding: 12px 20px; font-size: 1em; }
 }
 
+/* ── Tentative scheduling calendar styles ── */
+.tentative-chip {
+  background: repeating-linear-gradient(45deg,#ff9800,#ff9800 6px,#ffb74d 6px,#ffb74d 12px);
+  color: white; padding: 6px 8px; border-radius: 5px; margin-bottom: 6px;
+  font-size: 0.85em; cursor: default; word-wrap: break-word;
+  border: 2px solid #e65100; text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+  font-weight: bold;
+}
+.tentative-dot {
+  background: repeating-linear-gradient(45deg,#ff9800,#ff9800 4px,#ffb74d 4px,#ffb74d 8px);
+  border: 2px solid #e65100; width: 14px; height: 14px;
+  border-radius: 50%; display: inline-block; margin: 1px; vertical-align: middle;
+}
+.calendar-day.has-tentative { border-color: #ff9800 !important; }
+.scheduling-legend {
+  display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+  padding: 10px 15px; background: #f9f9f9; border-radius: 8px;
+  margin-bottom: 15px; font-size: 0.9em;
+}
+.legend-item { display: flex; align-items: center; gap: 8px; }
+.legend-dot-green { width: 14px; height: 14px; border-radius: 50%; background: #8DC63F; flex-shrink: 0; }
+.legend-dot-orange {
+  width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0;
+  background: repeating-linear-gradient(45deg,#ff9800,#ff9800 3px,#ffb74d 3px,#ffb74d 6px);
+  border: 1px solid #e65100;
+}
+
 /* Toast animations */
 @keyframes slideUp {
   from {
@@ -320,7 +428,10 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 <button class="nav-btn" onclick="showPage('events', this)">Events</button>
 <button class="nav-btn" onclick="showPage('calendar', this)">Calendar</button>
 <button class="nav-btn" onclick="showPage('about', this)">About</button>
-<button class="nav-btn" onclick="openFestivalAdmin()">Festival Admin</button>
+<button class="nav-btn" id="navPacePlanning" onclick="showPage('paceplanning', this)" style="display: none;">PACE Planning</button>
+<button class="nav-btn" id="navPaceLeadPortal" onclick="showPage('paceleadportal', this)" style="display: none;">My Events</button>
+<button class="nav-btn" id="navAdmin" onclick="showPage('admin', this)" style="display: none;">Admin</button>
+<button class="nav-btn" id="navFestivalAdmin" onclick="openFestivalAdmin()">Festival Admin</button>
 <button class="pace-website-btn" onclick="window.location.href='https://www.pacemanningtree.org.uk'">← PACE Website</button>
 </div>
 </div>
@@ -402,10 +513,20 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 <!-- ============================================ -->
 <div id="calendar" class="page">
 <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 20px;">Festival Calendar</h2>
-<div style="text-align: center; margin-bottom: 30px;">
+<div style="text-align: center; margin-bottom: 20px;">
   <button class="btn" onclick="showCalendarView('day')" style="padding: 10px 20px; margin: 5px;">Day</button>
   <button class="btn" onclick="showCalendarView('week')" style="padding: 10px 20px; margin: 5px;">Week</button>
   <button class="btn" onclick="showCalendarView('month')" style="padding: 10px 20px; margin: 5px;">Full Festival</button>
+</div>
+<!-- Shown only to logged-in users -->
+<div id="calendarSchedulingBar" style="display:none; max-width:900px; margin:0 auto 15px auto;">
+  <div class="scheduling-legend">
+    <div class="legend-item"><div class="legend-dot-green"></div><span>Confirmed event</span></div>
+    <div class="legend-item"><div class="legend-dot-orange"></div><span>Tentative / preferred date</span></div>
+    <div id="schedulingAdminBtn" style="display:none; margin-left:auto;">
+      <button class="btn" onclick="openSchedulingManager()" style="background:#e65100; padding:8px 16px; font-size:0.85em;">🗓️ Manage Tentative Dates</button>
+    </div>
+  </div>
 </div>
 <div id="calendarViewContainer"></div>
 </div>
@@ -472,8 +593,10 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 <div id="pacePlanningLogin" class="admin-login">
 <h2>PACE Planning Access</h2>
 <p style="margin-bottom: 20px;">Enter password to view events in planning</p>
-<input type="password" id="pacePlanningPassword" class="admin-input" placeholder="Enter PACE password" onkeypress="if(event.key==='Enter') pacePlanningLogin()" autofocus>
-<button class="btn" onclick="pacePlanningLogin()">Access Planning</button>
+<form onsubmit="pacePlanningLogin(); return false;">
+<input type="password" id="pacePlanningPassword" class="admin-input" placeholder="Enter PACE password" autofocus>
+<button type="submit" class="btn">Access Planning</button>
+</form>
 </div>
 <div id="pacePlanningPanel" style="display: none;">
 <h2 style="color: #2B7BBD; margin-bottom: 20px;">📋 PACE Planning</h2>
@@ -482,6 +605,7 @@ p { font-size: 1.1em; line-height: 1.4; margin-bottom: 15px; }
 <div style="text-align: center; margin-bottom: 30px;">
   <button id="btnPlanningEvents" class="btn" onclick="showPlanningView('events')" style="margin: 0 10px; background: #2B7BBD;">📅 Events</button>
   <button id="btnPlanningVenues" class="btn btn-secondary" onclick="showPlanningView('venues')" style="margin: 0 10px;">🏛️ Venues</button>
+  <span id="tentativePlannerBtn" style="display:none;"><button class="btn" onclick="openSchedulingManager()" style="margin: 0 10px; background: #e65100;">🗓️ Tentative Planner</button></span>
 </div>
 
 <!-- EVENTS VIEW -->
@@ -566,7 +690,7 @@ These events are being developed. Use the filters to see what's planned for each
 </div>
 
 <!-- EVENTS LIST -->
-<div id="planningEventsList" style="margin-top: 30px;"></div>
+<div id="planningEventsList" style="display: grid; gap: 15px; margin-top: 30px;"></div>
 </div>
 <!-- END EVENTS VIEW -->
 
@@ -578,6 +702,7 @@ Manage venue profiles including capacity, facilities, and availability.
 
 <div style="text-align: center; margin-bottom: 30px;">
   <button class="btn" onclick="openVenueForm()" style="font-size: 1.1em; padding: 15px 30px;">+ Add New Venue</button>
+  <button class="btn btn-export" onclick="downloadVenuesDocx()" style="font-size: 1.1em; padding: 15px 30px; margin-left: 15px;">📄 Download Venues List</button>
 </div>
 
 <!-- VENUE COUNTER -->
@@ -602,8 +727,10 @@ Manage venue profiles including capacity, facilities, and availability.
 <div id="paceLeadLogin" class="admin-login">
 <h2>PACE Lead Portal</h2>
 <p style="margin-bottom: 20px;">Enter your access code to view and edit your events</p>
-<input type="text" id="paceLeadCode" class="admin-input" placeholder="Enter your code (e.g., HH1234)" onkeypress="if(event.key==='Enter') paceLeadLogin()" autofocus>
-<button class="btn" onclick="paceLeadLogin()">Access My Events</button>
+<form onsubmit="paceLeadLogin(); return false;">
+<input type="text" id="paceLeadCode" class="admin-input" placeholder="Enter your code (e.g., HH1234)" autofocus>
+<button type="submit" class="btn">Access My Events</button>
+</form>
 <p style="margin-top: 20px; font-size: 0.9em; color: #666;">Your access code was provided when you submitted your first event via JotForm.</p>
 </div>
 <div id="paceLeadPanel" style="display: none;">
@@ -636,49 +763,72 @@ Manage venue profiles including capacity, facilities, and availability.
 <div id="admin" class="page">
 <div id="adminLogin" class="admin-login">
 <h2>Admin Login</h2>
-<input type="password" id="adminPassword" class="admin-input" placeholder="Enter admin password" onkeypress="if(event.key==='Enter') login()" autofocus>
-<button class="btn" onclick="login()">Login</button>
+<form onsubmit="login(); return false;">
+<input type="password" id="adminPassword" class="admin-input" placeholder="Enter admin password" autofocus>
+<button type="submit" class="btn">Login</button>
+</form>
 </div>
 <div id="adminPanel" style="display: none;">
 <div class="admin-panel">
-<h2 style="margin: 0;">Event Management</h2>
+<h2 style="margin: 0 0 10px 0;">Event Management</h2>
 <!-- Version: 2025-01-31-PRINT-FIX-2 -->
-<div>
-<button class="btn" onclick="openEventForm()">+ Add New Event</button>
-<button class="btn" onclick="showPage('paceplanning'); showPlanningView('venues');" style="background: #8DC63F;">🏛️ Manage Venues</button>
-<button class="btn btn-export" onclick="exportToExcel()">📊 Export to Excel</button>
-<button class="btn btn-export" onclick="document.getElementById('importFile').click()">📥 Import from Excel</button>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;">
+<button class="btn" onclick="openEventForm()" style="padding: 8px 12px; font-size: 0.9em;">+ Add Event</button>
+<button class="btn" onclick="showPage('paceplanning'); showPlanningView('venues');" style="background: #8DC63F; padding: 8px 12px; font-size: 0.9em;">🏛️ Venues</button>
+<button class="btn btn-export" onclick="exportToExcel()" style="padding: 8px 12px; font-size: 0.9em;">📊 Export</button>
+<button class="btn btn-export" onclick="document.getElementById('importFile').click()" style="padding: 8px 12px; font-size: 0.9em;">📥 Import</button>
 <input type="file" id="importFile" accept=".xlsx,.xls,.csv" style="display:none;" onchange="importFromExcel(event)">
 </div>
-<div style="margin-top: 15px;">
-<button class="btn" onclick="printPlanningReport()" style="background: #28a745;">📄 Print Planning Report</button>
-<button class="btn" onclick="downloadWordReport()" style="background: #0066cc; margin-left: 10px;">📥 Download Word Report</button>
-<button class="btn" onclick="openChangeLog()" style="background: #ff9800; margin-left: 10px;">📋 View Change Log</button>
+<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+<button class="btn" onclick="downloadWordReportCurrentOrder()" style="background: #28a745; padding: 8px 12px; font-size: 0.9em;">📥 Download Report</button>
+<button class="btn" onclick="downloadVenueBookingReport()" style="background: #00796b; padding: 8px 12px; font-size: 0.9em;">🏛️ Venue Booking Report</button>
+<button class="btn" onclick="openChangeLog()" style="background: #ff9800; padding: 8px 12px; font-size: 0.9em;">📋 Change Log</button>
+<button class="btn" onclick="openTodoList()" style="background: #6f42c1; padding: 8px 12px; font-size: 0.9em;">✅ To-Do List</button>
+<button class="btn" onclick="openSchedulingManager()" style="background: #e65100; padding: 8px 12px; font-size: 0.9em;">🗓️ Tentative Planner</button>
 </div>
 </div>
-<div style="background: #f5f5f5; padding: 30px; border-radius: 10px;">
-<div style="display: flex; gap: 15px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 20px;">
-  <div style="flex: 1; min-width: 200px;">
-    <label style="display: block; font-weight: bold; color: #2B7BBD; margin-bottom: 5px;">Search</label>
-    <input type="text" id="adminSearch" placeholder="Search by title..." oninput="applyAdminFilters()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+<div style="background: #f5f5f5; padding: 15px; border-radius: 10px; margin-top: 15px;">
+<div style="display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 15px;">
+  <div style="flex: 1; min-width: 150px;">
+    <label style="display: block; font-weight: bold; color: #2B7BBD; margin-bottom: 5px; font-size: 0.9em;">Search</label>
+    <input type="text" id="adminSearch" placeholder="Search by title..." oninput="applyAdminFilters()" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 0.9em;">
   </div>
-  <div style="min-width: 180px;">
-    <label style="display: block; font-weight: bold; color: #2B7BBD; margin-bottom: 5px;">PACE Lead</label>
-    <select id="adminFilterPaceLead" onchange="applyAdminFilters()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+  <div style="min-width: 140px;">
+    <label style="display: block; font-weight: bold; color: #2B7BBD; margin-bottom: 5px; font-size: 0.9em;">PACE Lead</label>
+    <select id="adminFilterPaceLead" onchange="applyAdminFilters()" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 0.9em;">
       <option value="">All PACE Leads</option>
     </select>
   </div>
-  <div style="min-width: 180px;">
-    <label style="display: block; font-weight: bold; color: #2B7BBD; margin-bottom: 5px;">Calendar</label>
-    <select id="adminFilterCalendar" onchange="applyAdminFilters()" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+  <div style="min-width: 140px;">
+    <label style="display: block; font-weight: bold; color: #2B7BBD; margin-bottom: 5px; font-size: 0.9em;">Calendar</label>
+    <select id="adminFilterCalendar" onchange="applyAdminFilters()" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 0.9em;">
       <option value="all">All Events</option>
       <option value="notcalendar">Not on Calendar</option>
       <option value="oncalendar">On Calendar</option>
     </select>
   </div>
-  <button class="btn btn-secondary" onclick="clearAdminFilters()" style="align-self: flex-end;">Clear</button>
+  <div style="min-width: 140px;">
+    <label style="display: block; font-weight: bold; color: #2B7BBD; margin-bottom: 5px; font-size: 0.9em;">Status</label>
+    <select id="adminFilterStatus" onchange="applyAdminFilters()" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 0.9em;">
+      <option value="">All Statuses</option>
+      <option value="doneanddusted">✅ Done and Dusted</option>
+      <option value="confirmed">🟢 Confirmed</option>
+      <option value="inprogress">🟡 In Progress</option>
+      <option value="idea">🔵 Idea</option>
+      <option value="notset">Not Set</option>
+    </select>
+  </div>
+  <div style="min-width: 160px;">
+    <label style="display: block; font-weight: bold; color: #2B7BBD; margin-bottom: 5px; font-size: 0.9em;">Sort By</label>
+    <select id="adminSortBy" onchange="renderAdminEventsList()" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 0.9em;">
+      <option value="date">Date (default)</option>
+      <option value="status">Status → PACE Lead → Title</option>
+      <option value="pacelead">PACE Lead → Title</option>
+    </select>
+  </div>
+  <button class="btn btn-secondary" onclick="clearAdminFilters()" style="align-self: flex-end; padding: 8px 12px; font-size: 0.9em;">Clear</button>
 </div>
-<p style="font-size: 1.2em; margin-bottom: 20px; text-align: center;">Total Events: <strong id="eventCount">0</strong></p>
+<p style="font-size: 1em; margin-bottom: 15px; text-align: center;">Total Events: <strong id="eventCount">0</strong></p>
 <div id="adminEventsList" style="display: grid; gap: 15px;"></div>
 </div>
 </div>
@@ -700,11 +850,13 @@ Manage venue profiles including capacity, facilities, and availability.
     <h2 style="text-align: center; color: #2B7BBD; margin-bottom: 20px;">Festival Admin Access</h2>
     <p style="text-align: center; color: #666; margin-bottom: 30px;">Enter your password or access code</p>
     
+    <form onsubmit="festivalAdminLogin(); return false;">
     <div style="margin-bottom: 20px;">
-      <input type="password" id="festivalAdminPassword" class="admin-input" placeholder="Password or Access Code" style="width: 100%; padding: 15px; font-size: 1.1em; border: 2px solid #ddd; border-radius: 8px;" onkeypress="if(event.key==='Enter') festivalAdminLogin()" autofocus>
+      <input type="password" id="festivalAdminPassword" class="admin-input" placeholder="Password or Access Code" style="width: 100%; padding: 15px; font-size: 1.1em; border: 2px solid #ddd; border-radius: 8px;" autofocus>
     </div>
     
-    <button class="btn" onclick="festivalAdminLogin()" style="width: 100%; padding: 15px; font-size: 1.1em;">Access Admin</button>
+    <button type="submit" class="btn" style="width: 100%; padding: 15px; font-size: 1.1em;">Access Admin</button>
+    </form>
     
     <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; font-size: 0.9em; color: #666;">
       <p style="margin-bottom: 10px;"><strong>Access Levels:</strong></p>
@@ -738,6 +890,7 @@ Manage venue profiles including capacity, facilities, and availability.
   <input type="text" id="eventUniqueId" style="font-family: monospace; font-weight: bold;" placeholder="Enter Event ID (e.g., HH-EVENT01)">
   <small>This unique identifier tracks this event across updates</small>
 </div>
+
 <div class="form-group"><label>Event Title *</label><input type="text" id="eventTitle" required></div>
 <div class="form-group"><label>Event Type</label>
 <select id="eventType">
@@ -753,11 +906,23 @@ Manage venue profiles including capacity, facilities, and availability.
 <option value="Activity">Activity</option>
 <option value="Other">Other</option>
 </select></div>
-<div class="form-group"><label>Topic</label><input type="text" id="eventTopic" placeholder="e.g., Climate Change, Biodiversity"></div>
+<div class="form-group"><label>Topics (select all that apply)</label>
+<select id="eventTopic" multiple size="8" style="width: 100%; padding: 8px; border: 2px solid #ddd; border-radius: 8px;">
+  <option value="Environment">Environment</option>
+  <option value="Food">Food</option>
+  <option value="Climate">Climate</option>
+  <option value="Energy">Energy</option>
+  <option value="Travel/Transport">Travel/Transport</option>
+  <option value="Wildlife & Biodiversity">Wildlife & Biodiversity</option>
+  <option value="Nature & Gardening">Nature & Gardening</option>
+  <option value="Waste & Recycling">Waste & Recycling</option>
+</select>
+<small style="color: #666; display: block; margin-top: 5px;">Hold Ctrl (or Cmd on Mac) to select multiple topics</small>
+</div>
 <div class="form-group"><label>Description *</label><textarea id="eventDescription" placeholder="Describe the event..." required></textarea></div>
 <div class="form-group"><label>Short Summary *</label><input type="text" id="eventSummary" placeholder="Brief one-line summary" maxlength="120"><small>Keep it short - this appears on event lists (max 120 characters)</small></div>
 <div class="two-col">
-<div class="form-group"><label>Date</label><input type="date" id="eventDate" min="2026-05-23" max="2026-06-30" onchange="showTimeSlotsSection(); showRecurrenceSection();"></div>
+<div class="form-group"><label>Date</label><input type="date" id="eventDate" min="2026-05-23" max="2026-06-30" onchange="showTimeSlotsSection(); showRecurrenceSection(); clearRoughTimingFields();"></div>
 <div class="form-group"><label>Time Start</label>
 <div class="two-col">
 <select id="eventTimeHour">
@@ -797,6 +962,7 @@ Manage venue profiles including capacity, facilities, and availability.
 </div>
 </div>
 </div>
+<div id="roughTimingSection">
 <div class="form-group">
   <label>Rough Week</label>
   <input type="text" id="eventRoughWeek" placeholder="e.g., Festival Week 2">
@@ -812,6 +978,45 @@ Manage venue profiles including capacity, facilities, and availability.
   <input type="text" id="eventRoughTime" placeholder="e.g., Morning, Afternoon, Evening">
   <small>If exact time not known, rough time of day</small>
 </div>
+
+<!-- TENTATIVE SCHEDULING SECTION -->
+<div style="background: #fff3e0; border: 2px solid #ff9800; border-radius: 10px; padding: 18px; margin: 15px 0;">
+  <div style="font-weight: bold; color: #e65100; margin-bottom: 12px; font-size: 1em;">📌 Scheduling Preferences <span style="font-weight: normal; color: #795548; font-size: 0.9em;">(shows on the planning calendar — not public)</span></div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+    <div class="form-group" style="margin:0;">
+      <label style="color: #e65100;">Preferred Date</label>
+      <input type="date" id="eventTentativeDate" min="2026-05-23" max="2026-06-30" style="width:100%; padding:10px; border:2px solid #ffcc80; border-radius:6px; font-family:inherit; font-size:0.95em; box-sizing:border-box;">
+      <small>Your preferred date if the exact date isn't confirmed yet</small>
+    </div>
+    <div class="form-group" style="margin:0;">
+      <label style="color: #e65100;">Preferred Time</label>
+      <input type="time" id="eventTentativeTime" style="width:100%; padding:10px; border:2px solid #ffcc80; border-radius:6px; font-family:inherit; font-size:0.95em; box-sizing:border-box;">
+      <small>Your preferred start time</small>
+    </div>
+    <div class="form-group" style="margin:0; grid-column: 1 / -1;">
+      <label style="color: #e65100;">Preferred Venue</label>
+      <select id="eventTentativeVenueType" onchange="updateTentativeVenueInput()" style="width:100%; padding:10px; border:2px solid #ffcc80; border-radius:6px; font-family:inherit; font-size:0.95em; box-sizing:border-box; margin-bottom:6px;">
+        <option value="">-- Select venue type --</option>
+        <option value="public">Public Venue (from list)</option>
+        <option value="business">Business Host</option>
+        <option value="private">Private Host</option>
+        <option value="outdoor">Outdoor / Open Space</option>
+      </select>
+      <select id="eventTentativeVenueSelect" style="width:100%; padding:10px; border:2px solid #ffcc80; border-radius:6px; font-family:inherit; font-size:0.95em; box-sizing:border-box; display:none; margin-bottom:6px;">
+        <option value="">-- Select venue --</option>
+      </select>
+      <input type="text" id="eventTentativeVenue" placeholder="Enter name/location..." style="width:100%; padding:10px; border:2px solid #ffcc80; border-radius:6px; font-family:inherit; font-size:0.95em; box-sizing:border-box; display:none;">
+      <small>Your preferred venue if not yet confirmed</small>
+    </div>
+    <div class="form-group" style="margin:0; grid-column: 1 / -1;">
+      <label style="color: #e65100;">Scheduling Notes</label>
+      <input type="text" id="eventTentativeNotes" placeholder="e.g., needs projector, avoid clashing with Market Day..." style="width:100%; padding:10px; border:2px solid #ffcc80; border-radius:6px; font-family:inherit; font-size:0.95em; box-sizing:border-box;">
+      <small>Anything useful for scheduling — clashes to avoid, requirements, flexibility</small>
+    </div>
+  </div>
+</div>
+</div><!-- end roughTimingSection -->
+
 <div class="form-group"><label>Duration</label>
 <div class="two-col">
 <select id="eventDurationHours">
@@ -882,7 +1087,20 @@ Manage venue profiles including capacity, facilities, and availability.
 <div class="form-group"><label>Location</label><input type="text" id="eventLocation" value="Manningtree"></div>
 <div class="form-group"><label>Post Code</label><input type="text" id="eventPostcode" placeholder="e.g., CO11 1AA"></div>
 </div>
-<div class="form-group"><label>Venue</label><input type="text" id="eventVenue" placeholder="e.g., Community Hall"></div>
+<div class="form-group">
+  <label>Venue</label>
+  <select id="eventVenueType" onchange="updateVenueInput()" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px; font-family:inherit; font-size:1em; margin-bottom:6px;">
+    <option value="">-- Select venue type --</option>
+    <option value="public">Public Venue (from list)</option>
+    <option value="business">Business Host</option>
+    <option value="private">Private Host</option>
+    <option value="outdoor">Outdoor / Open Space</option>
+  </select>
+  <select id="eventVenueSelect" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px; font-family:inherit; font-size:1em; display:none; margin-bottom:6px;">
+    <option value="">-- Select venue --</option>
+  </select>
+  <input type="text" id="eventVenue" placeholder="Enter name/location..." style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px; font-family:inherit; font-size:1em; display:none;">
+</div>
 </div>
 <div class="form-group"><label>Organisation *</label><input type="text" id="eventOrganiser" placeholder="Organisation or person organising the event" required></div>
 <div class="form-group">
@@ -894,6 +1112,13 @@ Manage venue profiles including capacity, facilities, and availability.
   <label>About the Organisation</label>
   <textarea id="organisationAbout" placeholder="Tell us about the organisation hosting this event..."></textarea>
   <small>Information about the organisation - this helps promote their work!</small>
+</div>
+<div class="form-group">
+  <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+    <input type="checkbox" id="featuredEvent" style="width: auto; cursor: pointer;">
+    <span>⭐ Feature this event on promotional page</span>
+  </label>
+  <small style="display: block; margin-top: 5px; color: #666;">Selected events will appear as examples on the public promo page</small>
 </div>
 <div class="form-group">
   <label>Eventbrite Registration URL</label>
@@ -1011,6 +1236,123 @@ Manage venue profiles including capacity, facilities, and availability.
 <!-- SECTION END: CHANGE LOG MODAL -->
 
 <!-- ============================================ -->
+<!-- SECTION START: TODO LIST MODAL -->
+<!-- ============================================ -->
+<div id="todoModal" class="modal">
+<div class="modal-content" style="max-width: 950px;">
+<div class="modal-header">
+<h2 style="color: #6f42c1; margin: 0;">✅ MEF 2026 To-Do List</h2>
+<button style="background: none; border: none; cursor: pointer; font-size: 1.5em;" onclick="closeTodoList()">×</button>
+</div>
+<div style="background: #f3eeff; border: 2px solid #6f42c1; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+<h3 style="color: #6f42c1; margin: 0 0 15px 0; font-size: 1.1em;">➕ Add New Task</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+  <div>
+    <label style="display:block; font-weight:bold; color:#333; margin-bottom:4px; font-size:0.9em;">Description *</label>
+    <input type="text" id="todoDesc" placeholder="What needs to be done?" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:6px; font-family:inherit; font-size:0.95em; box-sizing:border-box;">
+  </div>
+  <div>
+    <label style="display:block; font-weight:bold; color:#333; margin-bottom:4px; font-size:0.9em;">Task Lead *</label>
+    <input type="text" id="todoLead" placeholder="Who is leading this?" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:6px; font-family:inherit; font-size:0.95em; box-sizing:border-box;">
+  </div>
+  <div>
+    <label style="display:block; font-weight:bold; color:#333; margin-bottom:4px; font-size:0.9em;">Others Involved</label>
+    <input type="text" id="todoOthers" placeholder="Other people involved (optional)" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:6px; font-family:inherit; font-size:0.95em; box-sizing:border-box;">
+  </div>
+  <div>
+    <label style="display:block; font-weight:bold; color:#333; margin-bottom:4px; font-size:0.9em;">Target Date</label>
+    <input type="date" id="todoTarget" style="width:100%; padding:10px; border:2px solid #ddd; border-radius:6px; font-family:inherit; font-size:0.95em; box-sizing:border-box;">
+  </div>
+</div>
+<button class="btn" onclick="addTodoItem()" style="background: #6f42c1; padding: 10px 25px;">Add Task</button>
+</div>
+<div style="display:flex; gap:10px; align-items:center; margin-bottom:15px; flex-wrap:wrap;">
+  <label style="font-weight:bold; color:#333; font-size:0.9em;">Show:</label>
+  <button id="todoFilterAll" onclick="setTodoFilter('all')" class="btn" style="padding:7px 16px; font-size:0.85em; background:#6f42c1;">All</button>
+  <button id="todoFilterOpen" onclick="setTodoFilter('open')" class="btn btn-secondary" style="padding:7px 16px; font-size:0.85em;">Open</button>
+  <button id="todoFilterDone" onclick="setTodoFilter('done')" class="btn btn-secondary" style="padding:7px 16px; font-size:0.85em;">Completed</button>
+  <span id="todoCount" style="margin-left:auto; color:#666; font-size:0.9em;"></span>
+</div>
+<div id="todoList" style="max-height:480px; overflow-y:auto; border:1px solid #ddd; border-radius:8px; background:white;">
+  <p style="padding:40px; text-align:center; color:#999;">No tasks yet. Add one above!</p>
+</div>
+<div style="margin-top:20px; text-align:center;">
+  <button class="btn btn-secondary" onclick="closeTodoList()">Close</button>
+</div>
+</div>
+</div>
+<!-- SECTION END: TODO LIST MODAL -->
+
+<!-- ============================================ -->
+<!-- SECTION START: SCHEDULING MANAGER MODAL -->
+<!-- ============================================ -->
+<div id="schedulingModal" class="modal">
+<div class="modal-content" style="max-width:860px;">
+<div class="modal-header">
+  <h2 style="color:#e65100; margin:0;">🗓️ Tentative Date Planner</h2>
+  <button style="background:none; border:none; cursor:pointer; font-size:1.5em;" onclick="closeSchedulingManager()">×</button>
+</div>
+
+<div style="background:#fff3e0; border:2px solid #ff9800; padding:12px 15px; border-radius:8px; margin-bottom:18px;">
+  <p style="margin:0; color:#795548; font-size:0.9em;">📌 <strong>Two sources of tentative entries:</strong> Preferences entered by PACE Leads in their event form (shown with 👤), and standalone entries added here by admin. Both appear on the calendar as striped orange. Only admin can see or manage this list.</p>
+</div>
+
+<!-- Tab bar -->
+<div style="display:flex; gap:0; border-bottom:2px solid #ff9800; margin-bottom:18px;">
+  <button id="tentTabEvents" onclick="setTentTab('events')" style="padding:9px 20px; border:none; border-bottom:3px solid #e65100; background:#fff3e0; color:#e65100; font-weight:bold; cursor:pointer; font-family:inherit; font-size:0.95em; border-radius:6px 6px 0 0;">From Events</button>
+  <button id="tentTabManual" onclick="setTentTab('manual')" style="padding:9px 20px; border:none; border-bottom:3px solid transparent; background:white; color:#666; font-weight:bold; cursor:pointer; font-family:inherit; font-size:0.95em; border-radius:6px 6px 0 0;">+ Add Standalone</button>
+</div>
+
+<!-- Tab: From Events -->
+<div id="tentTabEventsPanel">
+  <p style="color:#666; font-size:0.9em; margin-bottom:12px;">Events where PACE Leads have entered a preferred date or venue in their event form.</p>
+  <input type="text" id="tentEventSearch" placeholder="Search events..." oninput="renderTentEventsList()" style="width:100%; padding:9px 12px; border:1px solid #ccc; border-radius:6px; font-family:inherit; font-size:0.9em; box-sizing:border-box; margin-bottom:12px;">
+  <div id="tentEventsList" style="max-height:420px; overflow-y:auto; border:1px solid #ddd; border-radius:8px; background:white;">
+    <p style="padding:30px; text-align:center; color:#999;">Loading…</p>
+  </div>
+</div>
+
+<!-- Tab: Standalone manual entries -->
+<div id="tentTabManualPanel" style="display:none;">
+  <div style="background:#f9f9f9; padding:16px; border-radius:8px; border:1px solid #ddd; margin-bottom:16px;">
+    <h3 style="color:#e65100; margin:0 0 12px 0; font-size:0.95em;">Add Standalone Tentative Entry</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+      <div><label style="display:block; font-weight:bold; color:#333; margin-bottom:3px; font-size:0.85em;">Event Name *</label>
+        <input type="text" id="tentTitle" placeholder="Event name" style="width:100%; padding:9px; border:2px solid #ddd; border-radius:6px; font-family:inherit; font-size:0.9em; box-sizing:border-box;"></div>
+      <div><label style="display:block; font-weight:bold; color:#333; margin-bottom:3px; font-size:0.85em;">PACE Lead</label>
+        <input type="text" id="tentLead" placeholder="Whose event?" style="width:100%; padding:9px; border:2px solid #ddd; border-radius:6px; font-family:inherit; font-size:0.9em; box-sizing:border-box;"></div>
+      <div><label style="display:block; font-weight:bold; color:#333; margin-bottom:3px; font-size:0.85em;">Date *</label>
+        <input type="date" id="tentDate" min="2026-05-23" max="2026-06-30" style="width:100%; padding:9px; border:2px solid #ddd; border-radius:6px; font-family:inherit; font-size:0.9em; box-sizing:border-box;"></div>
+      <div><label style="display:block; font-weight:bold; color:#333; margin-bottom:3px; font-size:0.85em;">Preferred Time</label>
+        <input type="time" id="tentTime" style="width:100%; padding:9px; border:2px solid #ddd; border-radius:6px; font-family:inherit; font-size:0.9em; box-sizing:border-box;"></div>
+      <div style="grid-column:1/-1;"><label style="display:block; font-weight:bold; color:#333; margin-bottom:3px; font-size:0.85em;">Preferred Venue</label>
+        <input type="text" id="tentVenue" placeholder="e.g. Town Hall..." style="width:100%; padding:9px; border:2px solid #ddd; border-radius:6px; font-family:inherit; font-size:0.9em; box-sizing:border-box;"></div>
+      <div style="grid-column:1/-1;"><label style="display:block; font-weight:bold; color:#333; margin-bottom:3px; font-size:0.85em;">Notes</label>
+        <input type="text" id="tentNotes" placeholder="e.g. needs projector, avoid market day..." style="width:100%; padding:9px; border:2px solid #ddd; border-radius:6px; font-family:inherit; font-size:0.9em; box-sizing:border-box;"></div>
+    </div>
+    <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+      <button id="tentSaveBtn" class="btn" onclick="saveTentativeDate()" style="background:#e65100; padding:9px 22px;">Add Entry</button>
+      <button id="tentCancelEdit" class="btn btn-secondary" onclick="cancelTentativeEdit()" style="display:none; padding:9px 16px;">Cancel Edit</button>
+    </div>
+  </div>
+  <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px; flex-wrap:wrap;">
+    <strong style="color:#e65100; font-size:0.9em;">Standalone Entries</strong>
+    <span id="tentCount" style="color:#666; font-size:0.85em;"></span>
+    <input type="text" id="tentSearch" placeholder="Search…" oninput="renderTentativeList()" style="margin-left:auto; padding:7px 11px; border:1px solid #ccc; border-radius:5px; font-family:inherit; font-size:0.85em; width:160px;">
+  </div>
+  <div id="tentativeList" style="max-height:340px; overflow-y:auto; border:1px solid #ddd; border-radius:8px; background:white;">
+    <p style="padding:30px; text-align:center; color:#999;">No standalone entries yet.</p>
+  </div>
+</div>
+
+<div style="margin-top:16px; text-align:center;">
+  <button class="btn btn-secondary" onclick="closeSchedulingManager()">Close</button>
+</div>
+</div>
+</div>
+<!-- SECTION END: SCHEDULING MANAGER MODAL -->
+
+<!-- ============================================ -->
 <!-- SECTION START: PRIDE MODAL -->
 <!-- ============================================ -->
 <div id="prideModal" class="pride-modal">
@@ -1036,6 +1378,17 @@ Manage venue profiles including capacity, facilities, and availability.
 </div>
 <form id="venueForm" onsubmit="saveVenue(event)">
 <div class="form-group"><label>Venue Name *</label><input type="text" id="venueName" required></div>
+<div class="form-group">
+  <label>Venue Type *</label>
+  <select id="venueType" required style="width:100%; padding:10px; border:2px solid #ddd; border-radius:8px; font-family:inherit; font-size:1em;">
+    <option value="">-- Select type --</option>
+    <option value="public">Public Venue (hall, library, community centre etc.)</option>
+    <option value="business">Business Host (hosting at their own premises)</option>
+    <option value="private">Private Host (individual hosting at home/garden)</option>
+    <option value="outdoor">Outdoor / Open Space (beach, park, green space etc.)</option>
+  </select>
+  <small>Only Public Venues appear in the venue dropdown on events</small>
+</div>
 <div class="form-group"><label>Location/Address</label><input type="text" id="venueAddress"></div>
 <div class="form-group"><label>Postcode</label><input type="text" id="venuePostcode" placeholder="e.g., CO11 1AA"></div>
 <div class="form-group"><label>Capacity (max people)</label><input type="number" id="venueCapacity" min="0" placeholder="e.g., 100"></div>
@@ -1052,6 +1405,7 @@ Manage venue profiles including capacity, facilities, and availability.
 <div class="form-group"><label>Contact Person</label><input type="text" id="venueContact"></div>
 <div class="form-group"><label>Contact Email</label><input type="email" id="venueContactEmail"></div>
 <div class="form-group"><label>Contact Phone</label><input type="tel" id="venueContactPhone"></div>
+<div class="form-group"><label>Website</label><input type="url" id="venueWebsite" placeholder="e.g., https://www.townhall.org.uk"><small>Venue website address</small></div>
 <div class="form-group">
   <label>Notes</label>
   <textarea id="venueNotes" rows="4" placeholder="Any other useful information about this venue..."></textarea>
@@ -1170,9 +1524,19 @@ function showPage(pageName, btn) {
   }
   if(pageName==='calendar'){ renderCalendar(); }
   if(pageName==='home'){ 
+    // Reset all login states
     isAdmin=false;
     isPaceLead=false;
     currentPaceLeadCode=null;
+    
+    // Hide admin menu buttons
+    document.getElementById('navPacePlanning').style.display='none';
+    document.getElementById('navPaceLeadPortal').style.display='none';
+    document.getElementById('navAdmin').style.display='none';
+    // Show Festival Admin button again
+    document.getElementById('navFestivalAdmin').style.display='';
+    
+    // Reset admin panels
     document.getElementById('adminLogin').style.display='block'; 
     document.getElementById('adminPanel').style.display='none';
     document.getElementById('adminPassword').value='';
@@ -1184,11 +1548,14 @@ function showPage(pageName, btn) {
       document.getElementById('pacePlanningPanel').style.display='block';
       renderPlanningEvents();
     } else {
-      // Not logged in - show login
+      // Not logged in - show login with message
       document.getElementById('pacePlanningLogin').style.display='block'; 
       document.getElementById('pacePlanningPanel').style.display='none';
       document.getElementById('pacePlanningPassword').value='';
-      setTimeout(() => document.getElementById('pacePlanningPassword').focus(), 100);
+      setTimeout(() => {
+        document.getElementById('pacePlanningPassword').focus();
+        showToast('⚠️ Please enter PACE Planning password to access this section');
+      }, 100);
     }
   }
   if(pageName==='admin'){ 
@@ -1198,25 +1565,37 @@ function showPage(pageName, btn) {
       document.getElementById('adminPanel').style.display='block';
       renderAdminEventsList();
     } else {
-      // Not logged in - show login
+      // Not logged in as admin - show login with message
       document.getElementById('adminLogin').style.display='block'; 
       document.getElementById('adminPanel').style.display='none';
       document.getElementById('adminPassword').value='';
-      setTimeout(() => document.getElementById('adminPassword').focus(), 100);
+      setTimeout(() => {
+        document.getElementById('adminPassword').focus();
+        showToast('⚠️ Please enter Admin password to access this section');
+      }, 100);
     }
   }
  if(pageName==='paceleadportal'){ 
-    if(currentPaceLeadCode) {
-      // Already logged in - go straight to panel
+    if(currentPaceLeadCode || isAdmin) {
+      // PACE Lead code or Admin - go straight to panel
       document.getElementById('paceLeadLogin').style.display='none'; 
       document.getElementById('paceLeadPanel').style.display='block';
       renderPaceLeadEvents();
     } else {
-      // Not logged in - show login
+      // Not logged in with access code - show login form with message
       document.getElementById('paceLeadLogin').style.display='block'; 
       document.getElementById('paceLeadPanel').style.display='none';
       document.getElementById('paceLeadCode').value='';
-      setTimeout(() => document.getElementById('paceLeadCode').focus(), 100);
+      setTimeout(() => {
+        document.getElementById('paceLeadCode').focus();
+        if(isPaceLead && !isAdmin) {
+          // PACE Planning user trying to access
+          showToast('⚠️ Please enter a PACE Lead access code to view individual events');
+        } else {
+          // Not logged in at all
+          showToast('⚠️ Please enter your PACE Lead access code to view your events');
+        }
+      }, 100);
     }
   }
 }
@@ -1258,6 +1637,21 @@ function loadEvents() {
             e.planningNotes = migrateNotes(e.planningNotes);
           }
         });
+        
+        // MIGRATION: Auto-set status to "confirmed" for events with dates but no status
+        let migrationCount = 0;
+        events.forEach(e => {
+          if(e.date && e.date !== '' && !e.status) {
+            e.status = 'confirmed';
+            migrationCount++;
+          }
+        });
+        
+        // Save migrations back to Firebase if any were made
+        if(migrationCount > 0) {
+          console.log('Migrated ' + migrationCount + ' events with dates to "confirmed" status');
+          saveEvents();
+        }
       } else {
         events = [];
       }
@@ -1269,7 +1663,24 @@ function loadEvents() {
     });
   } else {
     const stored = localStorage.getItem('mef-events');
-    if(stored){ events = JSON.parse(stored); }
+    if(stored){ 
+      events = JSON.parse(stored); 
+      
+      // MIGRATION: Auto-set status to "confirmed" for events with dates but no status
+      let migrationCount = 0;
+      events.forEach(e => {
+        if(e.date && e.date !== '' && !e.status) {
+          e.status = 'confirmed';
+          migrationCount++;
+        }
+      });
+      
+      // Save migrations back to localStorage if any were made
+      if(migrationCount > 0) {
+        console.log('Migrated ' + migrationCount + ' events with dates to "confirmed" status');
+        localStorage.setItem('mef-events', JSON.stringify(events));
+      }
+    }
     filteredEvents = [...events];
     document.getElementById('eventCount').textContent = events.length;
   }
@@ -1309,8 +1720,22 @@ function applyFilters() {
   filteredEvents = events.filter(e=>{
     // Only show events that have a date on the Events page
     const hasDate = e.date && e.date !== '';
+    
+    // Enhanced search - search across multiple fields
+    let matchesSearch = !search;
+    if(search) {
+      matchesSearch = 
+        (e.title && e.title.toLowerCase().includes(search)) ||
+        (e.description && e.description.toLowerCase().includes(search)) ||
+        (e.summary && e.summary.toLowerCase().includes(search)) ||
+        (e.topic && e.topic.toLowerCase().includes(search)) ||
+        (e.organiser && e.organiser.toLowerCase().includes(search)) ||
+        (e.location && e.location.toLowerCase().includes(search)) ||
+        (e.venue && e.venue.toLowerCase().includes(search));
+    }
+    
     return hasDate &&
-           (!search || e.title.toLowerCase().includes(search)) &&
+           matchesSearch &&
            (!type || e.type===type) &&
            (!loc || (e.location && e.location===loc)) &&
            (!date || e.date===date);
@@ -1425,7 +1850,18 @@ function renderEvents() {
 
     // Build timing info for line 1
     let timingParts = [];
-    if(e.date) timingParts.push('📅 ' + formatDate(e.date));
+    if(e.date) {
+      const dateObj = new Date(e.date + 'T12:00:00');
+      const dayName = dateObj.toLocaleDateString('en-GB', { weekday: 'short' });
+      const dateFormatted = formatDate(e.date);
+      timingParts.push('📅 ' + dayName + ' ' + dateFormatted);
+      
+      // Add recurrence indicator
+      if(e.recurrence && e.recurrence.type && e.recurrence.type !== 'none') {
+        const recStr = formatRecurrence(e);
+        if(recStr) timingParts.push('🔁 ' + recStr);
+      }
+    }
     if(e.time) {
       const allSlots = getAllTimeSlots(e);
       if(allSlots.length > 1) {
@@ -1546,8 +1982,8 @@ function renderMonthView(container) {
       <div style="display: flex; align-items: center; justify-content: center; gap: 5px;">
         <div style="font-size: 1em; font-weight: bold;">${dayName}</div>
         <div class="calendar-day-number" style="font-size: 1em;">${dayNum}</div>
+        ${isPrideDay ? '<span style="font-size: 1.2em;">🏳️‍🌈</span>' : ''}
       </div>
-      ${isPrideDay?'<div class="pride-banner" onclick="event.stopPropagation(); showPrideModal();"><div class="pride-banner-text">🏳️‍🌈 Pride</div></div>':''}
       ${dayEvents.length>0?'<div class="event-count">'+dayEvents.length+'</div>':''}
     </div>`;
     
@@ -1587,7 +2023,7 @@ function renderWeekView(container) {
     const hasEvents = dayEvents.length > 0;
     const minHeight = hasEvents ? '200px' : '80px';
     
-    html += `<div style="border: 2px solid #8DC63F; border-radius: 10px; padding: 15px; min-height: ${minHeight}; background: white; min-width: 0; box-sizing: border-box;">
+    html += `<div style="border: 2px solid #8DC63F; border-radius: 10px; padding: 15px; min-height: ${minHeight}; background: white; min-width: 0; box-sizing: border-box; cursor: pointer;" onclick="showDayEvents('${dateStr}')">
       <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
         <div style="font-size: 1.8em; color: #2B7BBD; font-weight: bold; line-height: 1;">${dayNum}</div>
         <div style="font-weight: bold; color: #666; font-size: 0.9em;">${dayName}</div>
@@ -1595,7 +2031,7 @@ function renderWeekView(container) {
     
     dayEvents.forEach(ev => {
       const recIndicator = (ev.recurrence && ev.recurrence.type !== 'none') ? ' 🔁' : '';
-      html += `<div style="background: #8DC63F; color: white; padding: 8px; border-radius: 5px; margin-bottom: 8px; font-size: 0.9em; cursor: pointer; word-wrap: break-word;" onclick="showEventDetails(${ev.id})">
+      html += `<div style="background: #8DC63F; color: white; padding: 8px; border-radius: 5px; margin-bottom: 8px; font-size: 0.9em; cursor: pointer; word-wrap: break-word;" onclick="event.stopPropagation(); showEventDetails(${ev.id})">
         ${ev.time || ''} ${ev.title}${recIndicator}
       </div>`;
     });
@@ -1624,43 +2060,94 @@ function renderDayView(container) {
       html += '<p style="text-align: center; padding: 20px; color: #666; font-size: 1.1em; font-style: italic;">Click on any event to find out more and book your place</p>';
     }
     
-    dayEvents.forEach(e => {
-      let metaInfo = [];
-      if(e.date) metaInfo.push(formatDate(e.date));
-      if(e.time && !(e.timeSlots && e.timeSlots.length > 0)) metaInfo.push(e.time);
-      if(e.duration && !(e.timeSlots && e.timeSlots.length > 0)) metaInfo.push(formatDuration(e.duration));
-      const dayRecStr = formatRecurrence(e);
-      if(dayRecStr) metaInfo.push('🔁 ' + dayRecStr);
-      
+    // Create grid for colored boxes
+    html += '<div id="dayEventsList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-top: 30px;">';
+    
+    dayEvents.forEach((e, i) => {
+      // Alternate colors: orange and green
+      const colorClass = (i % 2 === 0) ? 'color-orange' : 'color-green';
+
+      // Build timing info
+      let timingParts = [];
+      if(e.date) {
+        const dateObj = new Date(e.date + 'T12:00:00');
+        const dayName = dateObj.toLocaleDateString('en-GB', { weekday: 'short' });
+        const dateFormatted = formatDate(e.date);
+        timingParts.push('📅 ' + dayName + ' ' + dateFormatted);
+        
+        // Add recurrence indicator
+        if(e.recurrence && e.recurrence.type && e.recurrence.type !== 'none') {
+          const recStr = formatRecurrence(e);
+          if(recStr) timingParts.push('🔁 ' + recStr);
+        }
+      }
+      if(e.time) {
+        const allSlots = getAllTimeSlots(e);
+        if(allSlots.length > 1) {
+          timingParts.push('🕒 ' + allSlots.length + ' sessions');
+        } else {
+          timingParts.push('🕒 ' + e.time);
+        }
+      }
+      if(e.duration && e.duration > 0) {
+        const hours = Math.floor(e.duration / 60);
+        const mins = e.duration % 60;
+        let durationStr = '⏱️ ';
+        if(hours > 0) durationStr += hours + (hours === 1 ? ' hour' : ' hours');
+        if(mins > 0) durationStr += (hours > 0 ? ' ' : '') + mins + ' mins';
+        timingParts.push(durationStr);
+      }
+
+      // Build location info
+      let locationStr = '';
+      if(e.location) {
+        locationStr = '📍 ' + e.location;
+        if(e.postcode) locationStr += ', ' + e.postcode;
+      } else if(e.venue) {
+        locationStr = '📍 ' + e.venue;
+        if(e.postcode) locationStr += ', ' + e.postcode;
+      }
+
+      // Get description
+      let description = '';
+      if(e.summary) {
+        description = e.summary;
+      } else if(e.description) {
+        description = e.description.length > 120 ? e.description.substring(0, 120) + '...' : e.description;
+      }
+
       html += `<div class="event-card" style="cursor: pointer;" onclick="showEventDetailModal(${e.id})">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap;">
-          <div style="flex: 1; min-width: 200px;">
-            <h3 class="event-title" style="margin: 0 0 10px 0;">${e.title}</h3>
-            <div class="event-meta" style="margin-bottom: 10px;">${metaInfo.join(' • ')}</div>`;
+        <div class="event-card-header ${colorClass}">${e.title}</div>
+        <div class="event-card-body">`;
       
-      // Time slots display
-      const allSlots = getAllTimeSlots(e);
-      if(allSlots.length > 1) {
-        html += `<div style="margin: 10px 0; padding: 8px 12px; background: #e8f4fd; border-radius: 6px; border-left: 3px solid #2B7BBD;">`;
-        html += `<div style="font-weight: bold; color: #2B7BBD; margin-bottom: 4px; font-size: 0.9em;">⏰ ${allSlots.length} sessions available:</div>`;
-        allSlots.forEach(slot => {
-          html += `<div style="color: #333; font-size: 0.9em; padding: 2px 0;">${formatSlotTime(slot)}</div>`;
+      if(timingParts.length > 0) {
+        html += `<div class="event-card-info">${timingParts.join('  ')}</div>`;
+      }
+      
+      if(locationStr) {
+        html += `<div class="event-card-info">${locationStr}</div>`;
+      }
+
+      // Show time slots box if multiple sessions
+      const weekSlots = getAllTimeSlots(e);
+      if(weekSlots.length > 1) {
+        html += `<div style="margin: 10px 0; padding: 8px 12px; background: #e8f4fd; border-radius: 6px; border-left: 3px solid #2B7BBD; font-size: 0.9em;">`;
+        html += `<div style="font-weight: bold; color: #2B7BBD; margin-bottom: 4px;">⏰ ${weekSlots.length} sessions:</div>`;
+        weekSlots.forEach(slot => {
+          html += `<div style="color: #333; padding: 2px 0;">${formatSlotTime(slot)}</div>`;
         });
         html += `</div>`;
       }
       
-      if(e.summary) {
-        html += `<p style="margin: 10px 0 0 0; line-height: 1.4; color: #333;">${e.summary}</p>`;
-      } else if(e.description) {
-        const shortDesc = e.description.length > 100 ? e.description.substring(0, 100) + '...' : e.description;
-        html += `<p style="margin: 10px 0 0 0; line-height: 1.4; color: #333;">${shortDesc}</p>`;
+      if(description) {
+        html += `<div class="event-card-description">${description}</div>`;
       }
-      
-      html += `</div>
-          <div style="color: #8DC63F; font-weight: bold; font-size: 1.1em;">Click for details →</div>
-        </div>
-      </div>`;
+
+      html += `<div class="event-card-cta">Click for details →</div>`;
+      html += `</div></div>`;
     });
+    
+    html += '</div>'; // Close grid
   }
   
   html += '</div>';
@@ -1711,6 +2198,7 @@ function applyAdminFilters() {
   const searchTerm = document.getElementById('adminSearch').value.toLowerCase();
   const paceLeadFilter = document.getElementById('adminFilterPaceLead').value;
   const calendarFilter = document.getElementById('adminFilterCalendar').value;
+  const statusFilter = document.getElementById('adminFilterStatus').value;
   
   // Store filtered list for renderAdminEventsList to use
   adminFilteredEvents = events.filter(e => {
@@ -1719,6 +2207,10 @@ function applyAdminFilters() {
     const isOnCalendar = e.date && e.date !== '';
     if(calendarFilter === 'oncalendar' && !isOnCalendar) return false;
     if(calendarFilter === 'notcalendar' && isOnCalendar) return false;
+    if(statusFilter) {
+      if(statusFilter === 'notset' && e.status) return false;
+      if(statusFilter !== 'notset' && e.status !== statusFilter) return false;
+    }
     return true;
   });
   
@@ -1729,11 +2221,73 @@ function clearAdminFilters() {
   document.getElementById('adminSearch').value = '';
   document.getElementById('adminFilterPaceLead').value = '';
   document.getElementById('adminFilterCalendar').value = 'all';
+  document.getElementById('adminFilterStatus').value = '';
+  document.getElementById('adminSortBy').value = 'date';
   adminFilteredEvents = null;
   renderAdminEventsList();
 }
 
 let adminFilteredEvents = null;
+
+function getStatusDropdownHTML(eventId, currentStatus) {
+  // Admin dropdown to change status
+  return `<div style="position: absolute; top: 10px; right: 10px;">
+    <select onchange="updateEventStatus(${eventId}, this.value)" style="padding: 4px 8px; border-radius: 12px; font-size: 0.75em; font-weight: bold; border: 2px solid #ddd; cursor: pointer; background: white;">
+      <option value="" ${!currentStatus ? 'selected' : ''}>⚪ Not Set</option>
+      <option value="doneanddusted" ${currentStatus === 'doneanddusted' ? 'selected' : ''}>✅ Done and Dusted</option>
+      <option value="confirmed" ${currentStatus === 'confirmed' ? 'selected' : ''}>🟢 Confirmed</option>
+      <option value="inprogress" ${currentStatus === 'inprogress' ? 'selected' : ''}>🟡 In Progress</option>
+      <option value="idea" ${currentStatus === 'idea' ? 'selected' : ''}>🔵 Idea</option>
+    </select>
+  </div>`;
+}
+
+function getStatusBadgeHTML(status) {
+  // Display-only badge (for non-admin views)
+  if(!status) return '';
+  
+  const badges = {
+    'doneanddusted': '<div class="event-status-badge event-status-doneanddusted">✅ DONE AND DUSTED</div>',
+    'confirmed': '<div class="event-status-badge event-status-confirmed">🟢 CONFIRMED</div>',
+    'inprogress': '<div class="event-status-badge event-status-inprogress">🟡 IN PROGRESS</div>',
+    'idea': '<div class="event-status-badge event-status-idea">🔵 IDEA</div>'
+  };
+  
+  return badges[status] || '';
+}
+
+function updateEventStatus(eventId, newStatus) {
+  const event = events.find(e => e.id === eventId);
+  if(!event) {
+    alert('Error: Event not found');
+    return;
+  }
+  
+  // Update the status
+  event.status = newStatus;
+  
+  // Save to Firebase/localStorage
+  saveEvents();
+  
+  // If using Firebase, update immediately
+  if(useFirebase && db) {
+    const key = event.uniqueId || event.id;
+    db.ref('events/' + key).update({ status: newStatus })
+      .then(() => {
+        console.log('Status updated in Firebase');
+        showToast('✓ Status updated');
+      })
+      .catch(err => {
+        console.error('Firebase status update error:', err);
+        alert('Error updating status in Firebase');
+      });
+  } else {
+    showToast('✓ Status updated');
+  }
+  
+  // Refresh the view
+  renderAdminEventsList();
+}
 
 function renderAdminEventsList() {
   populateAdminPaceLeadFilter();
@@ -1755,18 +2309,52 @@ function renderAdminEventsList() {
     return; 
   }
   document.getElementById('eventCount').textContent = sourceEvents.length + (adminFilteredEvents !== null && events.length !== sourceEvents.length ? ' of ' + events.length : '');
+  
+  // Get sort method from dropdown
+  const sortBy = document.getElementById('adminSortBy') ? document.getElementById('adminSortBy').value : 'date';
+  
   const sortedEvents = [...sourceEvents].sort((a,b) => {
-    // If both have dates, sort by date/time
-    if(a.date && b.date) {
-      if(a.date !== b.date) return a.date > b.date ? 1 : -1;
-      return a.time > b.time ? 1 : -1;
+    if(sortBy === 'status') {
+      // Sort by Status → PACE Lead → Title (matches "Download by Status" report)
+      const statusOrder = { 'doneanddusted': 1, 'confirmed': 2, 'inprogress': 3, 'idea': 4, '': 5 };
+      const aStatus = statusOrder[a.status || ''] || 5;
+      const bStatus = statusOrder[b.status || ''] || 5;
+      
+      if(aStatus !== bStatus) {
+        return aStatus - bStatus;
+      }
+      
+      // Within same status, sort by PACE Lead
+      const aLead = (a.paceLead || 'ZZZ').toLowerCase();
+      const bLead = (b.paceLead || 'ZZZ').toLowerCase();
+      if(aLead !== bLead) {
+        return aLead.localeCompare(bLead);
+      }
+      
+      // Within same PACE Lead, sort by title
+      return (a.title || '').localeCompare(b.title || '');
+      
+    } else if(sortBy === 'pacelead') {
+      // Sort by PACE Lead → Title (matches "Download by PACE Lead" report)
+      const aLead = (a.paceLead || 'ZZZ').toLowerCase();
+      const bLead = (b.paceLead || 'ZZZ').toLowerCase();
+      if(aLead !== bLead) {
+        return aLead.localeCompare(bLead);
+      }
+      return (a.title || '').localeCompare(b.title || '');
+      
+    } else {
+      // Default: Sort by date/time
+      if(a.date && b.date) {
+        if(a.date !== b.date) return a.date > b.date ? 1 : -1;
+        return a.time > b.time ? 1 : -1;
+      }
+      if(a.date && !b.date) return -1;
+      if(!a.date && b.date) return 1;
+      return a.title.localeCompare(b.title);
     }
-    // If only one has a date, put dated events first
-    if(a.date && !b.date) return -1;
-    if(!a.date && b.date) return 1;
-    // If neither has a date, sort alphabetically by title
-    return a.title.localeCompare(b.title);
   });
+  
   sortedEvents.forEach((e)=>{
     let div = document.createElement('div');
     div.className='admin-event-item';
@@ -1790,8 +2378,38 @@ function renderAdminEventsList() {
     }
     const recStr = formatRecurrence(e);
     if(recStr) metaInfo.push('🔁 ' + recStr);
+    
+    // Determine status badge color and text
+    let statusBadgeBg, statusBadgeText;
+    if(e.status === 'doneanddusted') {
+      statusBadgeBg = '#155724';
+      statusBadgeText = 'DONE AND DUSTED';
+    } else if(e.status === 'confirmed') {
+      statusBadgeBg = '#28a745';
+      statusBadgeText = 'CONFIRMED';
+    } else if(e.status === 'inprogress') {
+      statusBadgeBg = '#ffc107';
+      statusBadgeText = 'IN PROGRESS';
+    } else if(e.status === 'idea') {
+      statusBadgeBg = '#17a2b8';
+      statusBadgeText = 'IDEA';
+    } else {
+      statusBadgeBg = '#6c757d';
+      statusBadgeText = 'NOT SET';
+    }
+    
     let html = '<div class="admin-event-info">';
-    html += '<div style="display: inline-block; background: ' + badgeBg + '; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold; margin-bottom: 6px;">' + badgeText + '</div>';
+    html += '<div style="display: flex; gap: 10px; align-items: center; margin-bottom: 6px; flex-wrap: wrap;">';
+    html += '<div style="display: inline-block; background: ' + statusBadgeBg + '; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold;">' + statusBadgeText + '</div>';
+    // Add status dropdown inline with the status badge
+    html += '<select onchange="updateEventStatus(' + e.id + ', this.value)" style="padding: 4px 8px; border-radius: 12px; font-size: 0.75em; font-weight: bold; border: 2px solid #ddd; cursor: pointer; background: white;">';
+    html += '<option value=""' + (!e.status ? ' selected' : '') + '>⚪ Not Set</option>';
+    html += '<option value="doneanddusted"' + (e.status === 'doneanddusted' ? ' selected' : '') + '>✅ Done and Dusted</option>';
+    html += '<option value="confirmed"' + (e.status === 'confirmed' ? ' selected' : '') + '>🟢 Confirmed</option>';
+    html += '<option value="inprogress"' + (e.status === 'inprogress' ? ' selected' : '') + '>🟡 In Progress</option>';
+    html += '<option value="idea"' + (e.status === 'idea' ? ' selected' : '') + '>🔵 Idea</option>';
+    html += '</select>';
+    html += '</div>';
     html += '<h3 class="admin-event-title">'+e.title+'</h3>';
     if(metaInfo.length>0) html += '<p class="admin-event-meta">'+metaInfo.join(' • ')+'</p>';
     if(e.summary) html += '<p class="admin-event-meta" style="font-style: italic; color: #555;">'+e.summary+'</p>';
@@ -1799,6 +2417,8 @@ function renderAdminEventsList() {
     if(e.venue) html += '<p class="admin-event-meta">Venue: '+e.venue+'</p>';
     if(e.organiser) html += '<p class="admin-event-meta">Organiser: '+e.organiser+'</p>';
     if(e.paceLead) html += '<p class="admin-event-meta">PACE Lead: '+e.paceLead+'</p>';
+    if(e.tentativeDate) html += '<p class="admin-event-meta" style="color:#dc3545; font-weight:bold;">⏳ Tentative date: '+formatDate(e.tentativeDate)+(e.tentativeVenue?' · Preferred venue: '+e.tentativeVenue:'')+'</p>';
+    else if(e.tentativeVenue) html += '<p class="admin-event-meta" style="color:#dc3545; font-weight:bold;">⏳ Preferred venue: '+e.tentativeVenue+'</p>';
     
     // Planning Notes - scrollable box, clickable to open at notes section
     const adminNotes = migrateNotes(e.planningNotes);
@@ -1822,6 +2442,7 @@ function renderAdminEventsList() {
     
     html += '</div><div class="admin-event-actions">';
     html += '<button class="btn-edit" onclick="editEvent(' + e.id + ')">Edit</button>';
+    html += '<button class="btn-duplicate" onclick="duplicateEvent(' + e.id + ')">Duplicate</button>';
     html += '<button class="btn-data" onclick="copyEventData(' + e.id + ')">Data</button>';
     html += '<button class="btn-delete" onclick="console.log(\'Delete clicked for ID:\', ' + e.id + ', \'Title:\', \'' + e.title.replace(/'/g, "\\'") + '\'); deleteEvent(' + e.id + ')">Delete</button>';
     html += '</div>';
@@ -1848,6 +2469,43 @@ function editEvent(id, scrollToNotes = false) {
       }, 100);
     }
   }
+}
+
+function duplicateEvent(id) {
+  const originalEvent = events.find(e => e.id === id);
+  if(!originalEvent) {
+    alert('Error: Event not found');
+    return;
+  }
+  
+  // Create a copy of the event with a new ID but DON'T add to events array yet
+  const duplicatedEvent = {
+    ...originalEvent,
+    id: Date.now(), // New unique ID
+    uniqueId: 'EVT' + Date.now(), // New unique event ID
+    title: originalEvent.title + ' (Copy)', // Mark as copy
+    date: '', // Clear the date so user can set new one
+    time: originalEvent.time || '', // Keep time
+    // Clear any date-specific fields
+    roughWeek: '',
+    roughDay: '',
+    planningNotes: [], // Clear notes for new event
+    // Keep all other fields
+  };
+  
+  // Open the form with the duplicated event in NEW mode (not edit mode)
+  // We pass the event to pre-fill the form, but set editingEventId to null
+  // so saveEvent treats it as a new event
+  openEventForm(duplicatedEvent);
+  editingEventId = null; // CRITICAL: Force new event mode
+  
+  // Show a message to remind user to change the date
+  setTimeout(() => {
+    showToast('📋 Event duplicated! Please set a new date and update the title if needed.');
+    // Focus on the title field
+    document.getElementById('eventTitle').focus();
+    document.getElementById('eventTitle').select();
+  }, 100);
 }
 
 function deleteEvent(id) {
@@ -2004,11 +2662,21 @@ function copyEventData(id) {
 }
 
 
+function showAdminMenus() {
+  // Show all three admin menu buttons for ANY login
+  document.getElementById('navPacePlanning').style.display = '';
+  document.getElementById('navPaceLeadPortal').style.display = '';
+  document.getElementById('navAdmin').style.display = '';
+  // Hide the Festival Admin login button once logged in
+  document.getElementById('navFestivalAdmin').style.display = 'none';
+}
+
 function login() {
   const pass = document.getElementById('adminPassword').value;
   if(pass==='ha!ford'){ 
     isAdmin=true;
     isPaceLead=true;
+    showAdminMenus(); // Show all admin menu buttons
     document.getElementById('adminLogin').style.display='none'; 
     document.getElementById('adminPanel').style.display='block'; 
     renderAdminEventsList(); 
@@ -2042,6 +2710,7 @@ function festivalAdminLogin() {
   if(input === 'ha!ford') {
     isAdmin = true;
     isPaceLead = true;
+    showAdminMenus(); // Show all admin menu buttons
     closeFestivalAdminModal();
     showPage('admin');
     document.getElementById('adminLogin').style.display = 'none';
@@ -2053,6 +2722,7 @@ function festivalAdminLogin() {
   // Check for PACE password
   if(input === 'pace2026') {
     isPaceLead = true;
+    showAdminMenus(); // Show all admin menu buttons
     closeFestivalAdminModal();
     showPage('paceplanning');
     document.getElementById('pacePlanningLogin').style.display = 'none';
@@ -2067,6 +2737,7 @@ function festivalAdminLogin() {
   
   if(userEvents.length > 0) {
     currentPaceLeadCode = code;
+    showAdminMenus(); // Show all admin menu buttons
     closeFestivalAdminModal();
     showPage('paceleadportal');
     document.getElementById('paceLeadLogin').style.display = 'none';
@@ -2093,12 +2764,14 @@ function pacePlanningLogin() {
   const password = document.getElementById('pacePlanningPassword').value;
   if(password === 'pace2026') {
     isPaceLead = true;
+    showAdminMenus(); // Show all admin menu buttons
     document.getElementById('pacePlanningLogin').style.display = 'none';
     document.getElementById('pacePlanningPanel').style.display = 'block';
     renderPlanningEvents();
   } else if(password === 'ha!ford') {
     isAdmin = true;
     isPaceLead = true;
+    showAdminMenus(); // Show all admin menu buttons
     document.getElementById('pacePlanningLogin').style.display = 'none';
     document.getElementById('pacePlanningPanel').style.display = 'block';
     renderPlanningEvents();
@@ -2476,7 +3149,315 @@ function printPlanningReport() {
   }, 100);
 }
 
-async function downloadWordReport() {
+async function downloadWordReportCurrentOrder() {
+  const sourceEvents = adminFilteredEvents !== null ? adminFilteredEvents : events;
+  
+  if(sourceEvents.length === 0) {
+    alert('No events to export');
+    return;
+  }
+  
+  showToast('⏳ Generating Word document...');
+  
+  const sortBy = document.getElementById('adminSortBy') ? document.getElementById('adminSortBy').value : 'date';
+  
+  // Apply sorting
+  const sorted = [...sourceEvents].sort((a,b) => {
+    if(sortBy === 'status') {
+      const statusOrder = { 'doneanddusted': 1, 'confirmed': 2, 'inprogress': 3, 'idea': 4, '': 5 };
+      const aStatus = statusOrder[a.status || ''] || 5;
+      const bStatus = statusOrder[b.status || ''] || 5;
+      
+      if(aStatus !== bStatus) return aStatus - bStatus;
+      
+      const aLead = (a.paceLead || 'ZZZ').toLowerCase();
+      const bLead = (b.paceLead || 'ZZZ').toLowerCase();
+      if(aLead !== bLead) return aLead.localeCompare(bLead);
+      
+      return (a.title || '').localeCompare(b.title || '');
+      
+    } else if(sortBy === 'pacelead') {
+      const aLead = (a.paceLead || 'ZZZ').toLowerCase();
+      const bLead = (b.paceLead || 'ZZZ').toLowerCase();
+      if(aLead !== bLead) return aLead.localeCompare(bLead);
+      return (a.title || '').localeCompare(b.title || '');
+      
+    } else {
+      if(a.date && b.date) {
+        if(a.date !== b.date) return a.date > b.date ? 1 : -1;
+        return a.time > b.time ? 1 : -1;
+      }
+      if(a.date && !b.date) return -1;
+      if(!a.date && b.date) return 1;
+      return a.title.localeCompare(b.title);
+    }
+  });
+  
+  // Determine subtitle
+  let reportSubtitle;
+  if (sortBy === 'status') {
+    reportSubtitle = 'Planning Meeting Report - Sorted by Status';
+  } else if (sortBy === 'pacelead') {
+    reportSubtitle = 'Planning Meeting Report - Sorted by PACE Lead';
+  } else {
+    reportSubtitle = 'Planning Meeting Report - Sorted by Date';
+  }
+  
+  // Simple HTML generation
+  let html = `<html><head><meta charset='utf-8'><title>MEF 2026 Planning Report</title>
+<style>
+body { font-family: Tahoma, Arial, sans-serif; font-size: 11pt; }
+h1 { text-align: center; font-size: 16pt; margin-bottom: 0pt; border-bottom: 2pt solid #000; padding-bottom: 5pt; }
+h2 { text-align: center; font-size: 14pt; margin: 0pt; }
+.date { text-align: center; font-size: 10pt; margin: 0pt; }
+.count { text-align: center; font-weight: bold; margin: 0pt 0pt 6pt 0pt; }
+.section { font-size: 11pt; font-weight: bold; margin: 8pt 0pt 4pt 0pt; padding: 4pt; background: #f0f0f0; border-left: 3pt solid #000; }
+.event-title { font-size: 10pt; font-weight: bold; margin: 0pt 0pt 3pt 0pt; }
+.event-meta { font-size: 9pt; margin: 0pt 0pt 3pt 0pt; }
+.note { font-size: 9pt; font-style: italic; margin: 3pt 0pt; }
+hr { border: none; border-top: 1pt solid #ccc; margin: 2pt 0pt; }
+</style></head><body>`;
+  
+  html += `<h1>MANNINGTREE EARTH FESTIVAL 2026</h1>`;
+  html += `<h2>${reportSubtitle}</h2>`;
+  
+  const today = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  html += `<p class="date">Generated: ${today}</p>`;
+  html += `<p class="count">Total Events in Planning: ${sorted.length}</p>`;
+  
+  // Add events with grouping if needed
+  if (sortBy === 'status') {
+    const statuses = ['doneanddusted', 'confirmed', 'inprogress', 'idea', ''];
+    const statusHeaders = {
+      'doneanddusted': 'DONE AND DUSTED',
+      'confirmed': 'CONFIRMED EVENTS',
+      'inprogress': 'IN PROGRESS',
+      'idea': 'IDEAS / CONCEPTS',
+      '': 'NOT YET CATEGORIZED'
+    };
+    
+    statuses.forEach(status => {
+      const statusEvents = sorted.filter(e => (e.status || '') === status);
+      if (statusEvents.length > 0) {
+        html += `<div class="section">${statusHeaders[status]} (${statusEvents.length})</div>`;
+        statusEvents.forEach((e, i) => {
+          html += formatEvent(e, i < statusEvents.length - 1, sortBy);
+        });
+      }
+    });
+    
+  } else if (sortBy === 'pacelead') {
+    const leads = [...new Set(sorted.map(e => e.paceLead || 'No PACE Lead Assigned'))];
+    leads.forEach(lead => {
+      const leadEvents = sorted.filter(e => (e.paceLead || 'No PACE Lead Assigned') === lead);
+      html += `<div class="section">PACE Lead: ${lead} (${leadEvents.length})</div>`;
+      leadEvents.forEach((e, i) => {
+        html += formatEvent(e, i < leadEvents.length - 1, sortBy);
+      });
+    });
+    
+  } else {
+    sorted.forEach((e, i) => {
+      html += formatEvent(e, i < sorted.length - 1, sortBy);
+    });
+  }
+  
+  html += '</body></html>';
+  
+  function formatEvent(e, addHR, sortBy) {
+    let out = '';
+    out += `<div class="event-title">${e.title || 'Untitled Event'}</div>`;
+    
+    // Meta info
+    const info = [];
+    if (e.paceLead && sortBy !== 'pacelead') info.push(`PACE Lead: ${e.paceLead}`);
+    if (e.organiser) info.push(`Organiser: ${e.organiser}`);
+    
+    const timing = [];
+    if (e.roughWeek) timing.push(e.roughWeek);
+    if (e.roughDay) timing.push(e.roughDay);
+    if (e.roughTime) timing.push(e.roughTime);
+    if (e.date) {
+      const dateObj = new Date(e.date + 'T12:00:00');
+      const dayName = dateObj.toLocaleDateString('en-GB', { weekday: 'short' });
+      const dateFormatted = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+      timing.push(`${dayName} ${dateFormatted}`);
+      
+      // Add recurrence info
+      if (e.recurrence && e.recurrence.type && e.recurrence.type !== 'none') {
+        const recStr = formatRecurrence(e);
+        if (recStr) timing.push(`🔁 ${recStr}`);
+      }
+    }
+    if (e.time) timing.push(e.time);
+    if (e.duration && e.duration > 0) {
+      const hours = Math.floor(e.duration / 60);
+      const mins = e.duration % 60;
+      let durationStr = '';
+      if (hours > 0) durationStr += hours + (hours === 1 ? ' hour' : ' hours');
+      if (mins > 0) durationStr += (hours > 0 ? ' ' : '') + mins + ' mins';
+      if (durationStr) timing.push(`⏱️ ${durationStr}`);
+    }
+    if (timing.length > 0) info.push(`When: ${timing.join(', ')}`);
+    
+    if (info.length > 0) out += `<div class="event-meta">${info.join(' | ')}</div>`;
+    
+    if (e.location || e.venue) {
+      let loc = e.location || '';
+      if (e.venue) loc += (loc ? ' - ' : '') + e.venue;
+      out += `<div class="event-meta"><strong>Where:</strong> ${loc}</div>`;
+    }
+    
+    if (e.summary) out += `<div class="event-meta">${e.summary}</div>`;
+    
+    const notes = migrateNotes(e.planningNotes);
+    if (notes.length > 0) {
+      const n = notes[0];
+      let noteText = n.date ? `[${new Date(n.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}] ` : '';
+      noteText += n.text;
+      out += `<div class="note"><em>${noteText}</em></div>`;
+    } else {
+      out += `<div class="note"><em>No note</em></div>`;
+    }
+    
+    if (addHR) out += '<hr>';
+    return out;
+  }
+  
+  // Download
+  const blob = new Blob([html], { type: 'application/msword' });
+  const sortLabel = sortBy === 'status' ? 'by_Status' : (sortBy === 'pacelead' ? 'by_PACE_Lead' : 'by_Date');
+  const filename = `MEF_2026_Planning_${sortLabel}_${new Date().toISOString().split('T')[0]}.doc`;
+  
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(link.href);
+  
+  showToast('✓ Document downloaded! Open in Word and set: File → Page Setup → Margins: 1.5cm/1.5cm/2cm/1.5cm');
+}
+
+function generateEventHTML(event, includeHR) {
+  let html = '<div class="event">\n';
+  
+  html += '<div class="event-title">' + (event.title || 'Untitled Event') + '</div>\n';
+  
+  // Show status if set and not grouped by status already
+  const sortBy = document.getElementById('adminSortBy') ? document.getElementById('adminSortBy').value : 'date';
+  if(event.status && sortBy !== 'status') {
+    const statusInfo = {
+      'doneanddusted': { text: 'DONE AND DUSTED', color: '#155724' },
+      'confirmed': { text: 'CONFIRMED', color: '#28a745' },
+      'inprogress': { text: 'IN PROGRESS', color: '#856404' },
+      'idea': { text: 'IDEA', color: '#0c5460' }
+    };
+    if(statusInfo[event.status]) {
+      const info = statusInfo[event.status];
+      html += '<div class="event-meta" style="font-weight: bold;"><strong>Status:</strong> <span style="color: ' + info.color + ';">' + info.text + '</span></div>\n';
+    }
+  }
+  
+  // PACE Lead, Organiser, and Timing on one line
+  const infoLine = [];
+  
+  if(event.paceLead && sortBy !== 'pacelead') {
+    infoLine.push('<strong>PACE Lead:</strong> ' + event.paceLead);
+  }
+  
+  if(event.organiser) {
+    infoLine.push('<strong>Organiser:</strong> ' + event.organiser);
+  }
+  
+  // Timing information
+  const timing = [];
+  if(event.roughWeek) timing.push(event.roughWeek);
+  if(event.roughDay) timing.push(event.roughDay);
+  if(event.roughTime) timing.push(event.roughTime);
+  if(event.date) {
+    const dateObj = new Date(event.date + 'T12:00:00');
+    const dayName = dateObj.toLocaleDateString('en-GB', { weekday: 'short' });
+    const dateFormatted = dateObj.toLocaleDateString('en-GB', { 
+      day: 'numeric', 
+      month: 'short'
+    });
+    timing.push(`${dayName} ${dateFormatted}`);
+    
+    // Add recurrence info
+    if(event.recurrence && event.recurrence.type && event.recurrence.type !== 'none') {
+      const recStr = formatRecurrence(event);
+      if(recStr) timing.push(`🔁 ${recStr}`);
+    }
+  }
+  if(event.time) timing.push(event.time);
+  if(event.duration && event.duration > 0) {
+    const hours = Math.floor(event.duration / 60);
+    const mins = event.duration % 60;
+    let durationStr = '';
+    if(hours > 0) durationStr += hours + (hours === 1 ? ' hour' : ' hours');
+    if(mins > 0) durationStr += (hours > 0 ? ' ' : '') + mins + ' mins';
+    if(durationStr) timing.push(`⏱️ ${durationStr}`);
+  }
+  
+  if(timing.length > 0) {
+    infoLine.push('<strong>When:</strong> ' + timing.join(', '));
+  }
+  
+  if(infoLine.length > 0) {
+    html += '<div class="event-meta">' + infoLine.join(' | ') + '</div>\n';
+  }
+  
+  // Location
+  if(event.location || event.venue) {
+    let locationText = event.location || '';
+    if(event.venue) {
+      if(locationText) locationText += ' - ';
+      locationText += event.venue;
+    }
+    html += '<div class="event-meta"><strong>Where:</strong> ' + locationText + '</div>\n';
+  }
+  
+  // Summary
+  if(event.summary) {
+    html += '<div class="event-meta" style="margin-top: 3pt;">' + event.summary + '</div>\n';
+  }
+  
+  // Latest note only
+  const notes = migrateNotes(event.planningNotes);
+  if(notes.length > 0) {
+    const latestNote = notes[0];
+    const dateStr = latestNote.date 
+      ? new Date(latestNote.date).toLocaleDateString('en-GB', { 
+          day: 'numeric', 
+          month: 'short',
+          hour: '2-digit', 
+          minute: '2-digit' 
+        })
+      : '';
+    
+    html += '<div class="note-text">';
+    if(dateStr) {
+      html += '<strong>[' + dateStr + ']</strong> ';
+    }
+    html += latestNote.text;
+    html += '</div>\n';
+  } else {
+    html += '<div class="note-text">No note</div>\n';
+  }
+  
+  html += '</div>\n'; // close event
+  
+  // Separator line between events (except last one)
+  if(includeHR) {
+    html += '<hr>\n';
+  }
+  
+  return html;
+}
+
+async function downloadWordReportByStatus() {
   const eventsToShow = (filteredPlanningEvents && filteredPlanningEvents.length > 0) ? filteredPlanningEvents : getPlanningEvents();
   
   if(eventsToShow.length === 0) {
@@ -2487,13 +3468,24 @@ async function downloadWordReport() {
   // Show loading message
   showToast('⏳ Generating Word document...');
   
-  // Sort by PACE Lead name first, then by title
+  // Sort by Status (Confirmed, In Progress, Idea, Not Set), then PACE Lead, then title
   const sorted = [...eventsToShow].sort((a, b) => {
+    // Status order: doneanddusted = 1, confirmed = 2, inprogress = 3, idea = 4, not set = 5
+    const statusOrder = { 'doneanddusted': 1, 'confirmed': 2, 'inprogress': 3, 'idea': 4, '': 5 };
+    const aStatus = statusOrder[a.status || ''] || 5;
+    const bStatus = statusOrder[b.status || ''] || 5;
+    
+    if(aStatus !== bStatus) {
+      return aStatus - bStatus; // Sort by status first
+    }
+    
+    // Within same status, sort by PACE Lead
     const aLead = (a.paceLead || 'ZZZ').toLowerCase(); // Put events without PACE Lead at end
     const bLead = (b.paceLead || 'ZZZ').toLowerCase();
     if(aLead !== bLead) {
       return aLead.localeCompare(bLead);
     }
+    
     // Within same PACE Lead, sort by title
     return (a.title || '').localeCompare(b.title || '');
   });
@@ -2508,10 +3500,14 @@ async function downloadWordReport() {
 <style>
 @page {
   size: A4;
-  margin: 2.54cm;
+  margin: 1.5cm 1.5cm 2cm 1.5cm;
+}
+@bottom-center {
+  content: counter(page);
+  font-size: 10pt;
 }
 body {
-  font-family: Arial, sans-serif;
+  font-family: Tahoma, Arial, sans-serif;
   font-size: 11pt;
   line-height: 1.4;
   margin: 0;
@@ -2523,60 +3519,70 @@ h1 {
   color: #000000;
   font-size: 16pt;
   font-weight: bold;
-  margin-bottom: 8pt;
+  margin-bottom: 0pt;
   border-bottom: 2pt solid #000000;
-  padding-bottom: 8pt;
+  padding-bottom: 5pt;
 }
 h2 {
   text-align: center;
   color: #000000;
   font-size: 14pt;
   font-weight: bold;
-  margin-bottom: 8pt;
+  margin-bottom: 0pt;
+  margin-top: 0pt;
 }
 .date {
   text-align: center;
   color: #000000;
   font-size: 10pt;
-  margin-bottom: 15pt;
+  margin-bottom: 0pt;
+  margin-top: 0pt;
 }
 .event-count {
   text-align: center;
   font-weight: bold;
   font-size: 11pt;
-  margin-bottom: 20pt;
+  margin-bottom: 6pt;
+  margin-top: 0pt;
+}
+.status-section {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 8pt;
+  margin-bottom: 4pt;
+  padding: 4pt;
+  background-color: #F0F0F0;
+  border-left: 3pt solid #000000;
 }
 .event {
   page-break-inside: avoid;
-  margin-bottom: 15pt;
-  border-left: 3pt solid #000000;
-  padding-left: 10pt;
+  margin-bottom: 6pt;
 }
 .event-title {
   color: #000000;
-  font-size: 12pt;
+  font-size: 10pt;
   font-weight: bold;
   margin-bottom: 3pt;
 }
 .event-meta {
   color: #000000;
-  margin: 0;
-  font-size: 10pt;
-  line-height: 1.3;
+  margin: 0 0 3pt 0;
+  font-size: 9pt;
+  line-height: 1.15;
 }
 .note-text {
-  background-color: #F5F5F5;
-  padding: 8pt;
-  margin-top: 5pt;
-  border-left: 2pt solid #666666;
-  font-size: 10pt;
+  padding: 0pt;
+  margin-top: 3pt;
+  margin-bottom: 3pt;
+  font-size: 9pt;
   font-style: italic;
   white-space: pre-wrap;
 }
 hr {
   border: none;
   border-top: 1pt solid #CCCCCC;
-  margin: 10pt 0;
+  margin: 2pt 0;
 }
 </style>
 </head>
@@ -2599,12 +3605,57 @@ hr {
     // Event count
     html += '<p class="event-count">Total Events in Planning: ' + sorted.length + '</p>\n';
     
+    // Calculate counts for each status
+    const statusCounts = {
+      'doneanddusted': sorted.filter(e => e.status === 'doneanddusted').length,
+      'confirmed': sorted.filter(e => e.status === 'confirmed').length,
+      'inprogress': sorted.filter(e => e.status === 'inprogress').length,
+      'idea': sorted.filter(e => e.status === 'idea').length,
+      '': sorted.filter(e => !e.status).length
+    };
+    
+    // Track current status section for headers
+    let currentStatusSection = null;
+    
     // Process each event
     sorted.forEach((event, index) => {
+      // Add status section header when status changes
+      const eventStatus = event.status || '';
+      if(eventStatus !== currentStatusSection) {
+        currentStatusSection = eventStatus;
+        
+        const statusHeaders = {
+          'doneanddusted': { text: 'DONE AND DUSTED', color: '#155724', bg: '#d4edda' },
+          'confirmed': { text: 'CONFIRMED EVENTS', color: '#28a745', bg: '#d4edda' },
+          'inprogress': { text: 'IN PROGRESS', color: '#856404', bg: '#fff3cd' },
+          'idea': { text: 'IDEAS / CONCEPTS', color: '#0c5460', bg: '#d1ecf1' },
+          '': { text: 'NOT YET CATEGORIZED', color: '#666666', bg: '#f0f0f0' }
+        };
+        
+        const statusInfo = statusHeaders[eventStatus] || statusHeaders[''];
+        const count = statusCounts[eventStatus] || 0;
+        html += '<div class="status-section" style="color: ' + statusInfo.color + '; background-color: ' + statusInfo.bg + '; border-left-color: ' + statusInfo.color + ';">' + statusInfo.text + ' (' + count + ')</div>\n';
+      }
+      
       html += '<div class="event">\n';
       
       // Event title (no ID)
       html += '<div class="event-title">' + (event.title || 'Untitled Event') + '</div>\n';
+      
+      // Don't show status badge anymore since it's in the section header
+      /* Removed individual status badges
+      // Add status badge if set
+      if(event.status) {
+        const statusLabels = {
+          'confirmed': '🟢 CONFIRMED',
+          'inprogress': '🟡 IN PROGRESS',
+          'idea': '🔵 IDEA'
+        };
+        if(statusLabels[event.status]) {
+          html += '<div class="event-meta" style="font-weight: bold; color: #000000;"><strong>Status:</strong> ' + statusLabels[event.status] + '</div>\n';
+        }
+      }
+      */
       
       // PACE Lead, Organiser, and Timing on one line
       const infoLine = [];
@@ -2674,6 +3725,8 @@ hr {
         }
         html += latestNote.text;
         html += '</div>\n';
+      } else {
+        html += '<div class="note-text">No note</div>\n';
       }
       
       html += '</div>\n'; // close event
@@ -2705,6 +3758,404 @@ hr {
     console.error('Error generating Word document:', error);
     console.error('Error stack:', error.stack);
     alert('Error generating Word document: ' + error.message + '\n\nPlease try the Print Report option instead.');
+  }
+}
+
+async function downloadWordReportByPaceLead() {
+  const eventsToShow = (filteredPlanningEvents && filteredPlanningEvents.length > 0) ? filteredPlanningEvents : getPlanningEvents();
+  
+  if(eventsToShow.length === 0) {
+    alert('No events to export');
+    return;
+  }
+  
+  // Show loading message
+  showToast('⏳ Generating Word document...');
+  
+  // Sort by PACE Lead name first, then by title (NO status grouping)
+  const sorted = [...eventsToShow].sort((a, b) => {
+    const aLead = (a.paceLead || 'ZZZ').toLowerCase(); // Put events without PACE Lead at end
+    const bLead = (b.paceLead || 'ZZZ').toLowerCase();
+    if(aLead !== bLead) {
+      return aLead.localeCompare(bLead);
+    }
+    // Within same PACE Lead, sort by title
+    return (a.title || '').localeCompare(b.title || '');
+  });
+  
+  try {
+    // Generate HTML that Word can open and convert (same structure as status version)
+    let html = `<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset='utf-8'>
+<title>MEF 2026 Planning Report - By PACE Lead</title>
+<style>
+@page {
+  size: A4;
+  margin: 1.5cm 1.5cm 2cm 1.5cm;
+}
+@bottom-center {
+  content: counter(page);
+  font-size: 10pt;
+}
+body {
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+}
+h1 {
+  text-align: center;
+  color: #000000;
+  font-size: 16pt;
+  font-weight: bold;
+  margin-bottom: 0pt;
+  border-bottom: 2pt solid #000000;
+  padding-bottom: 5pt;
+}
+h2 {
+  text-align: center;
+  color: #000000;
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 0pt;
+  margin-top: 0pt;
+}
+.date {
+  text-align: center;
+  color: #000000;
+  font-size: 10pt;
+  margin-bottom: 0pt;
+  margin-top: 0pt;
+}
+.event-count {
+  text-align: center;
+  font-weight: bold;
+  font-size: 11pt;
+  margin-bottom: 6pt;
+  margin-top: 0pt;
+}
+.pace-lead-section {
+  font-size: 10pt;
+  font-weight: bold;
+  color: #2B7BBD;
+  margin-top: 8pt;
+  margin-bottom: 4pt;
+  padding: 4pt;
+  background-color: #E8F4FD;
+  border-left: 3pt solid #2B7BBD;
+}
+.event {
+  page-break-inside: avoid;
+  margin-bottom: 6pt;
+}
+.event-title {
+  color: #000000;
+  font-size: 10pt;
+  font-weight: bold;
+  margin-bottom: 3pt;
+}
+.event-meta {
+  color: #000000;
+  margin: 0 0 3pt 0;
+  font-size: 9pt;
+  line-height: 1.15;
+}
+.note-text {
+  padding: 0pt;
+  margin-top: 3pt;
+  margin-bottom: 3pt;
+  font-size: 9pt;
+  font-style: italic;
+  white-space: pre-wrap;
+}
+hr {
+  border: none;
+  border-top: 1pt solid #CCCCCC;
+  margin: 2pt 0;
+}
+</style>
+</head>
+<body>
+`;
+    
+    html += '<h1>Manningtree Earth Festival 2026</h1>\n';
+    html += '<h2>Planning Meeting Report - By PACE Lead</h2>\n';
+    
+    // Date
+    const today = new Date().toLocaleDateString('en-GB', { 
+      weekday: 'long', 
+      day: 'numeric', 
+      month: 'long', 
+      year: 'numeric' 
+    });
+    html += '<p class="date">Generated: ' + today + '</p>\n';
+    
+    // Event count
+    html += '<p class="event-count">Total Events in Planning: ' + sorted.length + '</p>\n';
+    
+    // Calculate counts for each PACE Lead
+    const paceLeadCounts = {};
+    sorted.forEach(e => {
+      const lead = e.paceLead || 'No PACE Lead Assigned';
+      paceLeadCounts[lead] = (paceLeadCounts[lead] || 0) + 1;
+    });
+    
+    // Track current PACE Lead for section headers
+    let currentPaceLead = null;
+    
+    // Process each event
+    sorted.forEach((event, index) => {
+      // Add PACE Lead section header when PACE Lead changes
+      const eventPaceLead = event.paceLead || 'No PACE Lead Assigned';
+      if(eventPaceLead !== currentPaceLead) {
+        currentPaceLead = eventPaceLead;
+        const count = paceLeadCounts[eventPaceLead] || 0;
+        html += '<div class="pace-lead-section">PACE Lead: ' + eventPaceLead + ' (' + count + ')</div>\n';
+      }
+      
+      html += '<div class="event">\n';
+      
+      // Event title
+      html += '<div class="event-title">' + (event.title || 'Untitled Event') + '</div>\n';
+      
+      // Show status if set
+      if(event.status) {
+        const statusInfo = {
+          'doneanddusted': { text: 'DONE AND DUSTED', color: '#155724' },
+          'confirmed': { text: 'CONFIRMED', color: '#28a745' },
+          'inprogress': { text: 'IN PROGRESS', color: '#856404' },
+          'idea': { text: 'IDEA', color: '#0c5460' }
+        };
+        if(statusInfo[event.status]) {
+          const info = statusInfo[event.status];
+          html += '<div class="event-meta" style="font-weight: bold;"><strong>Status:</strong> <span style="color: ' + info.color + ';">' + info.text + '</span></div>\n';
+        }
+      }
+      
+      // Organiser and Timing on one line
+      const infoLine = [];
+      
+      if(event.organiser) {
+        infoLine.push('<strong>Organiser:</strong> ' + event.organiser);
+      }
+      
+      // Timing information
+      const timing = [];
+      if(event.roughWeek) timing.push(event.roughWeek);
+      if(event.roughDay) timing.push(event.roughDay);
+      if(event.roughTime) timing.push(event.roughTime);
+      if(event.date) {
+        const dateObj = new Date(event.date + 'T12:00:00');
+        timing.push(dateObj.toLocaleDateString('en-GB', { 
+          day: 'numeric', 
+          month: 'short'
+        }));
+      }
+      if(event.time) timing.push(event.time);
+      
+      if(timing.length > 0) {
+        infoLine.push('<strong>When:</strong> ' + timing.join(', '));
+      }
+      
+      if(infoLine.length > 0) {
+        html += '<div class="event-meta">' + infoLine.join(' | ') + '</div>\n';
+      }
+      
+      // Location
+      if(event.location || event.venue) {
+        let locationText = event.location || '';
+        if(event.venue) {
+          if(locationText) locationText += ' - ';
+          locationText += event.venue;
+        }
+        html += '<div class="event-meta"><strong>Where:</strong> ' + locationText + '</div>\n';
+      }
+      
+      // Summary
+      if(event.summary) {
+        html += '<div class="event-meta" style="margin-top: 3pt;">' + event.summary + '</div>\n';
+      }
+      
+      // Latest note only
+      const notes = migrateNotes(event.planningNotes);
+      if(notes.length > 0) {
+        const latestNote = notes[0];
+        html += '<div class="note-text">';
+        if(latestNote.date) {
+          const noteDate = new Date(latestNote.date);
+          html += '<strong>Latest Note (' + noteDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) + '):</strong> ';
+        } else {
+          html += '<strong>Latest Note:</strong> ';
+        }
+        html += latestNote.text;
+        html += '</div>\n';
+      } else {
+        html += '<div class="note-text">No note</div>\n';
+      }
+      
+      html += '</div>\n'; // close event
+      
+      // Separator line between events (except last one)
+      if(index < sorted.length - 1) {
+        html += '<hr>\n';
+      }
+    });
+    
+    html += '</body></html>';
+    
+    // Create blob and download
+    const blob = new Blob([html], { type: 'application/msword' });
+    const filename = 'MEF_2026_Planning_by_PACE_Lead_' + new Date().toISOString().split('T')[0] + '.doc';
+    
+    // Create download link
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+    
+    showToast('✓ Word document downloaded! Open it in Word to edit and save as .docx');
+    
+  } catch(error) {
+    console.error('Error generating Word document:', error);
+    console.error('Error stack:', error.stack);
+    alert('Error generating Word document: ' + error.message + '\n\nPlease try the Print Report option instead.');
+  }
+}
+
+async function downloadVenueBookingReport() {
+  showToast('⏳ Generating Venue Booking Report...');
+
+  const allEventsWithVenue = events.filter(e => e.venue || e.location || e.tentativeVenue);
+
+  if(allEventsWithVenue.length === 0) {
+    alert('No events have venue information yet.');
+    return;
+  }
+
+  const venueMap = {};
+
+  function addToVenue(venueName, event, isTentative) {
+    const key = venueName.trim();
+    if(!key) return;
+    if(!venueMap[key]) venueMap[key] = [];
+    venueMap[key].push({ event, isTentative });
+  }
+
+  allEventsWithVenue.forEach(e => {
+    const confirmedVenue = e.venue || e.location || '';
+    const tentativeVenues = e.tentativeVenue || '';
+
+    if(confirmedVenue) {
+      addToVenue(confirmedVenue, e, false);
+    } else if(tentativeVenues) {
+      tentativeVenues.split(',').forEach(v => addToVenue(v, e, true));
+    }
+
+    if(confirmedVenue && tentativeVenues && tentativeVenues !== confirmedVenue) {
+      tentativeVenues.split(',').forEach(v => {
+        if(v.trim() !== confirmedVenue.trim()) addToVenue(v, e, true);
+      });
+    }
+  });
+
+  const venueNames = Object.keys(venueMap).sort();
+  const today = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+  let html = `<html><head><meta charset='utf-8'><title>MEF 2026 Venue Booking Report</title>
+<style>
+body { font-family: Tahoma, Arial, sans-serif; font-size: 11pt; margin: 2cm; }
+h1 { text-align: center; font-size: 16pt; margin-bottom: 0pt; border-bottom: 2pt solid #000; padding-bottom: 5pt; }
+h2 { text-align: center; font-size: 12pt; margin: 0pt 0pt 4pt 0pt; color: #555; }
+.date { text-align: center; font-size: 10pt; margin: 0pt 0pt 6pt 0pt; color: #555; }
+.venue-heading { font-size: 13pt; font-weight: bold; margin: 16pt 0pt 6pt 0pt; padding: 5pt 8pt; background: #e8f4e8; border-left: 4pt solid #2B7BBD; }
+.event-row { padding: 6pt 8pt; border-bottom: 1pt solid #eee; }
+.event-title { font-size: 10pt; font-weight: bold; margin: 0pt 0pt 2pt 0pt; }
+.event-title.tentative { color: #cc0000; }
+.event-meta { font-size: 9pt; margin: 0pt; color: #444; }
+.event-meta.tentative { color: #cc0000; }
+.tentative-label { font-size: 8pt; background: #ffecec; color: #cc0000; border: 1pt solid #cc0000; padding: 1pt 5pt; border-radius: 3pt; font-weight: bold; margin-left: 6pt; }
+.confirmed-label { font-size: 8pt; background: #eaffea; color: #1a7a1a; border: 1pt solid #1a7a1a; padding: 1pt 5pt; border-radius: 3pt; font-weight: bold; margin-left: 6pt; }
+.summary-note { font-size: 9pt; font-style: italic; color: #666; margin: 2pt 0pt 0pt 0pt; }
+.count { text-align: center; font-weight: bold; margin: 0pt 0pt 10pt 0pt; }
+</style></head><body>`;
+
+  html += `<h1>MANNINGTREE EARTH FESTIVAL 2026</h1>`;
+  html += `<h2>Venue Booking Report</h2>`;
+  html += `<p class="date">Generated: ${today}</p>`;
+  html += `<p class="count">${venueNames.length} venues · ${allEventsWithVenue.length} events with venue information</p>`;
+  html += `<p style="font-size:9pt; text-align:center; color:#666; margin-bottom:12pt;">
+    <span style="background:#ffecec; color:#cc0000; border:1pt solid #cc0000; padding:1pt 5pt; border-radius:3pt; font-weight:bold;">TENTATIVE</span>
+    = preferred but not yet confirmed &nbsp;&nbsp;
+    <span style="background:#eaffea; color:#1a7a1a; border:1pt solid #1a7a1a; padding:1pt 5pt; border-radius:3pt; font-weight:bold;">CONFIRMED</span>
+    = date and venue agreed
+  </p>`;
+
+  venueNames.forEach(venueName => {
+    const entries = venueMap[venueName];
+    entries.sort((a, b) => {
+      if(a.isTentative !== b.isTentative) return a.isTentative ? 1 : -1;
+      const aDate = a.event.date || a.event.tentativeDate || '9999';
+      const bDate = b.event.date || b.event.tentativeDate || '9999';
+      return aDate.localeCompare(bDate);
+    });
+
+    const confirmedCount = entries.filter(x => !x.isTentative).length;
+    const tentativeCount = entries.filter(x => x.isTentative).length;
+    let countStr = [];
+    if(confirmedCount) countStr.push(confirmedCount + ' confirmed');
+    if(tentativeCount) countStr.push(tentativeCount + ' tentative');
+
+    html += `<div class="venue-heading">🏛️ ${venueName} <span style="font-size:10pt; font-weight:normal; color:#555;">(${countStr.join(', ')})</span></div>`;
+
+    entries.forEach(({ event: e, isTentative }) => {
+      const titleClass = isTentative ? 'event-title tentative' : 'event-title';
+      const metaClass = isTentative ? 'event-meta tentative' : 'event-meta';
+      const label = isTentative
+        ? '<span class="tentative-label">TENTATIVE</span>'
+        : '<span class="confirmed-label">CONFIRMED</span>';
+
+      html += `<div class="event-row">`;
+      html += `<p class="${titleClass}">${e.title}${label}</p>`;
+
+      let meta = [];
+      if(e.date) meta.push('📅 ' + formatDate(e.date));
+      else if(e.tentativeDate) meta.push('📅 Preferred: ' + formatDate(e.tentativeDate));
+      else meta.push('📅 Date TBC');
+
+      if(e.time) meta.push('🕒 ' + e.time);
+      else if(e.tentativeTime) meta.push('🕒 Preferred: ' + e.tentativeTime);
+
+      if(e.paceLead) meta.push('👤 ' + e.paceLead);
+
+      if(meta.length) html += `<p class="${metaClass}">${meta.join('  ·  ')}</p>`;
+      if(e.tentativeNotes) html += `<p class="summary-note">📌 ${e.tentativeNotes}</p>`;
+      if(e.summary) html += `<p class="summary-note">${e.summary}</p>`;
+
+      html += `</div>`;
+    });
+  });
+
+  html += `</body></html>`;
+
+  try {
+    const blob = new Blob([html], { type: 'application/msword' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'MEF2026_Venue_Booking_Report.doc';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+    showToast('✓ Venue Booking Report downloaded!');
+  } catch(error) {
+    alert('Error generating report: ' + error.message);
   }
 }
 
@@ -2755,67 +4206,93 @@ function renderPlanningEvents() {
   
   eventsToShow.forEach(e => {
     let div = document.createElement('div');
-	div.style.cursor = 'pointer';
-div.onclick = () => openPlanningEventView(e, false); // false = don't scroll to notes
-    div.className = 'event-card';
+    div.className = 'admin-event-item'; // Use same style as Admin
     
     const isOnCalendar = e.date && e.date !== '';
     const borderColour = isOnCalendar ? '#4CAF50' : '#FFA500';
     const badgeBg = isOnCalendar ? '#4CAF50' : '#FFA500';
     const badgeText = isOnCalendar ? 'ON CALENDAR' : 'IN PLANNING';
-    div.style.borderColor = borderColour;
+    div.style.borderLeftColor = borderColour;
     
-    let roughInfo = [];
-    if(isOnCalendar) {
-      roughInfo.push(`📅 ${formatDate(e.date)}`);
+    let metaInfo = [];
+    if(e.type) metaInfo.push(e.type);
+    if(e.date) {
+      metaInfo.push(formatDate(e.date));
     } else {
-      if(e.roughWeek) roughInfo.push(`📅 ${e.roughWeek}`);
-      if(e.roughDay) roughInfo.push(`📆 ${e.roughDay}`);
-      if(e.roughTime) roughInfo.push(`🕐 ${e.roughTime}`);
+      // Show rough dates if no actual date
+      if(e.roughWeek) metaInfo.push('📅 ' + e.roughWeek);
+      if(e.roughDay) metaInfo.push('📆 ' + e.roughDay);
     }
-    const planRecStr = formatRecurrence(e);
-    if(planRecStr) roughInfo.push('🔁 ' + planRecStr);
+    if(e.time) {
+      const allSlots = getAllTimeSlots(e);
+      if(allSlots.length > 1) {
+        metaInfo.push('⏰ ' + allSlots.length + ' slots');
+      } else {
+        metaInfo.push(e.time);
+      }
+    } else if(e.roughTime) {
+      metaInfo.push('🕐 ' + e.roughTime);
+    }
+    const recStr = formatRecurrence(e);
+    if(recStr) metaInfo.push('🔁 ' + recStr);
     
-    let html = `
-    <div style="display: inline-block; background: ${badgeBg}; color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.8em; font-weight: bold; margin-bottom: 10px;">
-      ${badgeText}
-    </div>
-    <h3 class="event-title" style="color: ${borderColour};">${e.title}</h3>
-    <div class="event-meta" style="margin-bottom: 10px; color: #666;">
-      ${roughInfo.length > 0 ? roughInfo.join(' • ') : 'Dates TBC'}
-    </div>`;
-    
-    if(e.summary) {
-      html += `<p style="margin: 10px 0; line-height: 1.4;">${e.summary}</p>`;
+    // Determine status badge color and text (replaces calendar badge)
+    let statusBadgeBg, statusBadgeText;
+    if(e.status === 'doneanddusted') {
+      statusBadgeBg = '#155724';
+      statusBadgeText = 'DONE AND DUSTED';
+    } else if(e.status === 'confirmed') {
+      statusBadgeBg = '#28a745';
+      statusBadgeText = 'CONFIRMED';
+    } else if(e.status === 'inprogress') {
+      statusBadgeBg = '#ffc107';
+      statusBadgeText = 'IN PROGRESS';
+    } else if(e.status === 'idea') {
+      statusBadgeBg = '#17a2b8';
+      statusBadgeText = 'IDEA';
+    } else {
+      statusBadgeBg = '#6c757d';
+      statusBadgeText = 'NOT SET';
     }
     
-    if(e.paceLead) {
-      html += `<p style="margin-top: 10px; color: #666;"><strong>PACE Lead:</strong> ${e.paceLead}</p>`;
-    }
+    let html = '<div class="admin-event-info">';
+    html += '<div style="display: flex; gap: 10px; align-items: center; margin-bottom: 6px; flex-wrap: wrap;">';
+    html += '<div style="display: inline-block; background: ' + statusBadgeBg + '; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold;">' + statusBadgeText + '</div>';
+    html += '</div>';
+    html += '<h3 class="admin-event-title">' + e.title + '</h3>';
+    if(metaInfo.length > 0) html += '<p class="admin-event-meta">' + metaInfo.join(' • ') + '</p>';
+    if(e.summary) html += '<p class="admin-event-meta" style="font-style: italic; color: #555;">' + e.summary + '</p>';
+    if(e.location) html += '<p class="admin-event-meta">Location: ' + e.location + '</p>';
+    if(e.venue) html += '<p class="admin-event-meta">Venue: ' + e.venue + '</p>';
+    if(e.organiser) html += '<p class="admin-event-meta">Organiser: ' + e.organiser + '</p>';
+    if(e.paceLead) html += '<p class="admin-event-meta">PACE Lead: ' + e.paceLead + '</p>';
+    if(e.tentativeDate) html += '<p class="admin-event-meta" style="color:#dc3545; font-weight:bold;">⏳ Tentative date: '+formatDate(e.tentativeDate)+(e.tentativeVenue?' · Preferred venue: '+e.tentativeVenue:'')+'</p>';
+    else if(e.tentativeVenue) html += '<p class="admin-event-meta" style="color:#dc3545; font-weight:bold;">⏳ Preferred venue: '+e.tentativeVenue+'</p>';
     
-    if(e.organiser) {
-      html += `<p style="margin-top: 10px; color: #666;"><strong>Organiser:</strong> ${e.organiser}</p>`;
-    }
-    
-    // Planning Notes - scrollable box
+    // Planning Notes - scrollable box, clickable to open at notes section
     const cardNotes = migrateNotes(e.planningNotes);
     if(cardNotes.length > 0) {
-      html += `<div onclick="event.stopPropagation(); openPlanningEventView(planningEventById('${e.id}'), true);" style="margin-top: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 5px; overflow: hidden; cursor: pointer;">`;
-      html += `<div style="padding: 10px 15px 5px 15px;"><strong style="color: #856404;">📝 Planning Notes</strong>${cardNotes.length > 1 ? ' <span style="color: #999; font-size: 0.85em;">(' + cardNotes.length + ' notes)</span>' : ''}</div>`;
-      html += `<div style="max-height: 150px; overflow-y: auto; padding: 0 15px 12px 15px;">`;
-      cardNotes.forEach((note, i) => {
+      html += '<div onclick="openPlanningEventView(planningEventById(' + e.id + '), true); event.stopPropagation();" style="margin-top: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 5px; overflow: hidden; cursor: pointer;">';
+      html += '<div style="padding: 10px 15px 5px 15px;"><strong style="color: #856404;">📝 Planning Notes</strong>' + (cardNotes.length > 1 ? ' <span style="color: #999; font-size: 0.85em;">(' + cardNotes.length + ' notes)</span>' : '') + '</div>';
+      html += '<div style="max-height: 150px; overflow-y: auto; padding: 0 15px 12px 15px;">';
+      cardNotes.forEach(function(note, i) {
         const nDateStr = note.date ? new Date(note.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'No date';
-        html += `<div style="padding: 8px 0; ${i < cardNotes.length - 1 ? 'border-bottom: 1px dashed #ddd;' : ''}">`;
-        html += `<span style="font-size: 0.8em; color: #856404; font-weight: bold;">${nDateStr}</span>`;
-        html += `<p style="margin: 4px 0 0 0; white-space: pre-wrap; line-height: 1.4;">${note.text}</p>`;
-        html += `</div>`;
+        html += '<div style="padding: 8px 0; ' + (i < cardNotes.length - 1 ? 'border-bottom: 1px dashed #ddd;' : '') + '">';
+        html += '<span style="font-size: 0.8em; color: #856404; font-weight: bold;">' + nDateStr + '</span>';
+        html += '<p style="margin: 4px 0 0 0; white-space: pre-wrap; line-height: 1.4;">' + note.text + '</p>';
+        html += '</div>';
       });
-      html += `</div></div>`;
+      html += '</div></div>';
     } else {
-      html += `<div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-left: 4px solid #dee2e6; border-radius: 5px;">`;
-      html += `<em style="color: #6c757d; font-size: 0.9em;">📝 No planning notes yet.</em>`;
-      html += `</div>`;
+      html += '<div onclick="openPlanningEventView(planningEventById(' + e.id + '), true); event.stopPropagation();" style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-left: 4px solid #dee2e6; border-radius: 5px; cursor: pointer;">';
+      html += '<em style="color: #6c757d; font-size: 0.9em;">📝 No planning notes yet. Click here to open and add notes.</em>';
+      html += '</div>';
     }
+    
+    html += '</div><div class="admin-event-actions">';
+    html += '<button class="btn-edit" onclick="openPlanningEventView(planningEventById(' + e.id + '), false)">View/Edit</button>';
+    html += '<button class="btn-duplicate" onclick="duplicateEvent(' + e.id + ')">Duplicate</button>';
+    html += '</div>';
     
     div.innerHTML = html;
     container.appendChild(div);
@@ -3050,14 +4527,19 @@ function renderPaceLeadEvents() {
   const container = document.getElementById('paceLeadEventsList');
   container.innerHTML = '';
   
-  if(!currentPaceLeadCode) {
+  // If admin (without specific code), show all events
+  let userEvents;
+  if(isAdmin && !currentPaceLeadCode) {
+    userEvents = events;
+    document.getElementById('paceLeadEventCount').textContent = userEvents.length + ' (all)';
+  } else if(currentPaceLeadCode) {
+    // Specific PACE Lead - show only their events
+    userEvents = events.filter(e => e.accessCode && e.accessCode.toUpperCase() === currentPaceLeadCode.toUpperCase());
+    document.getElementById('paceLeadEventCount').textContent = userEvents.length;
+  } else {
     container.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Please log in to view your events.</p>';
     return;
   }
-  
-  const userEvents = events.filter(e => e.accessCode && e.accessCode.toUpperCase() === currentPaceLeadCode.toUpperCase());
-  
-  document.getElementById('paceLeadEventCount').textContent = userEvents.length;
   
   if(userEvents.length === 0) {
     container.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">No events found. Click "Add New Event" to create one.</p>';
@@ -3090,7 +4572,37 @@ function renderPaceLeadEvents() {
     const myRecStr = formatRecurrence(e);
     if(myRecStr) metaInfo.push('🔁 ' + myRecStr);
     
+    // Determine status badge color and text
+    let statusBadgeBg, statusBadgeText;
+    if(e.status === 'doneanddusted') {
+      statusBadgeBg = '#155724';
+      statusBadgeText = 'DONE AND DUSTED';
+    } else if(e.status === 'confirmed') {
+      statusBadgeBg = '#28a745';
+      statusBadgeText = 'CONFIRMED';
+    } else if(e.status === 'inprogress') {
+      statusBadgeBg = '#ffc107';
+      statusBadgeText = 'IN PROGRESS';
+    } else if(e.status === 'idea') {
+      statusBadgeBg = '#17a2b8';
+      statusBadgeText = 'IDEA';
+    } else {
+      statusBadgeBg = '#6c757d';
+      statusBadgeText = 'NOT SET';
+    }
+    
     let html = '<div class="admin-event-info">';
+    html += '<div style="display: flex; gap: 10px; align-items: center; margin-bottom: 6px; flex-wrap: wrap;">';
+    html += '<div style="display: inline-block; background: ' + statusBadgeBg + '; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold;">' + statusBadgeText + '</div>';
+    // Add status dropdown for PACE Lead to change status
+    html += '<select onchange="updateEventStatus(' + e.id + ', this.value)" style="padding: 4px 8px; border-radius: 12px; font-size: 0.75em; font-weight: bold; border: 2px solid #ddd; cursor: pointer; background: white;">';
+    html += '<option value=""' + (!e.status ? ' selected' : '') + '>⚪ Not Set</option>';
+    html += '<option value="doneanddusted"' + (e.status === 'doneanddusted' ? ' selected' : '') + '>✅ Done and Dusted</option>';
+    html += '<option value="confirmed"' + (e.status === 'confirmed' ? ' selected' : '') + '>🟢 Confirmed</option>';
+    html += '<option value="inprogress"' + (e.status === 'inprogress' ? ' selected' : '') + '>🟡 In Progress</option>';
+    html += '<option value="idea"' + (e.status === 'idea' ? ' selected' : '') + '>🔵 Idea</option>';
+    html += '</select>';
+    html += '</div>';
     html += '<h3 class="admin-event-title">' + e.title + '</h3>';
     html += '<p class="admin-event-meta"><strong>Event ID:</strong> ' + (e.uniqueId || 'N/A') + '</p>';
     if(metaInfo.length>0) html += '<p class="admin-event-meta">'+metaInfo.join(' • ')+'</p>';
@@ -3098,6 +4610,8 @@ function renderPaceLeadEvents() {
     if(e.location) html += '<p class="admin-event-meta">Location: '+e.location+'</p>';
     if(e.venue) html += '<p class="admin-event-meta">Venue: '+e.venue+'</p>';
     if(e.organiser) html += '<p class="admin-event-meta">Organiser: '+e.organiser+'</p>';
+    if(e.tentativeDate) html += '<p class="admin-event-meta" style="color:#dc3545; font-weight:bold;">⏳ Tentative date: '+formatDate(e.tentativeDate)+(e.tentativeVenue?' · Preferred venue: '+e.tentativeVenue:'')+'</p>';
+    else if(e.tentativeVenue) html += '<p class="admin-event-meta" style="color:#dc3545; font-weight:bold;">⏳ Preferred venue: '+e.tentativeVenue+'</p>';
     
     // Planning Notes - scrollable box, clickable to open at notes section
     const myNotes = migrateNotes(e.planningNotes);
@@ -3121,6 +4635,7 @@ function renderPaceLeadEvents() {
     
     html += '</div><div class="admin-event-actions">';
     html += '<button class="btn-edit" onclick="editPaceLeadEvent('+e.id+')">Edit</button>';
+    html += '<button class="btn-duplicate" onclick="duplicateEvent(' + e.id + ')">Duplicate</button>';
     html += '</div>';
     
     div.innerHTML = html;
@@ -3172,20 +4687,165 @@ function showTimeSlotsSection() {
   document.getElementById('timeSlotsSection').style.display = hasDate ? 'block' : 'none';
 }
 
+function populateVenueDropdown(selectId) {
+  const select = document.getElementById(selectId);
+  if(!select) return;
+  const current = select.value;
+  select.innerHTML = '<option value="">-- Select venue --</option>';
+  const publicVenues = venues.filter(v => v.type === 'public').sort((a,b) => a.name.localeCompare(b.name));
+  publicVenues.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v.name;
+    opt.textContent = v.name;
+    select.appendChild(opt);
+  });
+  if(current) select.value = current;
+}
+
+function updateVenueInput() {
+  const type = document.getElementById('eventVenueType').value;
+  const sel = document.getElementById('eventVenueSelect');
+  const txt = document.getElementById('eventVenue');
+  if(type === 'public') {
+    populateVenueDropdown('eventVenueSelect');
+    sel.style.display = 'block';
+    txt.style.display = 'none';
+    txt.value = '';
+  } else if(type) {
+    sel.style.display = 'none';
+    txt.style.display = 'block';
+  } else {
+    sel.style.display = 'none';
+    txt.style.display = 'none';
+    txt.value = '';
+  }
+}
+
+function updateTentativeVenueInput() {
+  const type = document.getElementById('eventTentativeVenueType').value;
+  const sel = document.getElementById('eventTentativeVenueSelect');
+  const txt = document.getElementById('eventTentativeVenue');
+  if(type === 'public') {
+    populateVenueDropdown('eventTentativeVenueSelect');
+    sel.style.display = 'block';
+    txt.style.display = 'none';
+    txt.value = '';
+  } else if(type) {
+    sel.style.display = 'none';
+    txt.style.display = 'block';
+  } else {
+    sel.style.display = 'none';
+    txt.style.display = 'none';
+    txt.value = '';
+  }
+}
+
+function getVenueValue() {
+  const type = document.getElementById('eventVenueType').value;
+  if(!type) return '';
+  if(type === 'public') return document.getElementById('eventVenueSelect').value;
+  return document.getElementById('eventVenue').value;
+}
+
+function getTentativeVenueValue() {
+  const type = document.getElementById('eventTentativeVenueType').value;
+  if(!type) return '';
+  if(type === 'public') return document.getElementById('eventTentativeVenueSelect').value;
+  return document.getElementById('eventTentativeVenue').value;
+}
+
+function setVenueFields(venueValue, venueTypeHint) {
+  // Try to match against public venues list first
+  const match = venues.find(v => v.type === 'public' && v.name === venueValue);
+  const typeSelect = document.getElementById('eventVenueType');
+  const sel = document.getElementById('eventVenueSelect');
+  const txt = document.getElementById('eventVenue');
+  if(match) {
+    typeSelect.value = 'public';
+    populateVenueDropdown('eventVenueSelect');
+    sel.style.display = 'block';
+    txt.style.display = 'none';
+    sel.value = venueValue;
+  } else if(venueValue) {
+    typeSelect.value = venueTypeHint || 'business';
+    sel.style.display = 'none';
+    txt.style.display = 'block';
+    txt.value = venueValue;
+  } else {
+    typeSelect.value = '';
+    sel.style.display = 'none';
+    txt.style.display = 'none';
+    txt.value = '';
+  }
+}
+
+function setTentativeVenueFields(venueValue, venueTypeHint) {
+  const match = venues.find(v => v.type === 'public' && v.name === venueValue);
+  const typeSelect = document.getElementById('eventTentativeVenueType');
+  const sel = document.getElementById('eventTentativeVenueSelect');
+  const txt = document.getElementById('eventTentativeVenue');
+  if(match) {
+    typeSelect.value = 'public';
+    populateVenueDropdown('eventTentativeVenueSelect');
+    sel.style.display = 'block';
+    txt.style.display = 'none';
+    sel.value = venueValue;
+  } else if(venueValue) {
+    typeSelect.value = venueTypeHint || 'business';
+    sel.style.display = 'none';
+    txt.style.display = 'block';
+    txt.value = venueValue;
+  } else {
+    typeSelect.value = '';
+    sel.style.display = 'none';
+    txt.style.display = 'none';
+    txt.value = '';
+  }
+}
+
+function clearRoughTimingFields() {
+  const dateField = document.getElementById('eventDate');
+  const roughSection = document.getElementById('roughTimingSection');
+  if (dateField.value !== '') {
+    if(roughSection) roughSection.style.display = 'none';
+    document.getElementById('eventRoughWeek').value = '';
+    document.getElementById('eventRoughDay').value = '';
+    document.getElementById('eventRoughTime').value = '';
+    document.getElementById('eventTentativeDate').value = '';
+    document.getElementById('eventTentativeTime').value = '';
+    setTentativeVenueFields('', '');
+    document.getElementById('eventTentativeNotes').value = '';
+  } else {
+    if(roughSection) roughSection.style.display = 'block';
+  }
+}
+
+function updateRoughTimingVisibility() {
+  const dateField = document.getElementById('eventDate');
+  const roughSection = document.getElementById('roughTimingSection');
+  if(roughSection) roughSection.style.display = (dateField && dateField.value) ? 'none' : 'block';
+}
+
 function renderTimeSlotsList() {
   const container = document.getElementById('timeSlotsList');
   container.innerHTML = '';
   currentTimeSlots.forEach((slot, i) => {
     const div = document.createElement('div');
-    div.style.cssText = 'display: flex; gap: 10px; align-items: center; padding: 8px; background: white; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 6px;';
+    div.style.cssText = 'display: flex; flex-direction: column; gap: 8px; padding: 12px; background: white; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 8px;';
     div.innerHTML = `
-      <span style="font-weight: bold; color: #666; min-width: 30px;">${i + 2}.</span>
-      <select class="slot-hour" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; width: 60px;">${generateHourOptions(slot.time ? slot.time.split(':')[0] : '')}</select>
-      <select class="slot-minute" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; width: 60px;">${generateMinuteOptions(slot.time ? slot.time.split(':')[1] : '00')}</select>
-      <span style="color: #666;">for</span>
-      <select class="slot-dur-h" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; width: 70px;">${generateDurHourOptions(slot.duration ? Math.floor(slot.duration / 60) : 0)}</select>
-      <select class="slot-dur-m" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; width: 80px;">${generateDurMinOptions(slot.duration ? slot.duration % 60 : 0)}</select>
-      <button type="button" onclick="removeTimeSlot(${i})" style="background: #dc3545; color: white; border: none; border-radius: 4px; padding: 4px 10px; cursor: pointer; margin-left: auto;">✕</button>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <span style="font-weight: bold; color: #666; min-width: 30px;">${i + 2}.</span>
+        <select class="slot-hour" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; width: 60px;">${generateHourOptions(slot.time ? slot.time.split(':')[0] : '')}</select>
+        <select class="slot-minute" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; width: 60px;">${generateMinuteOptions(slot.time ? slot.time.split(':')[1] : '00')}</select>
+        <span style="color: #666;">for</span>
+        <select class="slot-dur-h" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; width: 70px;">${generateDurHourOptions(slot.duration ? Math.floor(slot.duration / 60) : 0)}</select>
+        <select class="slot-dur-m" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; width: 80px;">${generateDurMinOptions(slot.duration ? slot.duration % 60 : 0)}</select>
+        <button type="button" onclick="removeTimeSlot(${i})" style="background: #dc3545; color: white; border: none; border-radius: 4px; padding: 4px 10px; cursor: pointer; margin-left: auto;">✕</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="color: #666; font-size: 0.9em; min-width: 30px;"></span>
+        <input type="text" class="slot-description" placeholder="Optional: e.g., 'Starting at Village Hall'" value="${slot.description || ''}" style="flex: 1; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9em;">
+      </div>
     `;
     container.appendChild(div);
   });
@@ -3230,7 +4890,7 @@ function addTimeSlot() {
     const firstM = parseInt(document.getElementById('eventTimeMinute').value || '00');
     defaultHour = Math.floor((firstH * 60 + firstM + firstDur) / 60);
   }
-  currentTimeSlots.push({ time: String(defaultHour).padStart(2,'0') + ':00', duration: firstDur });
+  currentTimeSlots.push({ time: String(defaultHour).padStart(2,'0') + ':00', duration: firstDur, description: '' });
   renderTimeSlotsList();
 }
 
@@ -3248,31 +4908,42 @@ function readTimeSlotsFromForm() {
     const m = row.querySelector('.slot-minute').value;
     const dh = parseInt(row.querySelector('.slot-dur-h').value);
     const dm = parseInt(row.querySelector('.slot-dur-m').value);
-    if(h) currentTimeSlots.push({ time: h + ':' + m, duration: (dh * 60) + dm });
+    const desc = row.querySelector('.slot-description').value;
+    if(h) currentTimeSlots.push({ 
+      time: h + ':' + m, 
+      duration: (dh * 60) + dm,
+      description: desc || ''
+    });
   });
   return currentTimeSlots;
 }
 
 function getAllTimeSlots(event) {
   // Given an event object, returns ALL slots as an array sorted by time
-  // First slot is always time/duration, extras are in timeSlots[]
+  // If timeSlots exist, use ONLY those (don't include main time/duration)
+  // Otherwise, use the main time/duration as the single slot
   const slots = [];
-  if(event.time) slots.push({ time: event.time, duration: event.duration || 0 });
   if(event.timeSlots && event.timeSlots.length > 0) {
+    // Multiple slots defined - use only these
     event.timeSlots.forEach(s => slots.push(s));
+  } else if(event.time) {
+    // No extra slots - use main time/duration
+    slots.push({ time: event.time, duration: event.duration || 0 });
   }
   slots.sort((a, b) => a.time.localeCompare(b.time));
   return slots;
 }
 
 function formatSlotTime(slot) {
-  // "13:00 for 1h 30m"
+  // "13:00 (1h 30m) - Starting at Village Hall"
   const h = Math.floor((slot.duration || 0) / 60);
   const m = (slot.duration || 0) % 60;
   let dur = '';
   if(h > 0) dur += h + 'h';
   if(m > 0) dur += (h > 0 ? ' ' : '') + m + 'm';
-  return slot.time + (dur ? ' (' + dur + ')' : '');
+  let result = slot.time + (dur ? ' (' + dur + ')' : '');
+  if(slot.description) result += ' - ' + slot.description;
+  return result;
 }
 
 /* ============================================ */
@@ -3443,14 +5114,32 @@ function openEventForm(event=null) {
     
     document.getElementById('eventTitle').value = event.title || ''; 
     document.getElementById('eventType').value = event.type || '';
-    document.getElementById('eventTopic').value = event.topic || '';
+    // Handle multi-select topic dropdown
+    const topicSelect = document.getElementById('eventTopic');
+    // Clear all selections first
+    Array.from(topicSelect.options).forEach(opt => opt.selected = false);
+    // Set selections based on saved topics (comma-separated)
+    if(event.topic) {
+      const savedTopics = event.topic.split(',').map(t => t.trim());
+      Array.from(topicSelect.options).forEach(opt => {
+        if(savedTopics.includes(opt.value)) {
+          opt.selected = true;
+        }
+      });
+    }
     document.getElementById('eventDescription').value = event.description || '';
     document.getElementById('eventSummary').value = event.summary || '';
     document.getElementById('eventDate').value = event.date || '';
 	document.getElementById('eventUniqueId').value = event.uniqueId || '';
+	updateRoughTimingVisibility();
+	
 	document.getElementById('eventRoughWeek').value = event.roughWeek || '';
     document.getElementById('eventRoughDay').value = event.roughDay || '';
     document.getElementById('eventRoughTime').value = event.roughTime || '';
+    document.getElementById('eventTentativeDate').value = event.tentativeDate || '';
+    document.getElementById('eventTentativeTime').value = event.tentativeTime || '';
+    setTentativeVenueFields(event.tentativeVenue || '', event.tentativeVenueType || '');
+    document.getElementById('eventTentativeNotes').value = event.tentativeNotes || '';
     
     // Fix for time display in edit form
     if(event.time) {
@@ -3478,7 +5167,7 @@ function openEventForm(event=null) {
     
     document.getElementById('eventLocation').value = event.location || '';
     document.getElementById('eventPostcode').value = event.postcode || '';
-    document.getElementById('eventVenue').value = event.venue || '';
+    setVenueFields(event.venue || '', event.venueType || '');
     document.getElementById('eventOrganiser').value = event.organiser || '';
     document.getElementById('eventContactName').value = event.contactName || '';
     document.getElementById('eventContactEmail').value = event.contactEmail || '';
@@ -3491,6 +5180,7 @@ document.getElementById('eventNewNote').value = '';
     document.getElementById('eventbriteUrl').value = event.eventbriteUrl || '';
     document.getElementById('organisationWebsite').value = event.organisationWebsite || '';
     document.getElementById('organisationAbout').value = event.organisationAbout || '';
+    document.getElementById('featuredEvent').checked = event.featured || false;
     document.getElementById('eventContactPhone').value = event.contactPhone || '';
 	// Event ID: Only Admin can edit it, others can't change it
     if(isAdmin) {
@@ -3525,6 +5215,7 @@ document.getElementById('eventNewNote').value = '';
     document.getElementById('eventUniqueId').style.background = 'white';
     document.getElementById('eventUniqueId').style.cursor = 'text';
     document.getElementById('eventUniqueId').value = '';
+    updateRoughTimingVisibility(); // new event has no date, so show rough section
   }
   
   // Check if Jump to Save button should be shown when modal first opens
@@ -3681,21 +5372,49 @@ document.addEventListener('DOMContentLoaded', function() {
 function saveEvent(e){
   e.preventDefault();
   
-  // Check for unsaved note BEFORE saving anything
+  // Auto-save any unsaved note BEFORE saving the event
   const noteField = document.getElementById('eventNewNote');
   if(noteField && noteField.value.trim() !== '') {
-    const confirmSave = confirm('You have an unsaved note.\n\nClick OK to save the event without the note, or Cancel to go back and add the note first.');
-    if(!confirmSave) {
-      // User clicked Cancel - wants to go back and add the note
-      const notesSection = noteField.closest('.form-group');
-      if(notesSection) {
-        notesSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Automatically add the note
+    const noteText = noteField.value.trim();
+    const newNote = {
+      text: noteText,
+      date: new Date().toISOString()
+    };
+    
+    // If editing existing event, add note to the event
+    if(editingEventId !== null) {
+      const idx = events.findIndex(ev => ev.id === editingEventId);
+      if(idx !== -1) {
+        // Ensure planningNotes is always a proper array
+        if(!events[idx].planningNotes || !Array.isArray(events[idx].planningNotes)) {
+          events[idx].planningNotes = migrateNotes(events[idx].planningNotes);
+        }
+        // Add new note
+        events[idx].planningNotes = [newNote, ...events[idx].planningNotes];
+        
+        // Log the note addition
+        addChangeLogEntry('note', 'Note added to: ' + events[idx].title, {
+          noteText: noteText
+        }, events[idx]);
       }
-      noteField.focus();
-      return; // Stop the save
+    } else {
+      // Creating new event - store in temporary array
+      tempEventNotes = [newNote, ...tempEventNotes];
     }
-    // User clicked OK - continue with save, clear the unsaved note
+    
+    // Clear the note field
     noteField.value = '';
+    
+    // Update the display
+    if(editingEventId !== null) {
+      const idx = events.findIndex(ev => ev.id === editingEventId);
+      if(idx !== -1) {
+        renderPlanningNotesList(events[idx].planningNotes);
+      }
+    } else {
+      renderPlanningNotesList(tempEventNotes);
+    }
   }
   
   // Get current and new values for validation
@@ -3724,19 +5443,52 @@ function saveEvent(e){
   const uniqueId = document.getElementById('eventUniqueId').value || ('MANUAL_' + Date.now());
   const title=document.getElementById('eventTitle').value;
   const type=document.getElementById('eventType').value;
-  const topic=document.getElementById('eventTopic').value;
+  // Handle multi-select topic dropdown
+  const topicSelect = document.getElementById('eventTopic');
+  const selectedTopics = Array.from(topicSelect.selectedOptions).map(opt => opt.value);
+  const topic = selectedTopics.join(', ');
   const description=document.getElementById('eventDescription').value;
   const summary=document.getElementById('eventSummary').value;
   const date=document.getElementById('eventDate').value;
   const timeHour=document.getElementById('eventTimeHour').value;
   const timeMinute=document.getElementById('eventTimeMinute').value;
   const time=timeHour + ':' + timeMinute;
+  
+  // Check for date/time conflicts with other events
+  if(date && time && timeHour) { // Only check if date and time are set
+    const conflicts = events.filter(e => {
+      // Don't check against the event being edited
+      if(editingEventId !== null && e.id === editingEventId) return false;
+      
+      // Check if same date and time
+      return e.date === date && e.time === time;
+    });
+    
+    if(conflicts.length > 0) {
+      let conflictList = conflicts.map(e => '• ' + e.title + (e.paceLead ? ' (PACE Lead: ' + e.paceLead + ')' : '')).join('\n');
+      const proceed = confirm(
+        '⚠️ DATE & TIME CONFLICT DETECTED\n\n' +
+        'The following event(s) are already scheduled for ' + formatDate(date) + ' at ' + time + ':\n\n' +
+        conflictList + '\n\n' +
+        'Do you want to continue anyway?\n\n' +
+        'Click OK to save this event despite the conflict, or Cancel to change the date/time.'
+      );
+      
+      if(!proceed) {
+        // Scroll to date/time fields
+        document.getElementById('eventDate').focus();
+        return; // Stop the save
+      }
+    }
+  }
+  
   const hours = parseInt(document.getElementById('eventDurationHours').value);
   const mins = parseInt(document.getElementById('eventDurationMinutes').value);
   const duration = (hours * 60) + mins;
   const location=document.getElementById('eventLocation').value;
   const postcode=document.getElementById('eventPostcode').value;
-  const venue=document.getElementById('eventVenue').value;
+  const venue=getVenueValue();
+  const venueType=document.getElementById('eventVenueType').value;
   const organiser=document.getElementById('eventOrganiser').value;
   const contactName=document.getElementById('eventContactName').value;
   const contactEmail=document.getElementById('eventContactEmail').value;
@@ -3748,10 +5500,16 @@ function saveEvent(e){
   const eventbriteUrl=normalizeUrl(document.getElementById('eventbriteUrl').value);
   const organisationWebsite=normalizeUrl(document.getElementById('organisationWebsite').value);
   const organisationAbout=document.getElementById('organisationAbout').value;
+  const featured=document.getElementById('featuredEvent').checked;
   // planningNotes are saved immediately when added via addPlanningNote()
   const roughWeek=document.getElementById('eventRoughWeek').value;
   const roughDay=document.getElementById('eventRoughDay').value;
   const roughTime=document.getElementById('eventRoughTime').value;
+  const tentativeDate=document.getElementById('eventTentativeDate').value;
+  const tentativeTime=document.getElementById('eventTentativeTime').value;
+  const tentativeVenue=getTentativeVenueValue();
+  const tentativeVenueType=document.getElementById('eventTentativeVenueType').value;
+  const tentativeNotes=document.getElementById('eventTentativeNotes').value;
   const timeSlots = readTimeSlotsFromForm(); // extra slots beyond the first
   const recurrence = readRecurrenceFromForm(); // null if no repeat
 
@@ -3770,10 +5528,20 @@ function saveEvent(e){
       events[idx].description=description;
       events[idx].summary=summary;
       events[idx].date=date;
+      
+      // Auto-set status to "confirmed" if date is added and status is not already set
+      if(date && date !== '' && !events[idx].status) {
+        events[idx].status = 'confirmed';
+      }
+      
       events[idx].time=time;
       events[idx].roughWeek=roughWeek;
       events[idx].roughDay=roughDay;
       events[idx].roughTime=roughTime;
+      events[idx].tentativeDate=tentativeDate;
+      events[idx].tentativeTime=tentativeTime;
+      events[idx].tentativeVenue=tentativeVenue;
+      events[idx].tentativeNotes=tentativeNotes;
 	  events[idx].duration=duration;
       events[idx].location=location;
       events[idx].postcode=postcode;
@@ -3789,6 +5557,7 @@ function saveEvent(e){
       events[idx].eventbriteUrl=eventbriteUrl;
       events[idx].organisationWebsite=organisationWebsite;
       events[idx].organisationAbout=organisationAbout;
+      events[idx].featured=featured;
       events[idx].timeSlots=timeSlots;
       events[idx].recurrence=recurrence;
       // planningNotes are NOT updated here - they're managed separately via addPlanningNote/deleteNote
@@ -3808,14 +5577,19 @@ function saveEvent(e){
     }
   }else{
     const newId = Date.now();
+    
+    // Auto-set status to "confirmed" if date is provided
+    const autoStatus = (date && date !== '') ? 'confirmed' : '';
+    
     const newEvent = {
   id: newId, 
   uniqueId: uniqueId, 
-  title, type, topic, description, summary, date, time, duration, location, postcode, venue, organiser, 
+  title, type, topic, description, summary, date, time, duration, location, postcode, venue, venueType, organiser, 
   contactName, contactEmail, contactPhone, paceLead, paceLeadEmail, paceLeadPhone, accessCode, 
   planningNotes: [...tempEventNotes], // Include any notes added during creation
-  eventbriteUrl, organisationWebsite, organisationAbout,
-  roughWeek, roughDay, roughTime, timeSlots, recurrence
+  eventbriteUrl, organisationWebsite, organisationAbout, featured,
+  roughWeek, roughDay, roughTime, tentativeDate, tentativeTime, tentativeVenue, tentativeVenueType, tentativeNotes, timeSlots, recurrence,
+  status: autoStatus
 };
     events.push(newEvent);
     
@@ -3886,6 +5660,37 @@ function refreshCurrentView() {
   console.log('Events array length:', events.length);
   console.log('adminFilteredEvents before reset:', adminFilteredEvents ? adminFilteredEvents.length : 'null');
   
+  // If using Firebase, reload data from server first to get any changes from other users
+  if(useFirebase && db) {
+    console.log('Reloading events from Firebase before refresh...');
+    db.ref('events').once('value', function(snapshot) {
+      if(snapshot.exists()) {
+        const data = snapshot.val();
+        events = Object.values(data);
+        // Ensure all planningNotes are properly formatted as arrays
+        events.forEach(e => {
+          if(e.planningNotes && !Array.isArray(e.planningNotes)) {
+            e.planningNotes = migrateNotes(e.planningNotes);
+          }
+        });
+        filteredEvents = [...events];
+        document.getElementById('eventCount').textContent = events.length;
+        
+        // Now render the appropriate view with fresh data
+        renderAppropriateView();
+      }
+    }).catch(err => {
+      console.error('Error reloading from Firebase:', err);
+      // If reload fails, just render with current data
+      renderAppropriateView();
+    });
+  } else {
+    // No Firebase, just render with current data
+    renderAppropriateView();
+  }
+}
+
+function renderAppropriateView() {
   // Refresh only the current view - CHECK ADMIN FIRST since admin also has isPaceLead=true
   if(isAdmin) {
     // Reset filtered events to null to force fresh data, then re-apply filters if needed
@@ -4444,6 +6249,7 @@ function openVenueForm(venue = null) {
   
   if(venue) {
     document.getElementById('venueName').value = venue.name || '';
+    document.getElementById('venueType').value = venue.type || '';
     document.getElementById('venueAddress').value = venue.address || '';
     document.getElementById('venuePostcode').value = venue.postcode || '';
     document.getElementById('venueCapacity').value = venue.capacity || '';
@@ -4453,6 +6259,7 @@ function openVenueForm(venue = null) {
     document.getElementById('venueContactEmail').value = venue.contactEmail || '';
     document.getElementById('venueContactPhone').value = venue.contactPhone || '';
     document.getElementById('venueNotes').value = venue.notes || '';
+    document.getElementById('venueWebsite').value = venue.website || '';
     editingVenueId = venue.id;
   } else {
     document.getElementById('venueForm').reset();
@@ -4470,6 +6277,7 @@ function saveVenue(e) {
   
   const venueData = {
     name: document.getElementById('venueName').value,
+    type: document.getElementById('venueType').value,
     address: document.getElementById('venueAddress').value,
     postcode: document.getElementById('venuePostcode').value,
     capacity: parseInt(document.getElementById('venueCapacity').value) || 0,
@@ -4478,7 +6286,8 @@ function saveVenue(e) {
     contact: document.getElementById('venueContact').value,
     contactEmail: document.getElementById('venueContactEmail').value,
     contactPhone: document.getElementById('venueContactPhone').value,
-    notes: document.getElementById('venueNotes').value
+    notes: document.getElementById('venueNotes').value,
+    website: document.getElementById('venueWebsite').value
   };
   
   if(editingVenueId !== null) {
@@ -4538,71 +6347,487 @@ function renderVenuesList() {
   sorted.forEach(v => {
     const eventsAtVenue = events.filter(e => e.venue && e.venue.toLowerCase() === v.name.toLowerCase());
     
-    let div = document.createElement('div');
-    div.className = 'admin-event-item';
-    div.style.borderLeftColor = '#8DC63F';
+    // Create card element
+    const card = document.createElement('div');
+    card.className = 'venue-card';
     
-    let html = '<div class="admin-event-info">';
-    html += '<h3 class="admin-event-title" style="color: #8DC63F;">🏛️ ' + v.name + '</h3>';
+    // Header
+    const typeLabels = {public:'Public Venue', business:'Business Host', private:'Private Host', outdoor:'Outdoor / Open Space'};
+    const typeBadgeColor = {public:'#2B7BBD', business:'#6f42c1', private:'#28a745', outdoor:'#8DC63F'};
+    const typeEmoji = {public:'🏛️', business:'🏪', private:'🏡', outdoor:'🌳'};
+    const tEmoji = typeEmoji[v.type] || '🏛️';
+    const tLabel = typeLabels[v.type] || '';
+    const tColor = typeBadgeColor[v.type] || '#2B7BBD';
+    let html = '<div class="venue-card-header">' + tEmoji + ' ' + v.name;
+    if(tLabel) html += ' <span style="font-size:0.7em; background:rgba(255,255,255,0.25); padding:2px 8px; border-radius:10px; font-weight:normal;">' + tLabel + '</span>';
+    html += '</div>';
     
-    if(v.address) html += '<p class="admin-event-meta">📍 ' + v.address + '</p>';
-    if(v.postcode) html += '<p class="admin-event-meta">Postcode: ' + v.postcode + '</p>';
-    if(v.capacity) html += '<p class="admin-event-meta">👥 Capacity: ' + v.capacity + ' people</p>';
+    // Body
+    html += '<div class="venue-card-body">';
     
+    // Basic info
+    if(v.address) {
+      html += '<div class="venue-card-info">📍 ' + v.address + '</div>';
+    }
+    if(v.postcode) {
+      html += '<div class="venue-card-info"><strong>Postcode:</strong> ' + v.postcode + '</div>';
+    }
+    if(v.capacity) {
+      html += '<div class="venue-card-info">👥 <strong>Capacity:</strong> ' + v.capacity + ' people</div>';
+    }
+    
+    // Facilities
     if(v.facilities) {
-      html += '<div style="margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 5px;">';
-      html += '<strong>Facilities:</strong><br>' + v.facilities.replace(/\n/g, '<br>');
+      html += '<div class="venue-card-section">';
+      html += '<strong>Facilities</strong>';
+      html += v.facilities.replace(/\n/g, '<br>');
       html += '</div>';
     }
     
+    // Availability notes
     if(v.availability) {
-      html += '<div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 5px;">';
-      html += '<strong>⚠️ Availability Notes:</strong><br>' + v.availability.replace(/\n/g, '<br>');
+      html += '<div class="venue-card-section" style="background: #fff3cd;">';
+      html += '<strong>⚠️ Availability Notes</strong>';
+      html += v.availability.replace(/\n/g, '<br>');
       html += '</div>';
     }
     
+    // Contact info
     if(v.contact || v.contactEmail || v.contactPhone) {
-      html += '<div style="margin-top: 10px;">';
-      html += '<strong>Contact:</strong><br>';
+      html += '<div class="venue-card-section">';
+      html += '<strong>Contact</strong>';
       if(v.contact) html += v.contact + '<br>';
       if(v.contactEmail) html += '📧 ' + v.contactEmail + '<br>';
-      if(v.contactPhone) html += '📞 ' + v.contactPhone;
+      if(v.contactPhone) html += '📞 ' + v.contactPhone + '<br>';
+      if(v.website) html += '🌐 <a href="' + v.website + '" target="_blank">' + v.website + '</a>';
       html += '</div>';
     }
     
+    // Notes
     if(v.notes) {
-      html += '<div style="margin-top: 10px; padding: 10px; background: #e8f4fd; border-radius: 5px;">';
-      html += '<strong>Notes:</strong><br>' + v.notes.replace(/\n/g, '<br>');
+      html += '<div class="venue-card-section" style="background: #e8f4fd;">';
+      html += '<strong>Notes</strong>';
+      html += v.notes.replace(/\n/g, '<br>');
       html += '</div>';
     }
     
-    // Show events scheduled at this venue
+    // Events scheduled here
     if(eventsAtVenue.length > 0) {
-      html += '<div style="margin-top: 15px; padding: 10px; background: #f0f7ff; border-left: 4px solid #2B7BBD; border-radius: 5px;">';
-      html += '<strong style="color: #2B7BBD;">📅 ' + eventsAtVenue.length + ' event(s) scheduled here:</strong><br>';
+      html += '<div class="venue-card-section" style="background: #f0f7ff; border-left: 4px solid #2B7BBD;">';
+      html += '<strong>📅 ' + eventsAtVenue.length + ' event(s) scheduled here</strong>';
       eventsAtVenue.forEach(e => {
-        html += '<div style="margin-top: 5px;">';
-        html += '• ' + e.title;
+        html += '<div style="margin-top: 5px;">• ' + e.title;
         if(e.date) html += ' (' + formatDate(e.date) + ')';
         html += '</div>';
       });
       html += '</div>';
     }
     
-    html += '</div>';
-    html += '<div class="admin-event-actions">';
-    html += '<button class="btn" style="margin-right: 10px;" onclick="openVenueForm(venues.find(v => v.id === ' + v.id + '))">Edit</button>';
+    // Action buttons
+    html += '<div class="venue-card-actions">';
+    html += '<button class="btn" onclick="openVenueForm(venues.find(v => v.id === ' + v.id + '))">Edit</button>';
     html += '<button class="btn btn-secondary" onclick="deleteVenue(' + v.id + ')">Delete</button>';
     html += '</div>';
     
-    div.innerHTML = html;
-    container.appendChild(div);
+    html += '</div>'; // Close body
+    
+    card.innerHTML = html;
+    container.appendChild(card);
   });
+  
+  // Update counter
+  document.getElementById('venueCount').textContent = venues.length;
+}
+
+async function downloadVenuesDocx() {
+  if(venues.length === 0) {
+    alert('No venues to export');
+    return;
+  }
+  
+  // Show loading message
+  showToast('⏳ Generating Word document...');
+  
+  // Sort alphabetically
+  const sorted = [...venues].sort((a, b) => a.name.localeCompare(b.name));
+  
+  try {
+    // Generate HTML that Word can open and convert
+    let html = `<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset='utf-8'>
+<title>MEF 2026 Venues List</title>
+<style>
+@page {
+  size: A4;
+  margin: 2.54cm;
+}
+body {
+  font-family: Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+}
+h1 {
+  text-align: center;
+  color: #000000;
+  font-size: 16pt;
+  font-weight: bold;
+  margin-bottom: 8pt;
+  border-bottom: 2pt solid #000000;
+  padding-bottom: 8pt;
+}
+h2 {
+  text-align: center;
+  color: #000000;
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 8pt;
+}
+.date {
+  text-align: center;
+  color: #000000;
+  font-size: 10pt;
+  margin-bottom: 15pt;
+}
+.venue-count {
+  text-align: center;
+  font-weight: bold;
+  font-size: 11pt;
+  margin-bottom: 20pt;
+}
+.venue {
+  page-break-inside: avoid;
+  margin-bottom: 15pt;
+  border-left: 3pt solid #000000;
+  padding-left: 10pt;
+}
+.venue-name {
+  color: #000000;
+  font-size: 12pt;
+  font-weight: bold;
+  margin-bottom: 3pt;
+}
+.venue-meta {
+  color: #000000;
+  margin: 0;
+  font-size: 10pt;
+  line-height: 1.3;
+}
+.venue-section {
+  background-color: #F5F5F5;
+  padding: 8pt;
+  margin-top: 5pt;
+  border-left: 2pt solid #666666;
+  font-size: 10pt;
+}
+.venue-section-title {
+  font-weight: bold;
+  margin-bottom: 3pt;
+}
+.events-section {
+  background-color: #E8F4FD;
+  padding: 8pt;
+  margin-top: 5pt;
+  border-left: 2pt solid #2B7BBD;
+  font-size: 10pt;
+}
+hr {
+  border: none;
+  border-top: 1pt solid #CCCCCC;
+  margin: 15pt 0;
+}
+</style>
+</head>
+<body>
+`;
+    
+    html += '<h1>Manningtree Earth Festival 2026</h1>\n';
+    html += '<h2>Venues List</h2>\n';
+    html += '<div class="date">Generated: ' + new Date().toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    }) + '</div>\n';
+    html += '<div class="venue-count">Total Venues: ' + sorted.length + '</div>\n';
+    
+    sorted.forEach((v, index) => {
+      const eventsAtVenue = events.filter(e => e.venue && e.venue.toLowerCase() === v.name.toLowerCase());
+      
+      html += '<div class="venue">\n';
+      html += '<div class="venue-name">🏛️ ' + v.name + '</div>\n';
+      
+      // Basic info
+      if(v.address) {
+        html += '<p class="venue-meta">📍 ' + v.address + '</p>\n';
+      }
+      if(v.postcode) {
+        html += '<p class="venue-meta"><strong>Postcode:</strong> ' + v.postcode + '</p>\n';
+      }
+      if(v.capacity) {
+        html += '<p class="venue-meta">👥 <strong>Capacity:</strong> ' + v.capacity + ' people</p>\n';
+      }
+      
+      // Facilities
+      if(v.facilities) {
+        html += '<div class="venue-section">\n';
+        html += '<div class="venue-section-title">Facilities</div>\n';
+        html += v.facilities.replace(/\n/g, '<br>\n');
+        html += '</div>\n';
+      }
+      
+      // Availability notes
+      if(v.availability) {
+        html += '<div class="venue-section" style="background-color: #FFF3CD;">\n';
+        html += '<div class="venue-section-title">⚠️ Availability Notes</div>\n';
+        html += v.availability.replace(/\n/g, '<br>\n');
+        html += '</div>\n';
+      }
+      
+      // Contact info
+      if(v.contact || v.contactEmail || v.contactPhone) {
+        html += '<div class="venue-section">\n';
+        html += '<div class="venue-section-title">Contact</div>\n';
+        if(v.contact) html += v.contact + '<br>\n';
+        if(v.contactEmail) html += '📧 ' + v.contactEmail + '<br>\n';
+        if(v.contactPhone) html += '📞 ' + v.contactPhone + '<br>\n';
+        if(v.website) html += '🌐 ' + v.website + '\n';
+        html += '</div>\n';
+      }
+      
+      // Notes
+      if(v.notes) {
+        html += '<div class="venue-section">\n';
+        html += '<div class="venue-section-title">Notes</div>\n';
+        html += v.notes.replace(/\n/g, '<br>\n');
+        html += '</div>\n';
+      }
+      
+      // Events scheduled here
+      if(eventsAtVenue.length > 0) {
+        html += '<div class="events-section">\n';
+        html += '<div class="venue-section-title">📅 ' + eventsAtVenue.length + ' event(s) scheduled here</div>\n';
+        eventsAtVenue.forEach(e => {
+          html += '• ' + e.title;
+          if(e.date) html += ' (' + formatDate(e.date) + ')';
+          html += '<br>\n';
+        });
+        html += '</div>\n';
+      }
+      
+      html += '</div>\n'; // close venue
+      
+      // Separator line between venues (except last one)
+      if(index < sorted.length - 1) {
+        html += '<hr>\n';
+      }
+    });
+    
+    html += '</body></html>';
+    
+    // Create blob and download
+    const blob = new Blob([html], { type: 'application/msword' });
+    const filename = 'MEF_2026_Venues_List_' + new Date().toISOString().split('T')[0] + '.doc';
+    
+    // Create download link
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+    
+    showToast('✓ Word document downloaded! Open it in Word to edit and save as .docx');
+    
+  } catch(error) {
+    console.error('Error generating Word document:', error);
+    console.error('Error stack:', error.stack);
+    alert('Error generating Word document: ' + error.message);
+  }
 }
 
 /* SECTION END: VENUES MANAGEMENT */
 
 /* ============================================ */
+/* ============================================ */
+/* SECTION START: TODO LIST SYSTEM */
+/* ============================================ */
+let todoItems = [];
+let todoFilter = 'all';
+
+function loadTodoItems() {
+  if(useFirebase && db) {
+    db.ref('todoItems').once('value', function(snapshot) {
+      if(snapshot.exists()) {
+        todoItems = Object.values(snapshot.val());
+      } else {
+        todoItems = [];
+      }
+      renderTodoList();
+    });
+  } else {
+    const stored = localStorage.getItem('mef-todo');
+    todoItems = stored ? JSON.parse(stored) : [];
+    renderTodoList();
+  }
+}
+
+function saveTodoItems() {
+  if(useFirebase && db) {
+    const obj = {};
+    todoItems.forEach(item => { obj[item.id] = item; });
+    db.ref('todoItems').set(obj).catch(err => console.error('Todo save error:', err));
+  } else {
+    localStorage.setItem('mef-todo', JSON.stringify(todoItems));
+  }
+}
+
+function openTodoList() {
+  document.getElementById('todoModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  loadTodoItems();
+}
+
+function closeTodoList() {
+  document.getElementById('todoModal').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function addTodoItem() {
+  const desc = document.getElementById('todoDesc').value.trim();
+  const lead = document.getElementById('todoLead').value.trim();
+  const others = document.getElementById('todoOthers').value.trim();
+  const target = document.getElementById('todoTarget').value;
+  if(!desc) { alert('Please enter a task description.'); return; }
+  if(!lead) { alert('Please enter a task lead.'); return; }
+  const item = {
+    id: 'todo_' + Date.now(),
+    createdDate: new Date().toISOString(),
+    description: desc,
+    lead: lead,
+    others: others,
+    targetDate: target,
+    done: false,
+    completedDate: null
+  };
+  todoItems.unshift(item);
+  saveTodoItems();
+  renderTodoList();
+  document.getElementById('todoDesc').value = '';
+  document.getElementById('todoLead').value = '';
+  document.getElementById('todoOthers').value = '';
+  document.getElementById('todoTarget').value = '';
+}
+
+function toggleTodoDone(id) {
+  const item = todoItems.find(t => t.id === id);
+  if(!item) return;
+  item.done = !item.done;
+  item.completedDate = item.done ? new Date().toISOString() : null;
+  saveTodoItems();
+  renderTodoList();
+}
+
+function deleteTodoItem(id) {
+  if(!confirm('Delete this task?')) return;
+  todoItems = todoItems.filter(t => t.id !== id);
+  saveTodoItems();
+  renderTodoList();
+}
+
+function editTodoItem(id) {
+  const item = todoItems.find(t => t.id === id);
+  if(!item) return;
+  // Pre-fill the add form with existing values
+  document.getElementById('todoDesc').value = item.description || '';
+  document.getElementById('todoLead').value = item.lead || '';
+  document.getElementById('todoOthers').value = item.others || '';
+  document.getElementById('todoTarget').value = item.targetDate || '';
+  // Remove the item so saving via Add Task creates the updated version
+  todoItems = todoItems.filter(t => t.id !== id);
+  saveTodoItems();
+  renderTodoList();
+  // Scroll to top of modal so form is visible
+  const modal = document.querySelector('#todoModal .modal-content');
+  if(modal) modal.scrollTop = 0;
+  document.getElementById('todoDesc').focus();
+}
+
+function setTodoFilter(f) {
+  todoFilter = f;
+  ['All','Open','Done'].forEach(name => {
+    const btn = document.getElementById('todoFilter' + name);
+    if(btn) btn.style.background = (f === name.toLowerCase()) ? '#6f42c1' : '#666';
+  });
+  renderTodoList();
+}
+
+function formatTodoDate(iso) {
+  if(!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+}
+
+function formatTodoDateShort(dateStr) {
+  if(!dateStr) return '';
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+}
+
+function renderTodoList() {
+  const container = document.getElementById('todoList');
+  if(!container) return;
+  let filtered = todoItems;
+  if(todoFilter === 'open') filtered = todoItems.filter(t => !t.done);
+  if(todoFilter === 'done') filtered = todoItems.filter(t => t.done);
+  const openCount = todoItems.filter(t => !t.done).length;
+  const doneCount = todoItems.filter(t => t.done).length;
+  const countEl = document.getElementById('todoCount');
+  if(countEl) countEl.textContent = openCount + ' open · ' + doneCount + ' completed · ' + todoItems.length + ' total';
+  if(filtered.length === 0) {
+    container.innerHTML = '<p style="padding:40px; text-align:center; color:#999;">' +
+      (todoItems.length === 0 ? 'No tasks yet. Add one above!' : 'No tasks match this filter.') + '</p>';
+    return;
+  }
+  let html = '';
+  filtered.forEach(item => {
+    const isOverdue = !item.done && item.targetDate && new Date(item.targetDate) < new Date();
+    const borderColor = item.done ? '#28a745' : (isOverdue ? '#dc3545' : '#6f42c1');
+    const bgColor = item.done ? '#f8fff8' : (isOverdue ? '#fff8f8' : 'white');
+    html += '<div style="padding:15px 18px; border-left:4px solid ' + borderColor + '; border-bottom:1px solid #eee; background:' + bgColor + '; display:flex; gap:15px; align-items:flex-start;">';
+    html += '<div style="padding-top:3px; flex-shrink:0;">';
+    html += '<input type="checkbox" ' + (item.done ? 'checked' : '') + ' onchange="toggleTodoDone(\'' + item.id + '\')" ';
+    html += 'style="width:20px; height:20px; cursor:pointer; accent-color:#6f42c1;">';
+    html += '</div>';
+    html += '<div style="flex:1; min-width:0;">';
+    html += '<div style="font-weight:bold; font-size:1em; color:' + (item.done ? '#888' : '#222') + '; ' + (item.done ? 'text-decoration:line-through;' : '') + ' margin-bottom:6px;">' + item.description + '</div>';
+    html += '<div style="display:flex; flex-wrap:wrap; gap:12px; font-size:0.85em; color:#666; margin-bottom:4px;">';
+    html += '<span>📅 Added: <strong>' + formatTodoDate(item.createdDate) + '</strong></span>';
+    html += '<span>👤 Lead: <strong>' + item.lead + '</strong></span>';
+    if(item.others) html += '<span>👥 Others: <strong>' + item.others + '</strong></span>';
+    if(item.targetDate) {
+      const targetLabel = isOverdue ? '🔴 Target: ' : '🎯 Target: ';
+      html += '<span style="' + (isOverdue ? 'color:#dc3545; font-weight:bold;' : '') + '">' + targetLabel + '<strong>' + formatTodoDateShort(item.targetDate) + '</strong></span>';
+    }
+    if(item.done && item.completedDate) {
+      html += '<span style="color:#28a745;">✅ Done: <strong>' + formatTodoDate(item.completedDate) + '</strong></span>';
+    }
+    html += '</div></div>';
+    html += '<div style="display:flex; flex-direction:column; gap:5px; flex-shrink:0;">';
+    html += '<button onclick="editTodoItem(\'' + item.id + '\')" title="Edit task" style="background:#6f42c1; color:white; border:none; border-radius:5px; padding:5px 10px; cursor:pointer; font-size:0.85em;">✏️</button>';
+    html += '<button onclick="deleteTodoItem(\'' + item.id + '\')" title="Delete task" style="background:#dc3545; color:white; border:none; border-radius:5px; padding:5px 10px; cursor:pointer; font-size:0.85em;">🗑️</button>';
+    html += '</div>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+/* SECTION END: TODO LIST SYSTEM */
+/* ============================================ */
+
 /* SECTION START: CHANGE LOG SYSTEM */
 /* ============================================ */
 
@@ -4783,6 +7008,398 @@ function clearChangeLog() {
 }
 
 /* SECTION END: CHANGE LOG SYSTEM */
+
+/* ============================================ */
+/* SECTION START: TENTATIVE SCHEDULING SYSTEM */
+/* ============================================ */
+
+let tentativeDates = [];       // standalone admin-added entries
+let editingTentId  = null;
+let currentTentTab = 'events'; // 'events' | 'manual'
+
+// ── Firebase persistence for standalone entries ───────────────────────────────
+function loadTentativeDates(callback) {
+  if(useFirebase && db) {
+    db.ref('tentativeDates').once('value', function(snap) {
+      tentativeDates = snap.exists() ? Object.values(snap.val()) : [];
+      if(callback) callback();
+    });
+  } else {
+    const s = localStorage.getItem('mef-tentative');
+    tentativeDates = s ? JSON.parse(s) : [];
+    if(callback) callback();
+  }
+}
+
+function saveTentativeDates() {
+  if(useFirebase && db) {
+    const obj = {};
+    tentativeDates.forEach(t => { obj[t.id] = t; });
+    db.ref('tentativeDates').set(obj).catch(err => console.error('Tent save err:', err));
+  } else {
+    localStorage.setItem('mef-tentative', JSON.stringify(tentativeDates));
+  }
+}
+
+// ── Unified: get ALL tentative entries for a date ────────────────────────────
+// Combines standalone entries + event-sourced preferences
+function getTentativesOnDate(dateStr) {
+  const results = [];
+  // Standalone entries
+  tentativeDates.forEach(t => {
+    if(t.date === dateStr) results.push({ ...t, _source: 'standalone' });
+  });
+  // From events that have a tentativeDate set (but no confirmed date, or different confirmed date)
+  if(typeof events !== 'undefined') {
+    events.forEach(ev => {
+      if(ev.tentativeDate && ev.tentativeDate === dateStr && ev.date !== dateStr) {
+        results.push({
+          id: 'ev_' + ev.id,
+          title: ev.title,
+          date: dateStr,
+          time: ev.tentativeTime || '',
+          lead: ev.paceLead || '',
+          venue: ev.tentativeVenue || '',
+          notes: ev.tentativeNotes || '',
+          _source: 'event',
+          _eventId: ev.id
+        });
+      }
+    });
+  }
+  return results;
+}
+
+// ── Show/hide legend bar based on login ───────────────────────────────────────
+function updateCalendarSchedulingBar() {
+  const bar = document.getElementById('calendarSchedulingBar');
+  const adminBtn = document.getElementById('schedulingAdminBtn');
+  const planBtn = document.getElementById('tentativePlannerBtn');
+  if(bar) {
+    if(isPaceLead || isAdmin) {
+      bar.style.display = '';
+      if(adminBtn) adminBtn.style.display = isAdmin ? '' : 'none';
+    } else {
+      bar.style.display = 'none';
+    }
+  }
+  if(planBtn) planBtn.style.display = isAdmin ? '' : 'none';
+}
+
+// ── Scheduling modal ──────────────────────────────────────────────────────────
+function openSchedulingManager() {
+  if(!isAdmin) { alert('Admin access required.'); return; }
+  document.getElementById('schedulingModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  loadTentativeDates(() => {
+    renderTentEventsList();
+    renderTentativeList();
+  });
+  setTentTab('events');
+}
+
+function closeSchedulingManager() {
+  document.getElementById('schedulingModal').classList.remove('active');
+  document.body.style.overflow = 'auto';
+  cancelTentativeEdit();
+}
+
+function setTentTab(tab) {
+  currentTentTab = tab;
+  document.getElementById('tentTabEventsPanel').style.display = tab === 'events' ? '' : 'none';
+  document.getElementById('tentTabManualPanel').style.display = tab === 'manual' ? '' : 'none';
+  const evBtn = document.getElementById('tentTabEvents');
+  const manBtn = document.getElementById('tentTabManual');
+  evBtn.style.borderBottomColor = tab === 'events' ? '#e65100' : 'transparent';
+  evBtn.style.background = tab === 'events' ? '#fff3e0' : 'white';
+  evBtn.style.color = tab === 'events' ? '#e65100' : '#666';
+  manBtn.style.borderBottomColor = tab === 'manual' ? '#e65100' : 'transparent';
+  manBtn.style.background = tab === 'manual' ? '#fff3e0' : 'white';
+  manBtn.style.color = tab === 'manual' ? '#e65100' : '#666';
+}
+
+// ── "From Events" tab renderer ────────────────────────────────────────────────
+function renderTentEventsList() {
+  const container = document.getElementById('tentEventsList');
+  if(!container) return;
+  const search = (document.getElementById('tentEventSearch')?.value || '').toLowerCase();
+
+  if(typeof events === 'undefined' || events.length === 0) {
+    container.innerHTML = '<p style="padding:30px; text-align:center; color:#999;">No events loaded yet.</p>';
+    return;
+  }
+
+  let evList = events.filter(ev => ev.tentativeDate || ev.tentativeVenue);
+  if(search) {
+    evList = evList.filter(ev =>
+      (ev.title||'').toLowerCase().includes(search) ||
+      (ev.paceLead||'').toLowerCase().includes(search) ||
+      (ev.tentativeVenue||'').toLowerCase().includes(search)
+    );
+  }
+  evList.sort((a,b) => (a.tentativeDate||'9999').localeCompare(b.tentativeDate||'9999'));
+
+  if(evList.length === 0) {
+    container.innerHTML = '<p style="padding:30px; text-align:center; color:#999;">' +
+      (search ? 'No events match that search.' : 'No events have entered scheduling preferences yet.<br><small>PACE Leads set these in their event form under "Scheduling Preferences".</small>') + '</p>';
+    return;
+  }
+
+  let html = '';
+  evList.forEach(ev => {
+    const hasTentDate = ev.tentativeDate;
+    const hasTentVenue = ev.tentativeVenue;
+    let dateLabel = '';
+    if(hasTentDate) {
+      const d = new Date(ev.tentativeDate + 'T12:00:00');
+      dateLabel = d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+      if(ev.tentativeTime) dateLabel += ' · ' + ev.tentativeTime;
+    }
+    const isConfirmed = ev.date && ev.date !== '';
+    html += `<div style="padding:12px 15px; border-bottom:1px solid #eee; display:flex; gap:12px; align-items:flex-start;">`;
+    html += `<div style="width:5px; border-radius:3px; flex-shrink:0; min-height:40px; background:${hasTentDate?'repeating-linear-gradient(180deg,#ff9800 0,#ff9800 6px,#ffb74d 6px,#ffb74d 12px)':'#ccc'};"></div>`;
+    html += `<div style="flex:1; min-width:0;">`;
+    html += `<div style="font-weight:bold; color:#333; margin-bottom:3px; display:flex; align-items:center; gap:8px;">${ev.title}`;
+    if(isConfirmed) html += `<span style="background:#28a745; color:white; font-size:0.75em; padding:2px 8px; border-radius:10px; font-weight:bold;">✅ Confirmed ${formatDate(ev.date)}</span>`;
+    html += `</div>`;
+    if(ev.paceLead) html += `<div style="font-size:0.82em; color:#888; margin-bottom:3px;">👤 ${ev.paceLead}</div>`;
+    if(hasTentDate) html += `<div style="font-size:0.85em; color:#e65100; margin-bottom:2px;">📅 Preferred: <strong>${dateLabel}</strong></div>`;
+    if(hasTentVenue) html += `<div style="font-size:0.85em; color:#5d4037; margin-bottom:2px;">🏛️ Preferred venue: <strong>${ev.tentativeVenue}</strong></div>`;
+    if(ev.tentativeNotes) html += `<div style="font-size:0.82em; color:#888;">💬 ${ev.tentativeNotes}</div>`;
+    html += `</div>`;
+    html += `<button onclick="openEventForm(events.find(e=>e.id===${ev.id}))" style="background:#2B7BBD; color:white; border:none; border-radius:5px; padding:5px 10px; cursor:pointer; font-size:0.8em; flex-shrink:0;">✏️ Edit</button>`;
+    html += `</div>`;
+  });
+  container.innerHTML = html;
+}
+
+// ── Standalone entries save/edit/delete ───────────────────────────────────────
+function saveTentativeDate() {
+  const title = document.getElementById('tentTitle').value.trim();
+  const date  = document.getElementById('tentDate').value;
+  const lead  = document.getElementById('tentLead').value.trim();
+  const time  = document.getElementById('tentTime').value;
+  const venue = document.getElementById('tentVenue').value.trim();
+  const notes = document.getElementById('tentNotes').value.trim();
+  if(!title) { alert('Please enter an event name.'); return; }
+  if(!date)  { alert('Please choose a date.'); return; }
+  if(date < '2026-05-23' || date > '2026-06-30') { alert('Date must be within the festival (23 May – 30 Jun 2026).'); return; }
+  if(editingTentId) {
+    const idx = tentativeDates.findIndex(t => t.id === editingTentId);
+    if(idx !== -1) tentativeDates[idx] = { ...tentativeDates[idx], title, date, lead, time, venue, notes, updatedAt: new Date().toISOString() };
+    editingTentId = null;
+  } else {
+    tentativeDates.push({ id: 'tent_' + Date.now(), title, date, lead, time, venue, notes, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+  }
+  saveTentativeDates();
+  clearTentForm();
+  renderTentativeList();
+  renderCalendar();
+}
+
+function clearTentForm() {
+  ['tentTitle','tentLead','tentDate','tentTime','tentVenue','tentNotes'].forEach(id => {
+    const el = document.getElementById(id); if(el) el.value = '';
+  });
+  const sb = document.getElementById('tentSaveBtn'); if(sb) sb.textContent = 'Add Entry';
+  const cb = document.getElementById('tentCancelEdit'); if(cb) cb.style.display = 'none';
+  editingTentId = null;
+}
+
+function cancelTentativeEdit() { clearTentForm(); }
+
+function editTentative(id) {
+  const t = tentativeDates.find(x => x.id === id);
+  if(!t) return;
+  editingTentId = id;
+  setTentTab('manual');
+  document.getElementById('tentTitle').value = t.title || '';
+  document.getElementById('tentDate').value  = t.date  || '';
+  document.getElementById('tentLead').value  = t.lead  || '';
+  document.getElementById('tentTime').value  = t.time  || '';
+  document.getElementById('tentVenue').value = t.venue || '';
+  document.getElementById('tentNotes').value = t.notes || '';
+  const sb = document.getElementById('tentSaveBtn'); if(sb) sb.textContent = '💾 Save Changes';
+  const cb = document.getElementById('tentCancelEdit'); if(cb) cb.style.display = '';
+  document.getElementById('tentTitle').focus();
+}
+
+function deleteTentative(id) {
+  if(!confirm('Remove this tentative entry?')) return;
+  tentativeDates = tentativeDates.filter(t => t.id !== id);
+  saveTentativeDates();
+  renderTentativeList();
+  renderCalendar();
+}
+
+function renderTentativeList() {
+  const container = document.getElementById('tentativeList');
+  if(!container) return;
+  const search = (document.getElementById('tentSearch')?.value || '').toLowerCase();
+  let filtered = [...tentativeDates];
+  if(search) filtered = filtered.filter(t => (t.title||'').toLowerCase().includes(search)||(t.lead||'').toLowerCase().includes(search)||(t.venue||'').toLowerCase().includes(search));
+  filtered.sort((a,b) => a.date.localeCompare(b.date));
+  const countEl = document.getElementById('tentCount');
+  if(countEl) countEl.textContent = tentativeDates.length + ' entries';
+  if(filtered.length === 0) {
+    container.innerHTML = '<p style="padding:25px; text-align:center; color:#999;">' + (tentativeDates.length === 0 ? 'No standalone entries yet.' : 'No results.') + '</p>';
+    return;
+  }
+  let html = '', lastMonth = '';
+  filtered.forEach(t => {
+    const d = new Date(t.date+'T12:00:00');
+    const mo = d.toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+    if(mo !== lastMonth) { lastMonth=mo; html+=`<div style="padding:7px 14px; background:#fff3e0; font-weight:bold; color:#e65100; font-size:0.85em; border-bottom:1px solid #ffe0b2;">${mo}</div>`; }
+    const ds = d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+    html+=`<div style="padding:11px 14px; border-bottom:1px solid #eee; display:flex; gap:11px; align-items:flex-start;">`;
+    html+=`<div style="width:5px; border-radius:3px; flex-shrink:0; background:repeating-linear-gradient(180deg,#ff9800 0,#ff9800 6px,#ffb74d 6px,#ffb74d 12px); min-height:36px;"></div>`;
+    html+=`<div style="flex:1; min-width:0;"><div style="font-weight:bold; color:#333; margin-bottom:2px;">${t.title}</div>`;
+    html+=`<div style="font-size:0.82em; color:#666; margin-bottom:1px;">📅 ${ds}${t.time?' · '+t.time:''}${t.lead?' &nbsp;·&nbsp; 👤 '+t.lead:''}</div>`;
+    if(t.venue) html+=`<div style="font-size:0.82em; color:#5d4037;">🏛️ ${t.venue}</div>`;
+    if(t.notes) html+=`<div style="font-size:0.8em; color:#888; margin-top:2px;">💬 ${t.notes}</div>`;
+    html+=`</div><div style="display:flex; gap:5px; flex-shrink:0;">`;
+    html+=`<button onclick="editTentative('${t.id}')" style="background:#2B7BBD; color:white; border:none; border-radius:5px; padding:4px 9px; cursor:pointer; font-size:0.78em;">✏️</button>`;
+    html+=`<button onclick="deleteTentative('${t.id}')" style="background:#dc3545; color:white; border:none; border-radius:5px; padding:4px 9px; cursor:pointer; font-size:0.78em;">🗑️</button>`;
+    html+=`</div></div>`;
+  });
+  container.innerHTML = html;
+}
+
+// ── Calendar overlay render functions ─────────────────────────────────────────
+function renderCalendar() {
+  const container = document.getElementById('calendarViewContainer');
+  if(!container) return;
+  if(currentCalendarView==='month')      renderMonthViewTent(container);
+  else if(currentCalendarView==='week')  renderWeekViewTent(container);
+  else if(currentCalendarView==='day')   renderDayViewTent(container);
+}
+
+function _tentChip(t) {
+  return `<div class="tentative-chip">⏳ ${t.time?t.time+' · ':''}${t.title}${t.lead?`<div style="font-size:0.78em;opacity:0.9;">👤 ${t.lead}${t.venue?' · 🏛️ '+t.venue:''}</div>`:t.venue?`<div style="font-size:0.78em;opacity:0.9;">🏛️ ${t.venue}</div>`:''}</div>`;
+}
+
+function renderMonthViewTent(container) {
+  const start = new Date('2026-05-23'), end = new Date('2026-06-30');
+  let html = '<div style="text-align:center; margin-bottom:20px;"><h3 style="color:#2B7BBD; margin:0;">May - June</h3></div>';
+  html += '<div class="calendar-grid">';
+  let cur = new Date(start), lastMo = '';
+  while(cur <= end) {
+    const ds = cur.toISOString().split('T')[0];
+    const evts = getEventsOnDate(ds);
+    const tents = (isPaceLead||isAdmin) ? getTentativesOnDate(ds) : [];
+    const dayNum = cur.getDate();
+    const mo = cur.toLocaleString('default',{month:'short'});
+    const dayName = cur.toLocaleDateString('en-US',{weekday:'short'});
+    const isPride = ds === '2026-06-06';
+    if(mo !== lastMo) { lastMo=mo; html+=`<div style="grid-column:1/-1; font-weight:bold; color:#8DC63F; padding:10px; text-align:center; font-size:1.1em; background:#f5f5f5; border-radius:8px; margin:5px 0;">${mo}</div>`; }
+    const hasEvt = evts.length > 0, hasTent = tents.length > 0;
+    const extraStyle = hasTent && !hasEvt ? 'border-color:#ff9800;' : '';
+    html += `<div class="calendar-day${hasEvt?' has-events':''}" style="${extraStyle}${(hasEvt||hasTent)?'cursor:pointer;':''}" ${(hasEvt||hasTent)?`onclick="showDayEvents('${ds}')"`:''}>`;
+    html += `<div style="display:flex; align-items:center; justify-content:center; gap:5px;"><div style="font-size:1em; font-weight:bold;">${dayName}</div><div class="calendar-day-number" style="font-size:1em;">${dayNum}</div>${isPride?'<span style="font-size:1.2em;">🏳️‍🌈</span>':''}</div>`;
+    if(hasEvt) html += `<div class="event-count">${evts.length}</div>`;
+    if(hasTent) {
+      html += `<div style="display:flex; gap:2px; flex-wrap:wrap; justify-content:center; margin-top:3px;">`;
+      tents.forEach(() => html += `<div class="tentative-dot" title="Tentative"></div>`);
+      html += `</div>`;
+    }
+    html += `</div>`;
+    cur.setDate(cur.getDate()+1);
+  }
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function renderWeekViewTent(container) {
+  const sow = new Date(currentCalendarDate);
+  sow.setDate(sow.getDate() - sow.getDay() + 1);
+  const ws = new Date(sow), we = new Date(sow); we.setDate(we.getDate()+6);
+  let html = '<div style="max-width:1000px; margin:0 auto; width:100%; box-sizing:border-box; padding:0 10px;">';
+  html += `<div class="week-header">${ws.toLocaleDateString('en-GB',{day:'numeric',month:'short'})} - ${we.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</div>`;
+  html += '<div style="display:flex; justify-content:space-between; margin-bottom:20px; flex-wrap:wrap; gap:10px;">';
+  html += '<button class="btn" onclick="changeWeek(-1)" style="padding:10px 20px;">← Previous</button>';
+  html += '<button class="btn" onclick="changeWeek(1)" style="padding:10px 20px;">Next →</button>';
+  html += '</div><div style="display:grid; grid-template-columns:repeat(7,1fr); gap:10px; width:100%;">';
+  for(let i=0;i<7;i++) {
+    const d = new Date(sow); d.setDate(d.getDate()+i);
+    const ds = d.toISOString().split('T')[0];
+    const evts = getEventsOnDate(ds);
+    const tents = (isPaceLead||isAdmin) ? getTentativesOnDate(ds) : [];
+    const hasEvt = evts.length>0, hasTent = tents.length>0;
+    const borderCol = hasTent&&!hasEvt ? '#ff9800' : '#8DC63F';
+    const minH = (hasEvt||hasTent) ? '200px' : '80px';
+    html += `<div style="border:2px solid ${borderCol}; border-radius:10px; padding:15px; min-height:${minH}; background:white; min-width:0; box-sizing:border-box; cursor:pointer;" onclick="showDayEvents('${ds}')">`;
+    html += `<div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;"><div style="font-size:1.8em; color:#2B7BBD; font-weight:bold; line-height:1;">${d.getDate()}</div><div style="font-weight:bold; color:#666; font-size:0.9em;">${d.toLocaleDateString('en-US',{weekday:'short'})}</div></div>`;
+    evts.forEach(ev => {
+      const ri=(ev.recurrence&&ev.recurrence.type!=='none')?' 🔁':'';
+      html+=`<div style="background:#8DC63F; color:white; padding:8px; border-radius:5px; margin-bottom:8px; font-size:0.9em; cursor:pointer; word-wrap:break-word;" onclick="event.stopPropagation(); showEventDetails(${ev.id})">${ev.time||''} ${ev.title}${ri}</div>`;
+    });
+    tents.forEach(t => html += _tentChip(t));
+    html += '</div>';
+  }
+  html += '</div></div>';
+  container.innerHTML = html;
+}
+
+function renderDayViewTent(container) {
+  const ds = currentCalendarDate.toISOString().split('T')[0];
+  const evts = getEventsOnDate(ds);
+  const tents = (isPaceLead||isAdmin) ? getTentativesOnDate(ds) : [];
+  let html = '<div style="max-width:800px; margin:0 auto;">';
+  html += '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; flex-wrap:wrap; gap:10px;">';
+  html += '<button class="btn" onclick="changeDay(-1)" style="padding:10px 20px;">← Previous</button>';
+  html += `<h3 style="color:#2B7BBD; margin:0;">${currentCalendarDate.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})}</h3>`;
+  html += '<button class="btn" onclick="changeDay(1)" style="padding:10px 20px;">Next →</button></div>';
+  if(tents.length>0) {
+    html += `<div style="background:#fff3e0; border:2px solid #ff9800; border-radius:10px; padding:18px; margin-bottom:25px;"><div style="font-weight:bold; color:#e65100; margin-bottom:10px;">⏳ Tentative / Preferred — not yet confirmed</div>`;
+    tents.forEach(t => {
+      html+=`<div style="background:white; border-left:5px solid #ff9800; border-radius:6px; padding:12px 15px; margin-bottom:8px;">`;
+      html+=`<div style="font-weight:bold; color:#333; margin-bottom:3px;">${t.title}${t._source==='event'?'<span style="background:#2B7BBD; color:white; font-size:0.72em; padding:2px 7px; border-radius:10px; margin-left:8px; font-weight:normal;">👤 Event request</span>':''}</div>`;
+      if(t.time) html+=`<div style="color:#666; font-size:0.9em;">🕒 ${t.time}</div>`;
+      if(t.lead) html+=`<div style="color:#666; font-size:0.9em;">👤 ${t.lead}</div>`;
+      if(t.venue) html+=`<div style="color:#5d4037; font-size:0.9em;">🏛️ Preferred venue: ${t.venue}</div>`;
+      if(t.notes) html+=`<div style="color:#888; font-size:0.85em; margin-top:3px;">💬 ${t.notes}</div>`;
+      html+=`</div>`;
+    });
+    html += `</div>`;
+  }
+  if(evts.length===0 && tents.length===0) {
+    html += '<p style="text-align:center; color:#666; padding:40px;">No events scheduled for this day.</p>';
+  }
+  if(evts.length>1) html += '<p style="text-align:center; padding:20px; color:#666; font-size:1.1em; font-style:italic;">Click on any event to find out more and book your place</p>';
+  if(evts.length>0) {
+    html += '<div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:15px;">';
+    evts.forEach((ev,i) => {
+      const cc=(i%2===0)?'color-orange':'color-green';
+      let tp=[]; if(ev.time) tp.push('🕒 '+ev.time);
+      if(ev.duration&&ev.duration>0){const h=Math.floor(ev.duration/60),m=ev.duration%60;let ds='⏱️ ';if(h>0)ds+=h+(h===1?' hour':' hours');if(m>0)ds+=(h>0?' ':'')+m+' mins';tp.push(ds);}
+      let loc=''; if(ev.location)loc='📍 '+ev.location+(ev.postcode?', '+ev.postcode:''); else if(ev.venue)loc='📍 '+ev.venue+(ev.postcode?', '+ev.postcode:'');
+      let desc=ev.summary||(ev.description?ev.description.substring(0,100)+(ev.description.length>100?'...':''):'');
+      html+=`<div class="event-card" onclick="showEventDetailModal(${ev.id})"><div class="event-card-header ${cc}">${ev.title}</div><div class="event-card-body">${tp.length?'<div class="event-card-info">'+tp.join('  ')+'</div>':''}${loc?'<div class="event-card-info">'+loc+'</div>':''}${desc?'<div class="event-card-description">'+desc+'</div>':''}<div class="event-card-cta">Click for details →</div></div></div>`;
+    });
+    html += '</div>';
+  }
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+// ── showDayEvents: override to use tent-aware day view ────────────────────────
+function showDayEvents(dateStr) {
+  currentCalendarDate = new Date(dateStr + 'T12:00:00');
+  showCalendarView('day');
+}
+
+// ── Hook: update bar on page show + reload tents when calendar viewed ─────────
+const _baseShowPageSched = showPage;
+showPage = function(pageName, btn) {
+  _baseShowPageSched(pageName, btn);
+  updateCalendarSchedulingBar();
+  if(pageName==='calendar' && (isPaceLead||isAdmin)) {
+    loadTentativeDates(() => renderCalendar());
+  }
+};
+
+/* SECTION END: TENTATIVE SCHEDULING SYSTEM */
+
 /* ============================================ */
 /* END OF JAVASCRIPT - CLOSE SCRIPT TAG */
 /* ============================================ */
